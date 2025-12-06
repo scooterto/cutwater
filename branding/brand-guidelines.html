@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Partners - Brand Guidelines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --frost: #DCF2F1;
+            --aqua: #7FC7D9;
+            --ocean: #365486;
+            --deep-navy: #0F1035;
+            --blue: #1E88E5;
+            --white: #FFFFFF;
+            --card-dark: #1a1b3d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--deep-navy);
+            line-height: 1.6;
+        }
+
+        /* Cover Page */
+        .cover {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--ocean) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            page-break-after: always;
+        }
+
+        .cover-logo {
+            width: 120px;
+            height: 144px;
+            margin-bottom: 40px;
+        }
+
+        .cover h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--frost);
+            margin-bottom: 16px;
+        }
+
+        .cover h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--aqua);
+            margin-bottom: 40px;
+        }
+
+        .cover p {
+            color: var(--frost);
+            opacity: 0.8;
+            max-width: 500px;
+            font-size: 16px;
+        }
+
+        .cover-date {
+            position: absolute;
+            bottom: 40px;
+            color: var(--aqua);
+            font-size: 14px;
+        }
+
+        /* Page Styles */
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 60px;
+            page-break-after: always;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--aqua);
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--deep-navy);
+            margin: 40px 0 16px 0;
+        }
+
+        h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--ocean);
+            margin: 24px 0 12px 0;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--deep-navy);
+        }
+
+        /* Logo Section */
+        .logo-display {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .logo-box {
+            flex: 1;
+            padding: 60px 40px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-box.light {
+            background: var(--white);
+            border: 1px solid var(--frost);
+            box-shadow: 0 4px 20px rgba(15, 16, 53, 0.08);
+        }
+
+        .logo-box.dark {
+            background: var(--deep-navy);
+        }
+
+        .logo-box svg {
+            width: 80px;
+            height: 96px;
+            margin-bottom: 20px;
+        }
+
+        .logo-box .label {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .logo-box.light .label {
+            color: var(--ocean);
+        }
+
+        .logo-box.dark .label {
+            color: var(--aqua);
+        }
+
+        .logo-box .hex {
+            font-size: 12px;
+            font-family: monospace;
+            margin-top: 4px;
+        }
+
+        .logo-box.light .hex {
+            color: var(--blue);
+        }
+
+        .logo-box.dark .hex {
+            color: var(--aqua);
+        }
+
+        /* Logo with Name */
+        .logo-with-name {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .logo-name-box {
+            flex: 1;
+            padding: 40px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .logo-name-box.light {
+            background: var(--white);
+            border: 1px solid var(--frost);
+        }
+
+        .logo-name-box.dark {
+            background: var(--deep-navy);
+        }
+
+        .logo-name-box svg {
+            width: 40px;
+            height: 48px;
+        }
+
+        .logo-name-box .brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo-name-box.light .brand-name {
+            color: var(--deep-navy);
+        }
+
+        .logo-name-box.dark .brand-name {
+            color: var(--frost);
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin: 30px 0;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-swatch .swatch {
+            height: 80px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .color-swatch .name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--deep-navy);
+            margin-bottom: 4px;
+        }
+
+        .color-swatch .hex {
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--ocean);
+        }
+
+        .color-swatch .rgb {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        /* Mode Tables */
+        .mode-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .mode-card {
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .mode-card.light {
+            background: var(--white);
+            border: 1px solid var(--frost);
+        }
+
+        .mode-card.dark {
+            background: var(--deep-navy);
+        }
+
+        .mode-card h4 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .mode-card.dark h4 {
+            color: var(--aqua);
+        }
+
+        .mode-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid;
+            font-size: 13px;
+        }
+
+        .mode-card.light .mode-item {
+            border-color: var(--frost);
+            color: var(--deep-navy);
+        }
+
+        .mode-card.dark .mode-item {
+            border-color: var(--ocean);
+            color: var(--frost);
+        }
+
+        .mode-item:last-child {
+            border-bottom: none;
+        }
+
+        .mode-item .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .mode-item .right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+            font-size: 11px;
+        }
+
+        /* Typography */
+        .type-sample {
+            margin: 30px 0;
+            padding: 30px;
+            background: var(--frost);
+            border-radius: 16px;
+        }
+
+        .type-sample h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 8px;
+        }
+
+        .type-sample .body-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: var(--ocean);
+            max-width: 600px;
+        }
+
+        .font-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .font-item {
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--frost);
+        }
+
+        .font-item .font-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--deep-navy);
+        }
+
+        .font-item.heading .font-name {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .font-item.body .font-name {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-item .font-usage {
+            font-size: 13px;
+            color: var(--aqua);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .font-item .font-weights {
+            font-size: 14px;
+            color: var(--ocean);
+        }
+
+        /* Type Scale Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--frost);
+        }
+
+        th {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--aqua);
+            background: var(--frost);
+        }
+
+        td {
+            font-size: 14px;
+            color: var(--deep-navy);
+        }
+
+        td code {
+            font-family: monospace;
+            background: var(--frost);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--deep-navy);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--frost);
+            margin: 0;
+        }
+
+        .code-block .comment {
+            color: var(--aqua);
+        }
+
+        .code-block .property {
+            color: var(--aqua);
+        }
+
+        .code-block .value {
+            color: #7FC7D9;
+        }
+
+        /* UI Preview */
+        .ui-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .ui-card {
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .ui-card.light {
+            background: var(--white);
+            border: 1px solid var(--frost);
+        }
+
+        .ui-card.dark {
+            background: var(--deep-navy);
+        }
+
+        .ui-card h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .ui-card.light h5 {
+            color: var(--deep-navy);
+        }
+
+        .ui-card.dark h5 {
+            color: var(--frost);
+        }
+
+        .ui-card p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .ui-card.light p {
+            color: var(--ocean);
+        }
+
+        .ui-card.dark p {
+            color: var(--aqua);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .ui-card.light .btn-primary {
+            background: var(--ocean);
+            color: var(--frost);
+        }
+
+        .ui-card.light .btn-secondary {
+            background: transparent;
+            border: 1.5px solid var(--ocean);
+            color: var(--ocean);
+        }
+
+        .ui-card.dark .btn-primary {
+            background: var(--aqua);
+            color: var(--deep-navy);
+        }
+
+        .ui-card.dark .btn-secondary {
+            background: transparent;
+            border: 1.5px solid var(--aqua);
+            color: var(--aqua);
+        }
+
+        /* Print Styles */
+        @media print {
+            .page {
+                page-break-after: always;
+                padding: 40px;
+            }
+
+            .cover {
+                page-break-after: always;
+            }
+
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--ocean);
+            font-size: 13px;
+            border-top: 1px solid var(--frost);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="cover">
+        <svg class="cover-logo" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
+            <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+        </svg>
+        <h1>Cutwater</h1>
+        <h2>Brand Guidelines</h2>
+        <p>A comprehensive guide to the Cutwater Partners visual identity, including logo usage, color palette, and typography standards.</p>
+        <p class="cover-date">December 2024</p>
+    </div>
+
+    <!-- Logo Page -->
+    <div class="page">
+        <p class="section-title">01 — Logo</p>
+        <h2>Logo</h2>
+        <p>The Cutwater logo features a filled water droplet with double parallel slashes cutting through it, symbolizing liquidity, precision, and the delta-neutral strategy (long spot + short perps).</p>
+
+        <h3>Primary Logo</h3>
+        <div class="logo-display">
+            <div class="logo-box light">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p class="label">Light Background</p>
+                <p class="hex">Drop: #365486 / Slash: #DCF2F1</p>
+            </div>
+            <div class="logo-box dark">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
+                    <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p class="label">Dark Background</p>
+                <p class="hex">Drop: #7FC7D9 / Slash: #0F1035</p>
+            </div>
+        </div>
+
+        <h3>Logo with Brand Name</h3>
+        <div class="logo-with-name">
+            <div class="logo-name-box light">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="brand-name">Cutwater</span>
+            </div>
+            <div class="logo-name-box dark">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
+                    <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="brand-name">Cutwater</span>
+            </div>
+        </div>
+
+        <h4>Logo Specifications</h4>
+        <table>
+            <tr>
+                <th>Attribute</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Clear Space</td>
+                <td>25% of logo height on all sides</td>
+            </tr>
+            <tr>
+                <td>Minimum Size (Digital)</td>
+                <td>24px height</td>
+            </tr>
+            <tr>
+                <td>Minimum Size (Print)</td>
+                <td>0.375 inch height</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Color Page -->
+    <div class="page">
+        <p class="section-title">02 — Color Palette</p>
+        <h2>Color Palette</h2>
+        <p>The Cutwater color palette evokes trust, depth, and clarity. The cool blue tones convey professionalism while maintaining a modern, approachable feel.</p>
+
+        <h3>Primary Colors</h3>
+        <div class="color-grid">
+            <div class="color-swatch">
+                <div class="swatch" style="background: #DCF2F1;"></div>
+                <p class="name">Frost</p>
+                <p class="hex">#DCF2F1</p>
+                <p class="rgb">rgb(220, 242, 241)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #7FC7D9;"></div>
+                <p class="name">Aqua</p>
+                <p class="hex">#7FC7D9</p>
+                <p class="rgb">rgb(127, 199, 217)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #365486;"></div>
+                <p class="name">Ocean</p>
+                <p class="hex">#365486</p>
+                <p class="rgb">rgb(54, 84, 134)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #0F1035;"></div>
+                <p class="name">Deep Navy</p>
+                <p class="hex">#0F1035</p>
+                <p class="rgb">rgb(15, 16, 53)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #1E88E5;"></div>
+                <p class="name">Blue</p>
+                <p class="hex">#1E88E5</p>
+                <p class="rgb">rgb(30, 136, 229)</p>
+            </div>
+        </div>
+
+        <h3>Light & Dark Mode</h3>
+        <div class="mode-section">
+            <div class="mode-card light">
+                <h4>Light Mode</h4>
+                <div class="mode-item">
+                    <span>Background</span>
+                    <span class="right">#FFFFFF <span class="color-dot" style="background: #FFFFFF; border: 1px solid #DCF2F1;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Secondary BG</span>
+                    <span class="right">#DCF2F1 <span class="color-dot" style="background: #DCF2F1;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Text Primary</span>
+                    <span class="right">#0F1035 <span class="color-dot" style="background: #0F1035;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Text Secondary</span>
+                    <span class="right">#365486 <span class="color-dot" style="background: #365486;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Logo Drop</span>
+                    <span class="right">#365486 <span class="color-dot" style="background: #365486;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Logo Slash</span>
+                    <span class="right">#DCF2F1 <span class="color-dot" style="background: #DCF2F1;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Primary Button</span>
+                    <span class="right">#365486 <span class="color-dot" style="background: #365486;"></span></span>
+                </div>
+            </div>
+            <div class="mode-card dark">
+                <h4>Dark Mode</h4>
+                <div class="mode-item">
+                    <span>Background</span>
+                    <span class="right">#0F1035 <span class="color-dot" style="background: #0F1035; border: 1px solid #365486;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Secondary BG</span>
+                    <span class="right">#365486 <span class="color-dot" style="background: #365486;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Text Primary</span>
+                    <span class="right">#DCF2F1 <span class="color-dot" style="background: #DCF2F1;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Text Secondary</span>
+                    <span class="right">#7FC7D9 <span class="color-dot" style="background: #7FC7D9;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Logo Drop</span>
+                    <span class="right">#7FC7D9 <span class="color-dot" style="background: #7FC7D9;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Logo Slash</span>
+                    <span class="right">#0F1035 <span class="color-dot" style="background: #0F1035;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Primary Button</span>
+                    <span class="right">#7FC7D9 <span class="color-dot" style="background: #7FC7D9;"></span></span>
+                </div>
+            </div>
+        </div>
+
+        <h4>CSS Variables</h4>
+        <div class="code-block">
+            <pre><span class="comment">/* Light Mode (default) */</span>
+:root {
+  <span class="property">--bg-primary</span>: <span class="value">#FFFFFF</span>;
+  <span class="property">--bg-secondary</span>: <span class="value">#DCF2F1</span>;
+  <span class="property">--text-primary</span>: <span class="value">#0F1035</span>;
+  <span class="property">--text-secondary</span>: <span class="value">#365486</span>;
+  <span class="property">--logo-drop</span>: <span class="value">#365486</span>;
+  <span class="property">--logo-slash</span>: <span class="value">#DCF2F1</span>;
+  <span class="property">--accent</span>: <span class="value">#7FC7D9</span>;
+  <span class="property">--btn-primary-bg</span>: <span class="value">#365486</span>;
+}
+
+<span class="comment">/* Dark Mode */</span>
+[data-theme="dark"] {
+  <span class="property">--bg-primary</span>: <span class="value">#0F1035</span>;
+  <span class="property">--bg-secondary</span>: <span class="value">#365486</span>;
+  <span class="property">--text-primary</span>: <span class="value">#DCF2F1</span>;
+  <span class="property">--text-secondary</span>: <span class="value">#7FC7D9</span>;
+  <span class="property">--logo-drop</span>: <span class="value">#7FC7D9</span>;
+  <span class="property">--logo-slash</span>: <span class="value">#0F1035</span>;
+  <span class="property">--btn-primary-bg</span>: <span class="value">#7FC7D9</span>;
+}</pre>
+        </div>
+    </div>
+
+    <!-- Typography Page -->
+    <div class="page">
+        <p class="section-title">03 — Typography</p>
+        <h2>Typography</h2>
+        <p>Cutwater uses a combination of Space Grotesk for headings and Inter for body text, creating a balance between distinctive branding and excellent readability.</p>
+
+        <div class="type-sample">
+            <h1>Higher yields through multi-asset arbitrage</h1>
+            <p class="body-text">Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY.</p>
+        </div>
+
+        <h3>Font Families</h3>
+        <div class="font-card">
+            <div class="font-item heading">
+                <p class="font-usage">Headings</p>
+                <p class="font-name">Space Grotesk</p>
+                <p class="font-weights">Weights: 500, 600, 700</p>
+            </div>
+            <div class="font-item body">
+                <p class="font-usage">Body Text</p>
+                <p class="font-name">Inter</p>
+                <p class="font-weights">Weights: 400, 500, 600</p>
+            </div>
+        </div>
+
+        <h3>Type Scale</h3>
+        <table>
+            <tr>
+                <th>Element</th>
+                <th>Font</th>
+                <th>Size</th>
+                <th>Weight</th>
+                <th>Line Height</th>
+            </tr>
+            <tr>
+                <td>H1</td>
+                <td>Space Grotesk</td>
+                <td><code>48px</code></td>
+                <td>700</td>
+                <td>1.1</td>
+            </tr>
+            <tr>
+                <td>H2</td>
+                <td>Space Grotesk</td>
+                <td><code>36px</code></td>
+                <td>700</td>
+                <td>1.2</td>
+            </tr>
+            <tr>
+                <td>H3</td>
+                <td>Space Grotesk</td>
+                <td><code>24px</code></td>
+                <td>600</td>
+                <td>1.25</td>
+            </tr>
+            <tr>
+                <td>H4</td>
+                <td>Space Grotesk</td>
+                <td><code>20px</code></td>
+                <td>600</td>
+                <td>1.3</td>
+            </tr>
+            <tr>
+                <td>Body Large</td>
+                <td>Inter</td>
+                <td><code>18px</code></td>
+                <td>400</td>
+                <td>1.6</td>
+            </tr>
+            <tr>
+                <td>Body</td>
+                <td>Inter</td>
+                <td><code>16px</code></td>
+                <td>400</td>
+                <td>1.6</td>
+            </tr>
+            <tr>
+                <td>Body Small</td>
+                <td>Inter</td>
+                <td><code>14px</code></td>
+                <td>400</td>
+                <td>1.5</td>
+            </tr>
+            <tr>
+                <td>Button</td>
+                <td>Space Grotesk</td>
+                <td><code>16px</code></td>
+                <td>600</td>
+                <td>1</td>
+            </tr>
+        </table>
+
+        <h4>Font Import</h4>
+        <div class="code-block">
+            <pre>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"&gt;</pre>
+        </div>
+    </div>
+
+    <!-- UI Components Page -->
+    <div class="page">
+        <p class="section-title">04 — UI Components</p>
+        <h2>UI Components</h2>
+        <p>Examples of how the brand elements come together in user interface components.</p>
+
+        <h3>Cards & Buttons</h3>
+        <div class="ui-preview">
+            <div class="ui-card light">
+                <h5>USDi Token</h5>
+                <p>Interest-bearing synthetic dollar with 15-25% APY through multi-asset delta-neutral strategy.</p>
+                <div class="btn-row">
+                    <button class="btn btn-primary">Mint USDi</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+            <div class="ui-card dark">
+                <h5>USDi Token</h5>
+                <p>Interest-bearing synthetic dollar with 15-25% APY through multi-asset delta-neutral strategy.</p>
+                <div class="btn-row">
+                    <button class="btn btn-primary">Mint USDi</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <h4>Button Styles</h4>
+        <div class="code-block">
+            <pre><span class="comment">/* Primary Button */</span>
+.btn-primary {
+  <span class="property">background</span>: <span class="value">var(--btn-primary-bg)</span>;
+  <span class="property">color</span>: <span class="value">var(--btn-primary-text)</span>;
+  <span class="property">font-family</span>: <span class="value">'Space Grotesk', sans-serif</span>;
+  <span class="property">font-weight</span>: <span class="value">600</span>;
+  <span class="property">padding</span>: <span class="value">12px 24px</span>;
+  <span class="property">border-radius</span>: <span class="value">8px</span>;
+  <span class="property">border</span>: <span class="value">none</span>;
+}
+
+<span class="comment">/* Secondary Button */</span>
+.btn-secondary {
+  <span class="property">background</span>: <span class="value">transparent</span>;
+  <span class="property">border</span>: <span class="value">1.5px solid var(--btn-primary-bg)</span>;
+  <span class="property">color</span>: <span class="value">var(--btn-primary-bg)</span>;
+}</pre>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Cutwater Partners Brand Guidelines — December 2024</p>
+        <p style="margin-top: 8px; opacity: 0.7;">For questions, contact the design team.</p>
+    </div>
+
+</body>
+</html>

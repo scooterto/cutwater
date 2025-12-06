@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cutwater Logo - Final C5</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #0F1035;
+            margin-bottom: 12px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #365486;
+            margin-bottom: 48px;
+            font-size: 15px;
+        }
+        .main-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        .main-logo svg {
+            width: 150px;
+            height: 180px;
+        }
+        .lockup-section {
+            text-align: center;
+        }
+        .lockup-section h2 {
+            color: #365486;
+            font-size: 18px;
+            margin-bottom: 24px;
+        }
+        .lockups {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .lockup {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 32px 48px;
+            border-radius: 16px;
+        }
+        .lockup.light {
+            background: white;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        .lockup.dark {
+            background: #0F1035;
+        }
+        .lockup svg {
+            width: 52px;
+            height: 62px;
+        }
+        .brand-name {
+            font-size: 30px;
+            font-weight: 700;
+        }
+        .brand-name.light { color: #0F1035; }
+        .brand-name.dark { color: #DCF2F1; }
+
+        .sizes-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .sizes-section h2 {
+            color: #365486;
+            font-size: 18px;
+            margin-bottom: 24px;
+        }
+        .sizes {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        .size-item {
+            text-align: center;
+        }
+        .size-item p {
+            margin-top: 8px;
+            color: #365486;
+            font-size: 12px;
+        }
+        .specs {
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .specs h3 {
+            color: #365486;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .specs code {
+            display: block;
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #0F1035;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cutwater Logo - Final</h1>
+    <p class="subtitle">Slashes inside drop boundary, aligned tops (y=40) and bottoms (y=90)</p>
+
+    <!-- Main Logo Display -->
+    <div class="main-logo">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+            <!-- Both slashes fully inside the drop -->
+            <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+        </svg>
+    </div>
+
+    <!-- Brand Lockups -->
+    <div class="lockup-section">
+        <h2>Logo + Brand Name</h2>
+        <div class="lockups">
+            <div class="lockup light">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M30 40 L50 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M54 40 L74 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="brand-name light">Cutwater</span>
+            </div>
+            <div class="lockup dark">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
+                    <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="brand-name dark">Cutwater</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size Variations -->
+    <div class="sizes-section">
+        <h2>Size Variations</h2>
+        <div class="sizes">
+            <div class="size-item">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" width="24" height="29">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M30 40 L50 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M54 40 L74 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p>24px</p>
+            </div>
+            <div class="size-item">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" width="32" height="38">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M30 40 L50 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M54 40 L74 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p>32px</p>
+            </div>
+            <div class="size-item">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" width="48" height="58">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M30 40 L50 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M54 40 L74 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p>48px</p>
+            </div>
+            <div class="size-item">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" width="64" height="77">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M30 40 L50 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M54 40 L74 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p>64px</p>
+            </div>
+            <div class="size-item">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" width="96" height="115">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M30 40 L50 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M54 40 L74 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p>96px</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Specs -->
+    <div class="specs">
+        <h3>Verification</h3>
+        <code>
+Left slash:  M29 40 → L49 90  (top: y=40, bottom: y=90)<br>
+Right slash: M55 40 → L75 90  (top: y=40, bottom: y=90)<br>
+<br>
+✓ Both tops aligned at y=40<br>
+✓ Both bottoms aligned at y=90<br>
+✓ Left slash dx=20, Right slash dx=20 (same slope)<br>
+✓ Gap: 55-29=26 (top), 75-49=26 (bottom)<br>
+✓ Length: √(20² + 50²) ≈ 53.9 each<br>
+✓ All points inside drop boundary
+        </code>
+    </div>
+
+</body>
+</html>

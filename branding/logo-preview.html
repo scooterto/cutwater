@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cutwater Logo Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f5f5f5;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        h2 {
+            color: #0F1035;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        .row {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+        .logo-box {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .logo-box.dark {
+            background: #0F1035;
+        }
+        svg {
+            width: 120px;
+            height: 144px;
+        }
+        .label {
+            margin-top: 20px;
+            color: #365486;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .dark .label {
+            color: #7FC7D9;
+        }
+        /* Logo with brand name */
+        .logo-with-name {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 60px;
+        }
+        .logo-with-name svg {
+            width: 48px;
+            height: 58px;
+        }
+        .brand-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0F1035;
+        }
+        .brand-card {
+            background: white;
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .brand-card.dark {
+            background: #0F1035;
+        }
+        .brand-card.dark .brand-name {
+            color: #DCF2F1;
+        }
+        .brand-row {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cutwater Logo</h2>
+        <div class="row">
+            <div class="logo-box">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                    <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p class="label">Light Background</p>
+            </div>
+            <div class="logo-box dark">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
+                    <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <p class="label">Dark Background</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 60px;">Logo with Brand Name</h2>
+        <div class="brand-row">
+            <div class="brand-card">
+                <div class="logo-with-name">
+                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
+                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    </svg>
+                    <span class="brand-name">Cutwater</span>
+                </div>
+            </div>
+            <div class="brand-card dark">
+                <div class="logo-with-name">
+                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
+                        <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                        <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    </svg>
+                    <span class="brand-name">Cutwater</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

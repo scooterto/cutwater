@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cutwater Typography Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f8f9fa;
+            padding: 40px;
+            font-family: Inter, sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #0F1035;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .option {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(15, 16, 53, 0.08);
+        }
+        .option.recommended {
+            border: 2px solid #365486;
+            position: relative;
+        }
+        .option.recommended::after {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #365486;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .option-label {
+            font-size: 12px;
+            color: #7FC7D9;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .sample-heading {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0F1035;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .sample-subheading {
+            font-size: 18px;
+            font-weight: 600;
+            color: #365486;
+            margin-bottom: 16px;
+        }
+        .sample-body {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 16px;
+        }
+        .sample-small {
+            font-size: 14px;
+            color: #666;
+        }
+        .font-name {
+            font-size: 13px;
+            color: #999;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Option A - Space Grotesk + Inter */
+        .option-a .sample-heading,
+        .option-a .sample-subheading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .option-a .sample-body,
+        .option-a .sample-small {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Option B - Inter only */
+        .option-b .sample-heading,
+        .option-b .sample-subheading,
+        .option-b .sample-body,
+        .option-b .sample-small {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Option C - Plus Jakarta Sans */
+        .option-c .sample-heading,
+        .option-c .sample-subheading,
+        .option-c .sample-body,
+        .option-c .sample-small {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Option D - DM Sans */
+        .option-d .sample-heading,
+        .option-d .sample-subheading,
+        .option-d .sample-body,
+        .option-d .sample-small {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* Hero Preview Section */
+        .hero-preview {
+            background: linear-gradient(135deg, #0F1035 0%, #365486 100%);
+            border-radius: 20px;
+            padding: 60px;
+            color: white;
+            margin-top: 40px;
+        }
+        .hero-preview h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+        .hero-preview h2 span {
+            color: #7FC7D9;
+        }
+        .hero-preview .tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            color: #7FC7D9;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .hero-preview p {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #DCF2F1;
+            max-width: 600px;
+        }
+        .hero-preview .cta {
+            display: inline-block;
+            margin-top: 30px;
+            background: #7FC7D9;
+            color: #0F1035;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #0F1035;
+            margin: 50px 0 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cutwater Typography Options</h1>
+
+        <div class="options">
+            <div class="option option-a recommended">
+                <p class="option-label">Option A</p>
+                <h3 class="sample-heading">Higher yields through multi-asset arbitrage</h3>
+                <p class="sample-subheading">Delta-Neutral Funding Rate Strategy</p>
+                <p class="sample-body">Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY.</p>
+                <p class="sample-small">Institutional-grade risk management with real-time monitoring.</p>
+                <p class="font-name"><strong>Headings:</strong> Space Grotesk · <strong>Body:</strong> Inter</p>
+            </div>
+
+            <div class="option option-b">
+                <p class="option-label">Option B</p>
+                <h3 class="sample-heading">Higher yields through multi-asset arbitrage</h3>
+                <p class="sample-subheading">Delta-Neutral Funding Rate Strategy</p>
+                <p class="sample-body">Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY.</p>
+                <p class="sample-small">Institutional-grade risk management with real-time monitoring.</p>
+                <p class="font-name"><strong>All text:</strong> Inter</p>
+            </div>
+
+            <div class="option option-c">
+                <p class="option-label">Option C</p>
+                <h3 class="sample-heading">Higher yields through multi-asset arbitrage</h3>
+                <p class="sample-subheading">Delta-Neutral Funding Rate Strategy</p>
+                <p class="sample-body">Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY.</p>
+                <p class="sample-small">Institutional-grade risk management with real-time monitoring.</p>
+                <p class="font-name"><strong>All text:</strong> Plus Jakarta Sans</p>
+            </div>
+
+            <div class="option option-d">
+                <p class="option-label">Option D</p>
+                <h3 class="sample-heading">Higher yields through multi-asset arbitrage</h3>
+                <p class="sample-subheading">Delta-Neutral Funding Rate Strategy</p>
+                <p class="sample-body">Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY.</p>
+                <p class="sample-small">Institutional-grade risk management with real-time monitoring.</p>
+                <p class="font-name"><strong>All text:</strong> DM Sans</p>
+            </div>
+        </div>
+
+        <h3 class="section-title">Hero Preview (Recommended: Space Grotesk + Inter)</h3>
+        <div class="hero-preview">
+            <h2>Higher yields through <span>multi-asset arbitrage</span></h2>
+            <p class="tagline">Delta-Neutral Funding Rate Strategy</p>
+            <p>Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY while maintaining strict delta neutrality.</p>
+            <a href="#" class="cta">Mint USDi</a>
+        </div>
+    </div>
+</body>
+</html>

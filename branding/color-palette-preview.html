@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cutwater Color Palette - Light & Dark Modes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f0f0;
+            padding: 40px;
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0F1035;
+            font-size: 32px;
+        }
+        .modes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Light Mode */
+        .light-mode {
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        .light-mode .mode-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #0F1035;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .light-mode .mode-badge {
+            background: #DCF2F1;
+            color: #365486;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: #0F1035;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .dark-mode .mode-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: #DCF2F1;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .dark-mode .mode-badge {
+            background: #365486;
+            color: #7FC7D9;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Color Swatches */
+        .color-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .swatch {
+            flex: 1;
+            text-align: center;
+        }
+        .swatch-color {
+            height: 60px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+        .swatch-name {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .swatch-hex {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+        .light-mode .swatch-name { color: #0F1035; }
+        .light-mode .swatch-hex { color: #365486; }
+        .dark-mode .swatch-name { color: #DCF2F1; }
+        .dark-mode .swatch-hex { color: #7FC7D9; }
+
+        /* Section Labels */
+        .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .light-mode .section-label { color: #7FC7D9; }
+        .dark-mode .section-label { color: #7FC7D9; }
+
+        /* UI Preview */
+        .ui-preview {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid;
+        }
+        .light-mode .ui-preview { border-color: #DCF2F1; }
+        .dark-mode .ui-preview { border-color: #365486; }
+
+        /* Cards */
+        .preview-card {
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .light-mode .preview-card {
+            background: #FFFFFF;
+            border: 1px solid #DCF2F1;
+            box-shadow: 0 4px 20px rgba(15, 16, 53, 0.06);
+        }
+        .dark-mode .preview-card {
+            background: #1a1b3d;
+            border: 1px solid #365486;
+        }
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .light-mode .card-title { color: #0F1035; }
+        .dark-mode .card-title { color: #DCF2F1; }
+        .card-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .light-mode .card-text { color: #365486; }
+        .dark-mode .card-text { color: #7FC7D9; }
+
+        /* Buttons */
+        .button-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .light-mode .btn-primary {
+            background: #365486;
+            color: #DCF2F1;
+        }
+        .light-mode .btn-primary:hover {
+            background: #7FC7D9;
+            color: #0F1035;
+        }
+        .light-mode .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #365486;
+            color: #365486;
+        }
+        .dark-mode .btn-primary {
+            background: #7FC7D9;
+            color: #0F1035;
+        }
+        .dark-mode .btn-primary:hover {
+            background: #DCF2F1;
+        }
+        .dark-mode .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #7FC7D9;
+            color: #7FC7D9;
+        }
+
+        /* Hero Section Preview */
+        .hero-preview {
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        .light-mode .hero-preview {
+            background: linear-gradient(135deg, #DCF2F1 0%, #7FC7D9 100%);
+        }
+        .dark-mode .hero-preview {
+            background: linear-gradient(135deg, #0F1035 0%, #365486 100%);
+        }
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .light-mode .hero-title { color: #0F1035; }
+        .dark-mode .hero-title { color: #DCF2F1; }
+        .hero-title span {
+            color: #365486;
+        }
+        .dark-mode .hero-title span {
+            color: #7FC7D9;
+        }
+        .hero-text {
+            font-size: 14px;
+        }
+        .light-mode .hero-text { color: #365486; }
+        .dark-mode .hero-text { color: #DCF2F1; opacity: 0.9; }
+
+        /* Logo in each mode */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .logo-container svg {
+            width: 40px;
+            height: 48px;
+        }
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .light-mode .logo-text { color: #0F1035; }
+        .dark-mode .logo-text { color: #DCF2F1; }
+    </style>
+</head>
+<body>
+    <h1>Cutwater Color Palette</h1>
+
+    <div class="modes">
+        <!-- Light Mode -->
+        <div class="light-mode">
+            <div class="mode-title">
+                Light Mode
+                <span class="mode-badge">Default</span>
+            </div>
+
+            <!-- Logo -->
+            <div class="logo-container">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradient1" x1="50%" y1="0%" x2="50%" y2="100%">
+                            <stop offset="0%" stop-color="#DCF2F1"/>
+                            <stop offset="33%" stop-color="#7FC7D9"/>
+                            <stop offset="66%" stop-color="#365486"/>
+                            <stop offset="100%" stop-color="#0F1035"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M50 8 L28 42 L22 50 C12 65 12 80 22 95 C32 108 45 112 50 112 L50 75 L32 95 C25 88 25 78 30 68 L50 38 L50 8 Z" fill="url(#gradient1)"/>
+                    <path d="M50 8 L50 38 L70 68 C75 78 75 88 68 95 L50 75 L50 112 C55 112 68 108 78 95 C88 80 88 65 78 50 L72 42 L50 8 Z" fill="url(#gradient1)"/>
+                </svg>
+                <span class="logo-text">Cutwater</span>
+            </div>
+
+            <p class="section-label">Color Palette</p>
+            <div class="color-row">
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #FFFFFF; border: 1px solid #DCF2F1;"></div>
+                    <p class="swatch-name">Background</p>
+                    <p class="swatch-hex">#FFFFFF</p>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #DCF2F1;"></div>
+                    <p class="swatch-name">Frost</p>
+                    <p class="swatch-hex">#DCF2F1</p>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #7FC7D9;"></div>
+                    <p class="swatch-name">Aqua</p>
+                    <p class="swatch-hex">#7FC7D9</p>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #365486;"></div>
+                    <p class="swatch-name">Ocean</p>
+                    <p class="swatch-hex">#365486</p>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #0F1035;"></div>
+                    <p class="swatch-name">Deep Navy</p>
+                    <p class="swatch-hex">#0F1035</p>
+                </div>
+            </div>
+
+            <div class="ui-preview">
+                <p class="section-label">UI Components</p>
+
+                <div class="preview-card">
+                    <h3 class="card-title">USDi Token</h3>
+                    <p class="card-text">Interest-bearing synthetic dollar with 15-25% APY through multi-asset delta-neutral strategy.</p>
+                    <div class="button-row">
+                        <button class="btn btn-primary">Mint USDi</button>
+                        <button class="btn btn-secondary">Learn More</button>
+                    </div>
+                </div>
+
+                <div class="hero-preview">
+                    <h3 class="hero-title">Higher yields through <span>multi-asset arbitrage</span></h3>
+                    <p class="hero-text">Delta-neutral funding rate strategy beyond ETH and BTC.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dark Mode -->
+        <div class="dark-mode">
+            <div class="mode-title">
+                Dark Mode
+                <span class="mode-badge">Alternative</span>
+            </div>
+
+            <!-- Logo -->
+            <div class="logo-container">
+                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradient2" x1="50%" y1="0%" x2="50%" y2="100%">
+                            <stop offset="0%" stop-color="#DCF2F1"/>
+                            <stop offset="33%" stop-color="#7FC7D9"/>
+                            <stop offset="66%" stop-color="#365486"/>
+                            <stop offset="100%" stop-color="#0F1035"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M50 8 L28 42 L22 50 C12 65 12 80 22 95 C32 108 45 112 50 112 L50 75 L32 95 C25 88 25 78 30 68 L50 38 L50 8 Z" fill="url(#gradient2)"/>
+                    <path d="M50 8 L50 38 L70 68 C75 78 75 88 68 95 L50 75 L50 112 C55 112 68 108 78 95 C88 80 88 65 78 50 L72 42 L50 8 Z" fill="url(#gradient2)"/>
+                </svg>
+                <span class="logo-text">Cutwater</span>
+            </div>
+
+            <p class="section-label">Color Palette</p>
+            <div class="color-row">
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #0F1035; border: 1px solid #365486;"></div>
+                    <p class="swatch-name">Background</p>
+                    <p class="swatch-hex">#0F1035</p>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #1a1b3d;"></div>
+                    <p class="swatch-name">Card BG</p>
+                    <p class="swatch-hex">#1a1b3d</p>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #365486;"></div>
+                    <p class="swatch-name">Ocean</p>
+                    <p class="swatch-hex">#365486</p>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #7FC7D9;"></div>
+                    <p class="swatch-name">Aqua</p>
+                    <p class="swatch-hex">#7FC7D9</p>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #DCF2F1;"></div>
+                    <p class="swatch-name">Frost</p>
+                    <p class="swatch-hex">#DCF2F1</p>
+                </div>
+            </div>
+
+            <div class="ui-preview">
+                <p class="section-label">UI Components</p>
+
+                <div class="preview-card">
+                    <h3 class="card-title">USDi Token</h3>
+                    <p class="card-text">Interest-bearing synthetic dollar with 15-25% APY through multi-asset delta-neutral strategy.</p>
+                    <div class="button-row">
+                        <button class="btn btn-primary">Mint USDi</button>
+                        <button class="btn btn-secondary">Learn More</button>
+                    </div>
+                </div>
+
+                <div class="hero-preview">
+                    <h3 class="hero-title">Higher yields through <span>multi-asset arbitrage</span></h3>
+                    <p class="hero-text">Delta-neutral funding rate strategy beyond ETH and BTC.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
