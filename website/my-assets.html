@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Assets | Cutwater</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ===== CSS Variables (Cutwater Brand) ===== */
+        :root {
+            --frost: #DCF2F1;
+            --aqua: #7FC7D9;
+            --ocean: #365486;
+            --deep-navy: #0F1035;
+            --blue: #1E88E5;
+            --white: #FFFFFF;
+            --success: #2D8A5F;
+            --warning: #E5A91E;
+            --danger: #E53935;
+            --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+
+            /* Dark mode (default) */
+            --bg-primary: #0F1035;
+            --bg-secondary: #1a1b3d;
+            --bg-card: #1a1b3d;
+            --border-color: #2a2b4d;
+            --text-primary: #DCF2F1;
+            --text-secondary: #7FC7D9;
+            --text-muted: #6b7280;
+            --chart-grid: rgba(127, 199, 217, 0.1);
+            --logo-fill: #7FC7D9;
+            --logo-slash: #0F1035;
+            --input-bg: #0F1035;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFB;
+            --bg-card: #FFFFFF;
+            --border-color: #DCF2F1;
+            --text-primary: #0F1035;
+            --text-secondary: #365486;
+            --text-muted: #9ca3af;
+            --chart-grid: rgba(54, 84, 134, 0.1);
+            --logo-fill: #365486;
+            --logo-slash: #DCF2F1;
+            --input-bg: #F8FAFB;
+        }
+
+        /* ===== Reset & Base ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* ===== Layout ===== */
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            width: 240px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            padding: 24px;
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 43px;
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            list-style: none;
+            flex: 1;
+        }
+
+        .nav-menu li {
+            margin-bottom: 8px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(127, 199, 217, 0.15);
+            color: var(--text-primary);
+        }
+
+        .nav-menu a.active {
+            background: var(--ocean);
+            color: var(--frost);
+        }
+
+        .nav-menu svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .sidebar-footer {
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+
+        .sidebar-footer a:hover {
+            color: var(--text-primary);
+        }
+
+        /* ===== Theme Toggle ===== */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: var(--font-body);
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(127, 199, 217, 0.1);
+            color: var(--text-primary);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Dynamic logo colors */
+        .logo-drop {
+            fill: var(--logo-fill);
+            transition: fill 0.3s ease;
+        }
+
+        .logo-slash {
+            stroke: var(--logo-slash);
+            transition: stroke 0.3s ease;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 32px;
+            display: flex;
+            gap: 24px;
+        }
+
+        .content-left {
+            flex: 1;
+            max-width: 720px;
+        }
+
+        .content-right {
+            width: 380px;
+        }
+
+        /* ===== Wallet Connect ===== */
+        .wallet-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+        }
+
+        .wallet-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .wallet-btn:hover {
+            border-color: var(--aqua);
+        }
+
+        .wallet-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--aqua), var(--ocean));
+            border-radius: 50%;
+        }
+
+        /* ===== Portfolio Card ===== */
+        .portfolio-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .portfolio-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-value {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .portfolio-change {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .portfolio-change svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .time-filters {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .time-filter {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .time-filter:hover,
+        .time-filter.active {
+            background: var(--ocean);
+            color: var(--frost);
+        }
+
+        .chart-container {
+            height: 280px;
+            margin: 24px 0;
+        }
+
+        /* ===== Balance Section ===== */
+        .balance-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+        }
+
+        .balance-tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .balance-tab {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding-bottom: 8px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .balance-tab:hover,
+        .balance-tab.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--aqua);
+        }
+
+        .token-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+
+        .token-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .token-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--aqua), var(--ocean));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--white);
+        }
+
+        .token-name {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .token-links {
+            display: flex;
+            gap: 8px;
+            margin-left: 8px;
+        }
+
+        .token-links a {
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+
+        .token-links a:hover {
+            color: var(--aqua);
+        }
+
+        .token-balance {
+            text-align: right;
+        }
+
+        .token-amount {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .token-usd {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .token-apy-bar {
+            width: 80px;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .token-apy-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--aqua), var(--success));
+            border-radius: 4px;
+        }
+
+        /* ===== Stats Row ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-value span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== Mint/Redeem Panel ===== */
+        .action-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            position: sticky;
+            top: 32px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .action-tabs {
+            display: flex;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+
+        .action-tab {
+            flex: 1;
+            padding: 12px 24px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-tab.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-group {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .input-field {
+            flex: 1;
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+
+        .input-field::placeholder {
+            color: var(--text-muted);
+        }
+
+        .token-label {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .max-btn {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .max-btn:hover {
+            background: var(--ocean);
+            color: var(--frost);
+            border-color: var(--ocean);
+        }
+
+        .available-balance {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .available-balance span {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ===== Pay With Section ===== */
+        .pay-section {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+
+        .pay-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .pay-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pay-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .usdc-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #2775CA, #1a5cb0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .usdc-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .wallet-address {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .pay-amount {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .pay-amount span {
+            font-weight: 600;
+        }
+
+        .chevron {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+        }
+
+        /* ===== Action Button ===== */
+        .action-btn {
+            width: 100%;
+            padding: 16px 24px;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--ocean);
+            color: var(--frost);
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--aqua);
+            color: var(--deep-navy);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .content-left {
+                max-width: 100%;
+            }
+
+            .content-right {
+                width: 100%;
+            }
+
+            .action-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 16px;
+            }
+
+            .portfolio-value {
+                font-size: 2rem;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* ===== Mobile Header ===== */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            z-index: 100;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-header {
+                display: flex;
+            }
+
+            .main-content {
+                padding-top: 80px;
+            }
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="cutwater-landing.html" class="logo">
+            <svg class="logo-icon" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <path class="logo-drop" d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"/>
+                <path class="logo-slash" d="M29 40 L49 90" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <path class="logo-slash" d="M55 40 L75 90" stroke-width="6" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="logo-text">Cutwater</span>
+        </a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" style="width: auto; margin: 0;">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="cutwater-landing.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path class="logo-drop" d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"/>
+                    <path class="logo-slash" d="M29 40 L49 90" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path class="logo-slash" d="M55 40 L75 90" stroke-width="6" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="logo-text">Cutwater</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="my-assets.html" class="active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        My Assets
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        Transactions
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                        Docs
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <span class="theme-label">Light Mode</span>
+                </button>
+                <a href="#">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    Twitter
+                </a>
+                <a href="#">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+                    </svg>
+                    Discord
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-left">
+                <!-- Wallet Header -->
+                <div class="wallet-header">
+                    <button class="wallet-btn">
+                        <div class="wallet-icon"></div>
+                        <span>S85E..Nr3x</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Portfolio Card -->
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <div class="portfolio-value">$72,240.67</div>
+                        <div class="portfolio-change">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17l5-5 5 5"/>
+                                <path d="M7 7l5 5 5-5"/>
+                            </svg>
+                            43.60%
+                        </div>
+                        <div class="time-filters">
+                            <button class="time-filter">1M</button>
+                            <button class="time-filter">3M</button>
+                            <button class="time-filter">1Y</button>
+                            <button class="time-filter active">ALL</button>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+
+                    <!-- Balance Section -->
+                    <div class="balance-section">
+                        <div class="balance-tabs">
+                            <button class="balance-tab active">Balance</button>
+                            <button class="balance-tab">30-Day APY</button>
+                        </div>
+
+                        <div class="token-row">
+                            <div class="token-info">
+                                <div class="token-icon">U</div>
+                                <div>
+                                    <div class="token-name">USDi</div>
+                                </div>
+                                <div class="token-links">
+                                    <a href="#" title="Copy address">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" title="View on explorer">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                            <polyline points="15 3 21 3 21 9"/>
+                                            <line x1="10" y1="14" x2="21" y2="3"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="token-balance">
+                                <div class="token-amount">71,404.28</div>
+                                <div class="token-usd">=$72,240.67</div>
+                            </div>
+                            <div class="token-apy-bar">
+                                <div class="token-apy-fill" style="width: 65%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <div class="stat-value">1.01</div>
+                                <div class="stat-label">NAV per USDi</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">2,286.77 <span>USDi</span></div>
+                                <div class="stat-label">Cumulative Interest</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">627.20 <span>USDi</span></div>
+                                <div class="stat-label">Accrued Interest</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-right">
+                <!-- Mint/Redeem Panel -->
+                <div class="action-panel">
+                    <div class="action-tabs">
+                        <button class="action-tab active" onclick="setActionTab('mint')">Mint</button>
+                        <button class="action-tab" onclick="setActionTab('redeem')">Redeem</button>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-row">
+                            <input type="text" class="input-field" placeholder="0" id="amountInput">
+                            <span class="token-label">USDi</span>
+                            <button class="max-btn" onclick="setMax()">Max</button>
+                        </div>
+                        <div class="available-balance">
+                            <span>0.000111</span> USDC Available
+                        </div>
+                    </div>
+
+                    <div class="pay-section">
+                        <div class="pay-label">Pay with</div>
+                        <div class="pay-row">
+                            <div class="pay-info">
+                                <div class="usdc-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+                                    </svg>
+                                </div>
+                                <span class="wallet-address">S85E..Nr3x</span>
+                            </div>
+                            <div class="pay-amount">
+                                <span>0 USDC</span>
+                                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="action-btn">Mint USDi</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Growth Chart
+        const ctx = document.getElementById('growthChart').getContext('2d');
+
+        // Generate data points
+        const labels = [];
+        const data = [];
+        const startDate = new Date('2024-08-01');
+        let value = 1.0;
+
+        for (let i = 0; i < 17; i++) {
+            const date = new Date(startDate);
+            date.setMonth(date.getMonth() + i);
+            labels.push(date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
+
+            // Simulate growth with some volatility
+            if (i < 4) {
+                value += Math.random() * 0.02 - 0.005;
+            } else {
+                value += Math.random() * 0.04 + 0.01;
+            }
+            data.push(value);
+        }
+
+        const gradient = ctx.createLinearGradient(0, 0, 0, 280);
+        gradient.addColorStop(0, 'rgba(127, 199, 217, 0.3)');
+        gradient.addColorStop(1, 'rgba(127, 199, 217, 0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    borderColor: '#7FC7D9',
+                    backgroundColor: gradient,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 6,
+                    pointHoverBackgroundColor: '#7FC7D9',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#1a1b3d',
+                        titleColor: '#DCF2F1',
+                        bodyColor: '#7FC7D9',
+                        borderColor: '#2a2b4d',
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return '$' + (context.raw * 50000).toFixed(2);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#6b7280',
+                            font: {
+                                size: 11
+                            },
+                            maxTicksLimit: 6
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(127, 199, 217, 0.1)'
+                        },
+                        ticks: {
+                            color: '#6b7280',
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                }
+            }
+        });
+
+        // Time filter buttons
+        document.querySelectorAll('.time-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.time-filter').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Balance tabs
+        document.querySelectorAll('.balance-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.balance-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Action tabs
+        function setActionTab(tab) {
+            const tabs = document.querySelectorAll('.action-tab');
+            const btn = document.querySelector('.action-btn');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            if (tab === 'mint') {
+                tabs[0].classList.add('active');
+                btn.textContent = 'Mint USDi';
+            } else {
+                tabs[1].classList.add('active');
+                btn.textContent = 'Redeem USDi';
+            }
+        }
+
+        // Max button
+        function setMax() {
+            document.getElementById('amountInput').value = '0.000111';
+        }
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('cutwater-theme', newTheme);
+
+            updateThemeLabel(newTheme);
+        }
+
+        function updateThemeLabel(theme) {
+            const labels = document.querySelectorAll('.theme-label');
+            labels.forEach(label => {
+                label.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+            });
+
+            const sunIcons = document.querySelectorAll('.sun-icon');
+            sunIcons.forEach(icon => {
+                if (theme === 'light') {
+                    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+                } else {
+                    icon.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+                }
+            });
+        }
+
+        // Initialize theme from localStorage
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('cutwater-theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                updateThemeLabel('light');
+            }
+        })();
+    </script>
+</body>
+</html>
