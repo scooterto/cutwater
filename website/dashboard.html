@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <style>
         /* ===== CSS Variables (Cutwater Brand) ===== */
         :root {
@@ -914,6 +915,9 @@
     </div>
 
     <script>
+        // Disable datalabels globally, enable only for portfolio chart
+        Chart.defaults.plugins.datalabels = { display: false };
+
         // Portfolio Doughnut Chart
         const portfolioCtx = document.getElementById('portfolioChart').getContext('2d');
         new Chart(portfolioCtx, {
@@ -934,6 +938,7 @@
                     cutout: '70%'
                 }]
             },
+            plugins: [ChartDataLabels],
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
@@ -948,6 +953,20 @@
                                 size: 12
                             }
                         }
+                    },
+                    datalabels: {
+                        display: true,
+                        color: '#FFFFFF',
+                        font: {
+                            family: "'Space Grotesk', sans-serif",
+                            weight: 'bold',
+                            size: 12
+                        },
+                        formatter: (value) => {
+                            return value + '%';
+                        },
+                        anchor: 'center',
+                        align: 'center'
                     }
                 }
             }
