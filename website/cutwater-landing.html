@@ -21,6 +21,28 @@
             --card-dark: #1a1b3d;
             --font-heading: 'Space Grotesk', -apple-system, sans-serif;
             --font-body: 'Inter', -apple-system, sans-serif;
+
+            /* Light Mode (default) */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #DCF2F1;
+            --text-primary: #0F1035;
+            --text-secondary: #365486;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: #FFFFFF;
+            --card-border: #DCF2F1;
+            --hero-bg-gradient: rgba(127, 199, 217, 0.15);
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --bg-primary: #0F1035;
+            --bg-secondary: #1a1b3d;
+            --text-primary: #DCF2F1;
+            --text-secondary: #7FC7D9;
+            --nav-bg: rgba(15, 16, 53, 0.95);
+            --card-bg: #1a1b3d;
+            --card-border: #365486;
+            --hero-bg-gradient: rgba(127, 199, 217, 0.08);
         }
 
         /* ===== Reset & Base ===== */
@@ -36,10 +58,11 @@
 
         body {
             font-family: var(--font-body);
-            background: var(--white);
-            color: var(--deep-navy);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* ===== Container ===== */
@@ -62,9 +85,9 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--nav-bg);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--frost);
+            border-bottom: 1px solid var(--card-border);
             transition: all 0.3s ease;
         }
 
@@ -80,7 +103,7 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .logo-icon {
@@ -108,7 +131,7 @@
         }
 
         .nav-links a {
-            color: var(--ocean);
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
@@ -116,12 +139,59 @@
         }
 
         .nav-links a:hover {
-            color: var(--blue);
+            color: var(--aqua);
         }
 
         .nav-cta {
             display: none;
             gap: 12px;
+            align-items: center;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--aqua);
+            border-color: var(--aqua);
+        }
+
+        .theme-toggle:hover svg {
+            color: var(--deep-navy);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-primary);
+            transition: color 0.2s ease;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .moon-icon {
+            display: none;
         }
 
         @media (min-width: 768px) {
@@ -145,7 +215,7 @@
             display: block;
             width: 100%;
             height: 2px;
-            background: var(--deep-navy);
+            background: var(--text-primary);
             border-radius: 2px;
             transition: all 0.3s ease;
         }
@@ -175,7 +245,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--white);
+            background: var(--bg-primary);
             z-index: 999;
             padding: 100px 24px 40px;
             flex-direction: column;
@@ -190,15 +260,15 @@
             font-family: var(--font-heading);
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--deep-navy);
+            color: var(--text-primary);
             text-decoration: none;
             padding: 12px 0;
-            border-bottom: 1px solid var(--frost);
+            border-bottom: 1px solid var(--card-border);
             transition: color 0.2s ease;
         }
 
         .mobile-menu a:hover {
-            color: var(--blue);
+            color: var(--aqua);
         }
 
         .mobile-menu .mobile-cta {
@@ -280,7 +350,7 @@
             padding-top: 100px;
             position: relative;
             overflow: hidden;
-            background: var(--white);
+            background: var(--bg-primary);
         }
 
         .hero-bg {
@@ -289,7 +359,7 @@
             right: -200px;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(127, 199, 217, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--hero-bg-gradient) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -315,7 +385,7 @@
             line-height: 1.1;
             margin-bottom: 24px;
             letter-spacing: -0.02em;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .hero-text h1 span {
@@ -332,7 +402,7 @@
 
         .hero-description {
             font-size: 1.1rem;
-            color: var(--ocean);
+            color: var(--text-secondary);
             margin-bottom: 32px;
             max-width: 520px;
             line-height: 1.7;
@@ -350,7 +420,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             padding-top: 32px;
-            border-top: 1px solid var(--frost);
+            border-top: 1px solid var(--card-border);
         }
 
         .hero-stat {
@@ -361,7 +431,7 @@
             font-family: var(--font-heading);
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--deep-navy);
+            color: var(--text-primary);
             line-height: 1;
             margin-bottom: 8px;
         }
@@ -372,7 +442,7 @@
 
         .hero-stat-label {
             font-size: 0.85rem;
-            color: var(--ocean);
+            color: var(--text-secondary);
         }
 
         /* Hero Visual */
@@ -388,11 +458,23 @@
         }
 
         .chart-container {
-            background: var(--white);
-            border: 1px solid var(--frost);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 32px;
             box-shadow: 0 20px 60px rgba(15, 16, 53, 0.08);
+        }
+
+        [data-theme="dark"] .chart-container {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .chart-svg line[stroke="#DCF2F1"] {
+            stroke: var(--card-border);
+        }
+
+        [data-theme="dark"] .chart-svg path[stroke="#DCF2F1"] {
+            stroke: var(--text-secondary);
         }
 
         .chart-header {
@@ -415,7 +497,7 @@
             font-family: var(--font-heading);
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .chart-change {
@@ -440,7 +522,7 @@
             gap: 24px;
             margin-top: 16px;
             padding-top: 16px;
-            border-top: 1px solid var(--frost);
+            border-top: 1px solid var(--card-border);
         }
 
         .legend-item {
@@ -448,7 +530,7 @@
             align-items: center;
             gap: 8px;
             font-size: 0.85rem;
-            color: var(--ocean);
+            color: var(--text-secondary);
         }
 
         .legend-dot {
@@ -484,18 +566,18 @@
             font-weight: 700;
             margin-bottom: 20px;
             letter-spacing: -0.02em;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .section-description {
             font-size: 1.1rem;
-            color: var(--ocean);
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
         /* ===== Strategy Section ===== */
         .strategy {
-            background: var(--frost);
+            background: var(--bg-secondary);
         }
 
         .strategy-grid {
@@ -517,8 +599,8 @@
         }
 
         .strategy-card {
-            background: var(--white);
-            border: 1px solid var(--frost);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 32px;
             transition: all 0.3s ease;
@@ -528,6 +610,10 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(15, 16, 53, 0.08);
             border-color: var(--aqua);
+        }
+
+        [data-theme="dark"] .strategy-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .strategy-icon {
@@ -552,18 +638,18 @@
             font-size: 1.35rem;
             font-weight: 600;
             margin-bottom: 12px;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .strategy-card p {
-            color: var(--ocean);
+            color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.7;
         }
 
         /* ===== Performance Section ===== */
         .performance {
-            background: var(--white);
+            background: var(--bg-primary);
         }
 
         .performance-grid {
@@ -586,8 +672,8 @@
         }
 
         .stat-card {
-            background: var(--frost);
-            border: 1px solid var(--frost);
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 28px;
             text-align: center;
@@ -598,7 +684,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 8px;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .stat-card-value.highlight {
@@ -611,12 +697,12 @@
 
         .stat-card-label {
             font-size: 0.9rem;
-            color: var(--ocean);
+            color: var(--text-secondary);
         }
 
         .stat-card-sublabel {
             font-size: 0.8rem;
-            color: var(--ocean);
+            color: var(--text-secondary);
             opacity: 0.7;
             margin-top: 4px;
         }
@@ -626,11 +712,11 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .performance-content p {
-            color: var(--ocean);
+            color: var(--text-secondary);
             font-size: 1.05rem;
             margin-bottom: 24px;
             line-height: 1.8;
@@ -646,7 +732,7 @@
             gap: 12px;
             margin-bottom: 16px;
             font-size: 0.95rem;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .performance-list li::before {
@@ -661,7 +747,7 @@
 
         /* ===== How It Works ===== */
         .process {
-            background: var(--frost);
+            background: var(--bg-secondary);
         }
 
         .process-steps {
@@ -723,18 +809,18 @@
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 12px;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .process-step p {
-            color: var(--ocean);
+            color: var(--text-secondary);
             font-size: 0.9rem;
             line-height: 1.6;
         }
 
         /* ===== Risk Section ===== */
         .risk {
-            background: var(--white);
+            background: var(--bg-primary);
         }
 
         .risk-grid {
@@ -750,8 +836,8 @@
         }
 
         .risk-card {
-            background: var(--frost);
-            border: 1px solid var(--frost);
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 32px;
         }
@@ -764,11 +850,11 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            color: var(--deep-navy);
+            color: var(--text-primary);
         }
 
         .risk-card p {
-            color: var(--ocean);
+            color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.7;
         }
@@ -1002,8 +1088,24 @@
                     <li><a href="#risk">Risk</a></li>
                 </ul>
                 <div class="nav-cta">
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
                     <a href="#" class="btn btn-secondary">Docs</a>
-                    <a href="#invest" class="btn btn-primary">Launch App</a>
+                    <a href="dashboard.html" class="btn btn-primary">Launch App</a>
                 </div>
                 <div class="hamburger" onclick="toggleMobileMenu()">
                     <span></span>
@@ -1021,8 +1123,24 @@
         <a href="#process" onclick="closeMobileMenu()">How It Works</a>
         <a href="#risk" onclick="closeMobileMenu()">Risk</a>
         <div class="mobile-cta">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" style="width: 100%; justify-content: center;">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
             <a href="#" class="btn btn-secondary">Docs</a>
-            <a href="#invest" class="btn btn-primary" onclick="closeMobileMenu()">Launch App</a>
+            <a href="dashboard.html" class="btn btn-primary" onclick="closeMobileMenu()">Launch App</a>
         </div>
     </div>
 
@@ -1313,7 +1431,7 @@
                 <h2>Start earning 15-25% APY today</h2>
                 <p>Mint USDi and access multi-asset delta-neutral yields that outperform ETH/BTC-only strategies.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-large btn-cta-primary">Launch App</a>
+                    <a href="dashboard.html" class="btn btn-large btn-cta-primary">Launch App</a>
                     <a href="#" class="btn btn-large btn-cta-secondary">Read Documentation</a>
                 </div>
             </div>
@@ -1375,6 +1493,21 @@
     </footer>
 
     <script>
+        // ===== Theme Toggle =====
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('cutwater-theme', newTheme);
+        }
+
+        // Initialize theme from localStorage or default to light
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('cutwater-theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+
         // ===== Mobile Menu Toggle =====
         function toggleMobileMenu() {
             const hamburger = document.querySelector('.hamburger');
@@ -1447,8 +1580,12 @@
             .risk-card:nth-child(4) { transition-delay: 0.3s !important; }
 
             nav.scrolled {
-                background: rgba(255, 255, 255, 0.98);
+                background: var(--nav-bg);
                 box-shadow: 0 4px 20px rgba(15, 16, 53, 0.05);
+            }
+
+            [data-theme="dark"] nav.scrolled {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             }
         `;
         document.head.appendChild(style);
