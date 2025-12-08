@@ -21,10 +21,33 @@
             --success: #2D8A5F;
             --warning: #E5A91E;
             --danger: #E53935;
-            --card-dark: #1a1b3d;
-            --card-border: #2a2b4d;
             --font-heading: 'Space Grotesk', -apple-system, sans-serif;
             --font-body: 'Inter', -apple-system, sans-serif;
+
+            /* Dark mode (default) */
+            --bg-primary: #0F1035;
+            --bg-secondary: #1a1b3d;
+            --bg-card: #1a1b3d;
+            --border-color: #2a2b4d;
+            --text-primary: #DCF2F1;
+            --text-secondary: #7FC7D9;
+            --nav-active: #365486;
+            --chart-grid: rgba(127, 199, 217, 0.1);
+            --logo-fill: #7FC7D9;
+            --logo-slash: #0F1035;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFB;
+            --bg-card: #FFFFFF;
+            --border-color: #DCF2F1;
+            --text-primary: #0F1035;
+            --text-secondary: #365486;
+            --nav-active: #365486;
+            --chart-grid: rgba(54, 84, 134, 0.1);
+            --logo-fill: #365486;
+            --logo-slash: #DCF2F1;
         }
 
         /* ===== Reset & Base ===== */
@@ -40,10 +63,11 @@
 
         body {
             font-family: var(--font-body);
-            background: var(--deep-navy);
-            color: var(--frost);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* ===== Layout ===== */
@@ -55,13 +79,14 @@
         /* ===== Sidebar ===== */
         .sidebar {
             width: 240px;
-            background: var(--card-dark);
-            border-right: 1px solid var(--card-border);
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
             padding: 24px;
             position: fixed;
             height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .logo {
@@ -69,7 +94,7 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--frost);
+            color: var(--text-primary);
             margin-bottom: 40px;
         }
 
@@ -98,7 +123,7 @@
             align-items: center;
             gap: 12px;
             padding: 12px 16px;
-            color: var(--aqua);
+            color: var(--text-secondary);
             text-decoration: none;
             border-radius: 8px;
             font-size: 0.95rem;
@@ -107,12 +132,12 @@
         }
 
         .nav-menu a:hover {
-            background: rgba(127, 199, 217, 0.1);
-            color: var(--frost);
+            background: rgba(127, 199, 217, 0.15);
+            color: var(--text-primary);
         }
 
         .nav-menu a.active {
-            background: var(--ocean);
+            background: var(--nav-active);
             color: var(--frost);
         }
 
@@ -123,21 +148,21 @@
 
         .sidebar-footer {
             padding-top: 24px;
-            border-top: 1px solid var(--card-border);
+            border-top: 1px solid var(--border-color);
         }
 
         .sidebar-footer a {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--aqua);
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.85rem;
             padding: 8px 0;
         }
 
         .sidebar-footer a:hover {
-            color: var(--frost);
+            color: var(--text-primary);
         }
 
         /* ===== Main Content ===== */
@@ -203,10 +228,11 @@
 
         /* ===== Cards ===== */
         .card {
-            background: var(--card-dark);
-            border: 1px solid var(--card-border);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 24px;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .card-header {
@@ -220,12 +246,12 @@
             font-family: var(--font-heading);
             font-size: 1rem;
             font-weight: 600;
-            color: var(--frost);
+            color: var(--text-primary);
         }
 
         .card-subtitle {
             font-size: 0.8rem;
-            color: var(--aqua);
+            color: var(--text-secondary);
         }
 
         /* ===== Grid Layout ===== */
@@ -256,18 +282,19 @@
         }
 
         .stat-card {
-            background: var(--card-dark);
-            border: 1px solid var(--card-border);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 24px;
             text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .stat-value {
             font-family: var(--font-heading);
             font-size: 2rem;
             font-weight: 700;
-            color: var(--frost);
+            color: var(--text-primary);
             margin-bottom: 8px;
         }
 
@@ -281,7 +308,7 @@
 
         .stat-label {
             font-size: 0.85rem;
-            color: var(--aqua);
+            color: var(--text-secondary);
         }
 
         /* ===== Portfolio Section ===== */
@@ -308,12 +335,12 @@
             font-family: var(--font-heading);
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--frost);
+            color: var(--text-primary);
         }
 
         .portfolio-total-label {
             font-size: 0.8rem;
-            color: var(--aqua);
+            color: var(--text-secondary);
         }
 
         .growth-card .card-header {
@@ -329,7 +356,7 @@
 
         .growth-label {
             font-size: 0.75rem;
-            color: var(--aqua);
+            color: var(--text-secondary);
         }
 
         /* ===== Table ===== */
@@ -348,17 +375,21 @@
             padding: 12px 16px;
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--aqua);
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--card-border);
-            background: rgba(54, 84, 134, 0.2);
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(54, 84, 134, 0.1);
+        }
+
+        [data-theme="light"] .data-table th {
+            background: rgba(220, 242, 241, 0.5);
         }
 
         .data-table td {
             padding: 16px;
             font-size: 0.9rem;
-            border-bottom: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .data-table tr:last-child td {
@@ -393,7 +424,7 @@
 
         .crypto-pair {
             font-size: 0.75rem;
-            color: var(--aqua);
+            color: var(--text-secondary);
         }
 
         .positive {
@@ -426,8 +457,8 @@
             font-size: 0.8rem;
             font-weight: 600;
             background: transparent;
-            color: var(--aqua);
-            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -452,7 +483,7 @@
             align-items: center;
             gap: 8px;
             font-size: 0.85rem;
-            color: var(--aqua);
+            color: var(--text-secondary);
         }
 
         .legend-dot {
@@ -465,7 +496,7 @@
         .dashboard-footer {
             margin-top: 48px;
             padding-top: 24px;
-            border-top: 1px solid var(--card-border);
+            border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -473,7 +504,7 @@
 
         .footer-text {
             font-size: 0.8rem;
-            color: var(--aqua);
+            color: var(--text-secondary);
         }
 
         .footer-links {
@@ -482,13 +513,13 @@
         }
 
         .footer-links a {
-            color: var(--aqua);
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.85rem;
         }
 
         .footer-links a:hover {
-            color: var(--frost);
+            color: var(--text-primary);
         }
 
         /* ===== Responsive ===== */
@@ -525,12 +556,13 @@
             top: 0;
             left: 0;
             right: 0;
-            background: var(--card-dark);
-            border-bottom: 1px solid var(--card-border);
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
             padding: 16px 24px;
             z-index: 100;
             justify-content: space-between;
             align-items: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         @media (max-width: 768px) {
@@ -553,16 +585,53 @@
         .hamburger span {
             width: 24px;
             height: 2px;
-            background: var(--frost);
+            background: var(--text-primary);
             border-radius: 2px;
         }
 
         /* Last updated timestamp */
         .last-updated {
             font-size: 0.75rem;
-            color: var(--aqua);
+            color: var(--text-secondary);
             opacity: 0.7;
             margin-top: 8px;
+        }
+
+        /* ===== Theme Toggle ===== */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: var(--font-body);
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(127, 199, 217, 0.1);
+            color: var(--text-primary);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Dynamic logo colors */
+        .logo-drop {
+            fill: var(--logo-fill);
+            transition: fill 0.3s ease;
+        }
+
+        .logo-slash {
+            stroke: var(--logo-slash);
+            transition: stroke 0.3s ease;
         }
     </style>
 </head>
@@ -571,17 +640,18 @@
     <div class="mobile-header">
         <a href="cutwater-landing.html" class="logo">
             <svg class="logo-icon" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
-                <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
-                <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <path class="logo-drop" d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"/>
+                <path class="logo-slash" d="M29 40 L49 90" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <path class="logo-slash" d="M55 40 L75 90" stroke-width="6" stroke-linecap="round" fill="none"/>
             </svg>
             <span class="logo-text">Cutwater</span>
         </a>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+        </button>
     </div>
 
     <div class="dashboard">
@@ -589,9 +659,9 @@
         <aside class="sidebar">
             <a href="cutwater-landing.html" class="logo">
                 <svg class="logo-icon" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
-                    <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path class="logo-drop" d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"/>
+                    <path class="logo-slash" d="M29 40 L49 90" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path class="logo-slash" d="M55 40 L75 90" stroke-width="6" stroke-linecap="round" fill="none"/>
                 </svg>
                 <span class="logo-text">Cutwater</span>
             </a>
@@ -641,6 +711,13 @@
             </ul>
 
             <div class="sidebar-footer">
+                <button class="theme-toggle" onclick="toggleTheme()" style="width: 100%; margin-bottom: 12px;">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <span class="theme-label">Light Mode</span>
+                </button>
                 <a href="#">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -1179,6 +1256,70 @@
                 this.classList.add('active');
             });
         });
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('cutwater-theme', newTheme);
+
+            updateThemeLabel(newTheme);
+            updateChartColors(newTheme);
+        }
+
+        function updateThemeLabel(theme) {
+            const labels = document.querySelectorAll('.theme-label');
+            labels.forEach(label => {
+                label.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+            });
+
+            // Update icon visibility
+            const sunIcons = document.querySelectorAll('.sun-icon');
+            sunIcons.forEach(icon => {
+                if (theme === 'light') {
+                    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+                } else {
+                    icon.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+                }
+            });
+        }
+
+        function updateChartColors(theme) {
+            const isDark = theme !== 'light';
+            const textColor = isDark ? '#7FC7D9' : '#365486';
+            const gridColor = isDark ? 'rgba(127, 199, 217, 0.1)' : 'rgba(54, 84, 134, 0.1)';
+            const legendColor = isDark ? '#DCF2F1' : '#0F1035';
+
+            // Update all chart instances
+            Chart.helpers.each(Chart.instances, (chart) => {
+                if (chart.options.scales) {
+                    if (chart.options.scales.x) {
+                        chart.options.scales.x.ticks.color = textColor;
+                        chart.options.scales.x.grid.color = gridColor;
+                    }
+                    if (chart.options.scales.y) {
+                        chart.options.scales.y.ticks.color = textColor;
+                        chart.options.scales.y.grid.color = gridColor;
+                    }
+                }
+                if (chart.options.plugins && chart.options.plugins.legend) {
+                    chart.options.plugins.legend.labels.color = legendColor;
+                }
+                chart.update();
+            });
+        }
+
+        // Initialize theme from localStorage
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('cutwater-theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                updateThemeLabel('light');
+            }
+        })();
     </script>
 </body>
 </html>
