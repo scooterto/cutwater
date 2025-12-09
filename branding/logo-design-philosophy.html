@@ -104,7 +104,7 @@
 
         .cover-logo {
             width: 180px;
-            height: 216px;
+            height: 180px;
             margin-bottom: 48px;
         }
 
@@ -196,104 +196,76 @@
             font-family: monospace;
         }
 
-        /* Logo Category Pages */
-        .category-header {
+        /* Logo Display */
+        .logo-showcase {
             display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid var(--frost);
+            gap: 40px;
+            justify-content: center;
+            margin: 40px 0;
         }
 
-        .category-badge {
-            background: var(--ocean);
-            color: var(--frost);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .logo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .logo-card {
-            background: var(--frost);
+        .logo-box {
+            padding: 40px;
             border-radius: 16px;
-            padding: 24px;
             text-align: center;
         }
 
-        .logo-card.dark {
+        .logo-box.light {
+            background: var(--frost);
+        }
+
+        .logo-box.dark {
             background: var(--deep-navy);
         }
 
-        .logo-card.dark h3 {
-            color: var(--frost);
+        .logo-box svg {
+            width: 100px;
+            height: 100px;
         }
 
-        .logo-card.dark p {
+        .logo-box .label {
+            margin-top: 16px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .logo-box.light .label {
+            color: var(--ocean);
+        }
+
+        .logo-box.dark .label {
             color: var(--aqua);
         }
 
-        .logo-container {
-            height: 140px;
+        /* Animation Section */
+        .animation-demo {
             display: flex;
-            align-items: center;
+            gap: 40px;
             justify-content: center;
-            margin-bottom: 16px;
+            align-items: center;
+            margin: 32px 0;
+            padding: 40px;
+            background: var(--deep-navy);
+            border-radius: 16px;
         }
 
-        .logo-container svg {
-            width: 80px;
-            height: 96px;
+        @keyframes wave {
+            0% { transform: rotate(-12deg); }
+            50% { transform: rotate(12deg); }
+            100% { transform: rotate(-12deg); }
         }
 
-        .recommended-badge {
-            display: inline-block;
-            background: var(--aqua);
-            color: var(--deep-navy);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+        .balance-line {
+            transform-origin: 24px 24px;
+            animation: wave 3s ease-in-out infinite;
         }
 
-        .current-badge {
-            display: inline-block;
-            background: var(--blue);
-            color: var(--white);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        /* Usage Guidelines */
-        .usage-section {
-            margin-bottom: 32px;
-        }
-
-        .usage-section h3 {
-            color: var(--deep-navy);
-            font-size: 16px;
-            margin-bottom: 16px;
-        }
-
+        /* Lockup Section */
         .lockup-demo {
             display: flex;
             gap: 32px;
             justify-content: center;
-            margin-bottom: 24px;
+            margin: 32px 0;
         }
 
         .lockup-box {
@@ -314,7 +286,7 @@
 
         .lockup-box svg {
             width: 48px;
-            height: 58px;
+            height: 48px;
         }
 
         .brand-name {
@@ -331,27 +303,37 @@
             color: var(--frost);
         }
 
-        .size-demos {
-            display: flex;
-            align-items: flex-end;
-            gap: 32px;
-            justify-content: center;
-            padding: 32px;
-            background: var(--frost);
-            border-radius: 12px;
+        /* Element Breakdown */
+        .element-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
         }
 
-        .size-demo {
+        .element-card {
+            background: var(--frost);
+            border-radius: 12px;
+            padding: 24px;
             text-align: center;
         }
 
-        .size-demo svg {
+        .element-card svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 16px;
+        }
+
+        .element-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--deep-navy);
             margin-bottom: 8px;
         }
 
-        .size-label {
-            font-size: 11px;
-            color: var(--ocean);
+        .element-card p {
+            font-size: 13px;
         }
 
         /* Page Number */
@@ -362,6 +344,54 @@
             font-size: 12px;
             color: var(--ocean);
         }
+
+        /* Usage Section */
+        .usage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .usage-card {
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .usage-card.do {
+            background: rgba(45, 138, 95, 0.1);
+            border: 1px solid rgba(45, 138, 95, 0.3);
+        }
+
+        .usage-card.dont {
+            background: rgba(229, 57, 53, 0.1);
+            border: 1px solid rgba(229, 57, 53, 0.3);
+        }
+
+        .usage-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .usage-card.do h4 {
+            color: #2D8A5F;
+        }
+
+        .usage-card.dont h4 {
+            color: #E53935;
+        }
+
+        .usage-card ul {
+            font-size: 13px;
+            color: var(--ocean);
+            padding-left: 20px;
+        }
+
+        .usage-card li {
+            margin-bottom: 6px;
+        }
     </style>
 </head>
 <body>
@@ -369,67 +399,66 @@
     <!-- PAGE 1: Cover -->
     <div class="page">
         <div class="cover">
-            <svg class="cover-logo" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <svg class="cover-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
             </svg>
             <h1>Cutwater</h1>
-            <p class="cover-subtitle">Brand Identity & Logo Design Philosophy</p>
-            <p class="cover-footer">Version 1.0 | December 2025</p>
+            <p class="cover-subtitle">Split Balance Logo — Design Philosophy</p>
+            <p class="cover-footer">Version 2.0 | December 2025</p>
         </div>
     </div>
 
     <!-- PAGE 2: Design Philosophy -->
     <div class="page">
         <h2>Design Philosophy</h2>
-        <p style="font-size: 16px; margin-bottom: 32px;">The Cutwater logo represents our core mission: navigating the complex waters of DeFi with precision and stability. Each element carries intentional meaning.</p>
+        <p style="font-size: 16px; margin-bottom: 32px;">The "Split Balance" logo represents Cutwater's core mission: maintaining equilibrium in volatile markets through our delta-neutral strategy. Each element carries intentional meaning.</p>
 
         <div class="philosophy-grid">
             <div class="philosophy-item">
                 <h3>
                     <span class="philosophy-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                            <path d="M12 2a10 10 0 0 0-7.07 17.07"/>
                         </svg>
                     </span>
-                    Water Droplet
+                    C Curve
                 </h3>
-                <p>Represents liquidity and fluid movement in decentralized finance. The smooth curves convey stability and continuous flow.</p>
+                <p>The open "C" shape represents Cutwater's brand initial while suggesting openness and opportunity. The curve embraces the balance within.</p>
             </div>
             <div class="philosophy-item">
                 <h3>
                     <span class="philosophy-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="19" x2="19" y2="5"/>
-                            <line x1="9" y1="19" x2="23" y2="5"/>
+                            <line x1="12" y1="5" x2="12" y2="19"/>
                         </svg>
                     </span>
-                    Diagonal Slashes
+                    Balance Line
                 </h3>
-                <p>"Cutting through water" symbolizes efficient market navigation and the ability to find opportunity in any condition.</p>
+                <p>The vertical line through the center represents equilibrium — the balance between long and short positions in our delta-neutral approach.</p>
             </div>
             <div class="philosophy-item">
                 <h3>
                     <span class="philosophy-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M8 3v18M16 3v18"/>
+                            <circle cx="12" cy="12" r="4"/>
                         </svg>
                     </span>
-                    Dual Lines
+                    Center Dot
                 </h3>
-                <p>The parallel slashes represent our delta-neutral approach: long spot positions balanced by short perpetuals.</p>
+                <p>The stable center point represents the core of our strategy — the neutral position where risk is minimized and yield is maximized.</p>
             </div>
             <div class="philosophy-item">
                 <h3>
                     <span class="philosophy-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M5 12h14M12 5v14"/>
                         </svg>
                     </span>
-                    Geometric Precision
+                    Animation
                 </h3>
-                <p>Clean lines and mathematical construction convey technical credibility, accuracy, and professional rigor.</p>
+                <p>The gentle wave motion (±12°) symbolizes market movement while the line always returns to center — representing maintained equilibrium.</p>
             </div>
         </div>
 
@@ -464,337 +493,187 @@
         <span class="page-number">2</span>
     </div>
 
-    <!-- PAGE 3: Category A - Single Slash -->
+    <!-- PAGE 3: Logo Elements -->
     <div class="page">
-        <div class="category-header">
-            <span class="category-badge">Category A</span>
-            <h2 style="margin-bottom: 0;">Single Slash - Outline</h2>
-        </div>
-        <p style="margin-bottom: 24px;">Minimalist approach with a single diagonal slash through an outlined water droplet. Clean and simple.</p>
+        <h2>Logo Elements</h2>
+        <p style="margin-bottom: 24px;">The Split Balance logo consists of three distinct elements that work together to create a cohesive symbol.</p>
 
-        <div class="logo-grid">
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"
-                              stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M28 38 L72 92" stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>A1 - Classic Smooth</h3>
-                <p>Rounded bottom, single diagonal slash</p>
+        <div class="element-grid">
+            <div class="element-card">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <h4>C Curve</h4>
+                <p>Ocean (#365486) on light<br/>Aqua (#7FC7D9) on dark</p>
             </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"
-                              stroke="#1E88E5" stroke-width="5" stroke-linecap="round" fill="none"/>
-                        <path d="M28 38 L72 92" stroke="#1E88E5" stroke-width="5" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>A2 - Light Stroke</h3>
-                <p>Thinner, more refined lines</p>
+            <div class="element-card">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <h4>Balance Line</h4>
+                <p>Aqua (#7FC7D9) on light<br/>Frost (#DCF2F1) on dark</p>
             </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"
-                              stroke="#1E88E5" stroke-width="9" stroke-linecap="round" fill="none"/>
-                        <path d="M28 38 L72 92" stroke="#1E88E5" stroke-width="9" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>A3 - Bold Stroke</h3>
-                <p>Heavier weight for impact</p>
+            <div class="element-card">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <h4>Center Dot</h4>
+                <p>Blue (#1E88E5)<br/>Constant across modes</p>
             </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 8 C32 30, 18 50, 18 72 C18 94, 32 108, 50 108 C68 108, 82 94, 82 72 C82 50, 68 30, 50 8"
-                              stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M30 32 L70 88" stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>A4 - Elongated</h3>
-                <p>Taller, more elegant proportion</p>
+        </div>
+
+        <h3 style="margin-top: 40px; color: var(--deep-navy);">Combined Logo</h3>
+        <div class="logo-showcase">
+            <div class="logo-box light">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <p class="label">Light Mode</p>
+            </div>
+            <div class="logo-box dark">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <p class="label">Dark Mode</p>
             </div>
         </div>
         <span class="page-number">3</span>
     </div>
 
-    <!-- PAGE 4: Category B - Double Slash -->
+    <!-- PAGE 4: Animation -->
     <div class="page">
-        <div class="category-header">
-            <span class="category-badge">Category B</span>
-            <h2 style="margin-bottom: 0;">Double Slash // - Outline</h2>
-        </div>
-        <p style="margin-bottom: 24px;">Parallel diagonal slashes representing the dual nature of delta-neutral strategy. Our recommended direction.</p>
+        <h2>Logo Animation</h2>
+        <p style="margin-bottom: 24px;">The Split Balance logo features a subtle animation where the balance line gently waves, symbolizing market movement while maintaining equilibrium.</p>
 
-        <div class="logo-grid">
-            <div class="logo-card">
-                <span class="recommended-badge">Recommended</span>
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"
-                              stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M24 42 L58 96" stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M42 42 L76 96" stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>B1 - Double Slash Classic</h3>
-                <p>Parallel slashes, balanced spacing</p>
+        <div class="animation-demo">
+            <svg width="120" height="120" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                <g class="balance-line">
+                    <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                </g>
+                <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+            </svg>
+            <div style="color: var(--frost); max-width: 300px;">
+                <h3 style="color: var(--aqua); margin-bottom: 16px;">Animation Specifications</h3>
+                <p style="color: var(--frost); margin-bottom: 12px;"><strong>Rotation:</strong> ±12 degrees</p>
+                <p style="color: var(--frost); margin-bottom: 12px;"><strong>Duration:</strong> 3 seconds per cycle</p>
+                <p style="color: var(--frost); margin-bottom: 12px;"><strong>Easing:</strong> ease-in-out</p>
+                <p style="color: var(--frost);"><strong>Loop:</strong> Infinite, continuous</p>
             </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"
-                              stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M28 40 L62 94" stroke="#1E88E5" stroke-width="5" stroke-linecap="round" fill="none"/>
-                        <path d="M38 40 L72 94" stroke="#1E88E5" stroke-width="5" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>B2 - Tight Double</h3>
-                <p>Closer spacing, lighter weight</p>
-            </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"
-                              stroke="#1E88E5" stroke-width="8" stroke-linecap="round" fill="none"/>
-                        <path d="M20 38 L54 98" stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M46 38 L80 98" stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>B3 - Wide Double</h3>
-                <p>More spread, bold outline</p>
-            </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"
-                              stroke="#1E88E5" stroke-width="5" stroke-linecap="round" fill="none"/>
-                        <path d="M22 44 L52 94" stroke="#1E88E5" stroke-width="4" stroke-linecap="round" fill="none"/>
-                        <path d="M36 44 L66 94" stroke="#1E88E5" stroke-width="4" stroke-linecap="round" fill="none"/>
-                        <path d="M50 44 L80 94" stroke="#1E88E5" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>B4 - Triple Slash</h3>
-                <p>Three lines for dynamic motion</p>
-            </div>
+        </div>
+
+        <h3 style="margin-top: 40px; color: var(--deep-navy);">Animation CSS</h3>
+        <div style="background: var(--deep-navy); border-radius: 12px; padding: 24px; margin-top: 16px;">
+            <pre style="font-family: 'Monaco', monospace; font-size: 13px; color: var(--frost); line-height: 1.6; margin: 0;"><span style="color: var(--aqua);">@keyframes</span> wave {
+  <span style="color: var(--aqua);">0%</span> { transform: rotate(-12deg); }
+  <span style="color: var(--aqua);">50%</span> { transform: rotate(12deg); }
+  <span style="color: var(--aqua);">100%</span> { transform: rotate(-12deg); }
+}
+
+<span style="color: var(--aqua);">.balance-line</span> {
+  transform-origin: 24px 24px;
+  animation: wave 3s ease-in-out infinite;
+}</pre>
+        </div>
+
+        <h3 style="margin-top: 32px; color: var(--deep-navy);">Accessibility</h3>
+        <p>The animation respects user preferences for reduced motion:</p>
+        <div style="background: var(--frost); border-radius: 12px; padding: 16px; margin-top: 12px;">
+            <pre style="font-family: 'Monaco', monospace; font-size: 12px; color: var(--ocean); margin: 0;">@media (prefers-reduced-motion: reduce) {
+  .balance-line { animation: none; }
+}</pre>
         </div>
         <span class="page-number">4</span>
     </div>
 
-    <!-- PAGE 5: Category C - Filled -->
-    <div class="page">
-        <div class="category-header">
-            <span class="category-badge">Category C</span>
-            <h2 style="margin-bottom: 0;">Filled Versions</h2>
-        </div>
-        <p style="margin-bottom: 24px;">Solid fill variations with contrasting slashes. Better visibility at small sizes and for app icons.</p>
-
-        <div class="logo-grid">
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#1E88E5"/>
-                        <path d="M28 42 L62 96" stroke="white" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M38 42 L72 96" stroke="white" stroke-width="7" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>C1 - Solid Blue</h3>
-                <p>Filled drop with white double slash</p>
-            </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#1E88E5"/>
-                                <stop offset="100%" style="stop-color:#7FC7D9"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="url(#grad1)"/>
-                        <path d="M28 42 L62 96" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M38 42 L72 96" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>C2 - Gradient</h3>
-                <p>Blue to aqua gradient fill</p>
-            </div>
-            <div class="logo-card dark">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
-                        <path d="M28 42 L62 96" stroke="#0F1035" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M38 42 L72 96" stroke="#0F1035" stroke-width="7" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>C4 - Aqua (Dark Mode)</h3>
-                <p>For dark backgrounds</p>
-            </div>
-            <div class="logo-card">
-                <span class="current-badge">Current Logo</span>
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>C5 - Ocean Fill</h3>
-                <p>Deep ocean blue with frost slash</p>
-            </div>
-        </div>
-        <span class="page-number">5</span>
-    </div>
-
-    <!-- PAGE 6: Category D - Alternative Shapes -->
-    <div class="page">
-        <div class="category-header">
-            <span class="category-badge">Category D</span>
-            <h2 style="margin-bottom: 0;">Alternative Shapes</h2>
-        </div>
-        <p style="margin-bottom: 24px;">Exploratory variations with different droplet shapes and internal elements.</p>
-
-        <div class="logo-grid">
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 8 C25 40, 15 60, 15 80 C15 100, 30 112, 50 112 C70 112, 85 100, 85 80 C85 60, 75 40, 50 8"
-                              stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M26 44 L60 100" stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M40 44 L74 100" stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>D1 - Teardrop</h3>
-                <p>Classic teardrop with double slash</p>
-            </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C35 30, 20 50, 18 72 C16 92, 28 108, 50 110 C72 112, 84 96, 82 74 C80 52, 65 32, 50 10"
-                              stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M26 40 L60 96" stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M40 40 L74 96" stroke="#1E88E5" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>D2 - Organic</h3>
-                <p>Slightly asymmetric, natural feel</p>
-            </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M46 10 C28 35, 15 55, 15 75 C15 95, 28 110, 46 110"
-                              stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M54 10 C72 35, 85 55, 85 75 C85 95, 72 110, 54 110"
-                              stroke="#7FC7D9" stroke-width="7" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>D3 - Split Two-Tone</h3>
-                <p>Divided drop, two colors</p>
-            </div>
-            <div class="logo-card">
-                <div class="logo-container">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10"
-                              stroke="#1E88E5" stroke-width="7" stroke-linecap="round" fill="none"/>
-                        <path d="M50 45 L35 85 L65 85 Z" stroke="#7FC7D9" stroke-width="5" stroke-linejoin="round" fill="none"/>
-                    </svg>
-                </div>
-                <h3>D4 - Delta Inside</h3>
-                <p>Delta symbol for delta-neutral</p>
-            </div>
-        </div>
-        <span class="page-number">6</span>
-    </div>
-
-    <!-- PAGE 7: Usage Guidelines -->
+    <!-- PAGE 5: Usage Guidelines -->
     <div class="page">
         <h2>Usage Guidelines</h2>
 
-        <div class="usage-section">
-            <h3>Logo Lockups</h3>
-            <div class="lockup-demo">
-                <div class="lockup-box light">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <span class="brand-name light">Cutwater</span>
-                </div>
-                <div class="lockup-box dark">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#7FC7D9"/>
-                        <path d="M29 40 L49 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#0F1035" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <span class="brand-name dark">Cutwater</span>
-                </div>
+        <h3 style="color: var(--deep-navy); margin-bottom: 16px;">Logo Lockups</h3>
+        <div class="lockup-demo">
+            <div class="lockup-box light">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <span class="brand-name light">Cutwater</span>
+            </div>
+            <div class="lockup-box dark">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <span class="brand-name dark">Cutwater</span>
             </div>
         </div>
 
-        <div class="usage-section">
-            <h3>Minimum Sizes</h3>
-            <div class="size-demos">
-                <div class="size-demo">
-                    <svg width="24" height="29" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <div class="size-label">24px (min)</div>
-                </div>
-                <div class="size-demo">
-                    <svg width="32" height="38" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <div class="size-label">32px</div>
-                </div>
-                <div class="size-demo">
-                    <svg width="48" height="58" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <div class="size-label">48px</div>
-                </div>
-                <div class="size-demo">
-                    <svg width="64" height="77" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <div class="size-label">64px</div>
-                </div>
-                <div class="size-demo">
-                    <svg width="96" height="115" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <div class="size-label">96px</div>
-                </div>
+        <h3 style="color: var(--deep-navy); margin-top: 32px; margin-bottom: 16px;">Do's and Don'ts</h3>
+        <div class="usage-grid">
+            <div class="usage-card do">
+                <h4>Do</h4>
+                <ul>
+                    <li>Use the correct color combinations for each mode</li>
+                    <li>Maintain clear space around the logo</li>
+                    <li>Use animation only when appropriate</li>
+                    <li>Scale proportionally</li>
+                    <li>Use on brand-colored backgrounds</li>
+                </ul>
+            </div>
+            <div class="usage-card dont">
+                <h4>Don't</h4>
+                <ul>
+                    <li>Change the stroke widths</li>
+                    <li>Rotate or skew the logo</li>
+                    <li>Use non-brand colors</li>
+                    <li>Add shadows or effects</li>
+                    <li>Place on busy backgrounds</li>
+                </ul>
             </div>
         </div>
 
-        <div class="usage-section" style="margin-top: 32px;">
-            <h3>Clear Space</h3>
-            <p style="margin-bottom: 16px;">Maintain clear space equal to 25% of the logo height on all sides to ensure visibility and impact.</p>
-            <div style="display: flex; justify-content: center;">
-                <div style="position: relative; padding: 40px; background: var(--frost); border-radius: 12px; display: inline-block;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; border: 2px dashed var(--aqua); border-radius: 12px;"></div>
-                    <svg width="80" height="96" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 10 C30 35, 15 55, 15 75 C15 95, 30 110, 50 110 C70 110, 85 95, 85 75 C85 55, 70 35, 50 10" fill="#365486"/>
-                        <path d="M29 40 L49 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                        <path d="M55 40 L75 90" stroke="#DCF2F1" stroke-width="6" stroke-linecap="round" fill="none"/>
-                    </svg>
-                </div>
+        <h3 style="color: var(--deep-navy); margin-top: 32px; margin-bottom: 16px;">Minimum Sizes</h3>
+        <div style="display: flex; align-items: flex-end; gap: 40px; justify-content: center; padding: 32px; background: var(--frost); border-radius: 12px;">
+            <div style="text-align: center;">
+                <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <p style="font-size: 11px; margin-top: 8px;">24px (min)</p>
+            </div>
+            <div style="text-align: center;">
+                <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <p style="font-size: 11px; margin-top: 8px;">36px</p>
+            </div>
+            <div style="text-align: center;">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <p style="font-size: 11px; margin-top: 8px;">48px</p>
+            </div>
+            <div style="text-align: center;">
+                <svg width="64" height="64" viewBox="0 0 48 48" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <p style="font-size: 11px; margin-top: 8px;">64px</p>
             </div>
         </div>
-        <span class="page-number">7</span>
+        <span class="page-number">5</span>
     </div>
 
 </body>
