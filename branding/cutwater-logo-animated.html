@@ -145,16 +145,73 @@
             }
         }
 
+        @keyframes wave-reverse {
+            0% {
+                transform: rotate(12deg);
+            }
+            50% {
+                transform: rotate(-12deg);
+            }
+            100% {
+                transform: rotate(12deg);
+            }
+        }
+
         .balance-line {
             transform-origin: 24px 24px;
             animation: wave 3s ease-in-out infinite;
         }
 
+        .balance-line-reverse {
+            transform-origin: 24px 24px;
+            animation: wave-reverse 3s ease-in-out infinite;
+        }
+
         /* Reduced motion preference */
         @media (prefers-reduced-motion: reduce) {
-            .balance-line {
+            .balance-line,
+            .balance-line-reverse {
                 animation: none;
             }
+        }
+
+        .variation-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .variation-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--deep-navy);
+            margin-bottom: 8px;
+        }
+
+        .variation-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .variation-grid {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .variation-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .variation-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ocean);
         }
     </style>
 </head>
@@ -242,31 +299,99 @@
         </div>
     </div>
 
-    <!-- Large Standalone Symbol -->
-    <div style="text-align: center; margin-top: 20px;">
-        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--ocean); margin-bottom: 24px;">Symbol Only - Large</h2>
-        <div style="display: flex; gap: 60px; justify-content: center; align-items: center;">
-            <!-- Light version -->
-            <div style="background: var(--white); padding: 40px; border-radius: 20px; border: 1px solid var(--frost);">
-                <svg width="120" height="120" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
-                          stroke="#365486" stroke-width="3" stroke-linecap="round"/>
-                    <g class="balance-line">
-                        <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
-                    </g>
-                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
-                </svg>
+    <!-- Animation Variations -->
+    <div class="variation-section">
+        <h2 class="variation-title">Animation Variations</h2>
+        <p class="variation-subtitle">Two rotation directions - 3 second cycle each</p>
+
+        <div class="variation-grid">
+            <!-- Variation A: Left-first -->
+            <div class="variation-item">
+                <div style="display: flex; gap: 24px;">
+                    <div style="background: var(--white); padding: 30px; border-radius: 16px; border: 1px solid var(--frost);">
+                        <svg width="80" height="80" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                                  stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                        </svg>
+                    </div>
+                    <div style="background: var(--deep-navy); padding: 30px; border-radius: 16px;">
+                        <svg width="80" height="80" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                                  stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                        </svg>
+                    </div>
+                </div>
+                <span class="variation-label">Variation A: Left First</span>
             </div>
-            <!-- Dark version -->
-            <div style="background: var(--deep-navy); padding: 40px; border-radius: 20px;">
-                <svg width="120" height="120" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
-                          stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
-                    <g class="balance-line">
-                        <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
-                    </g>
-                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
-                </svg>
+
+            <!-- Variation B: Right-first -->
+            <div class="variation-item">
+                <div style="display: flex; gap: 24px;">
+                    <div style="background: var(--white); padding: 30px; border-radius: 16px; border: 1px solid var(--frost);">
+                        <svg width="80" height="80" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                                  stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                            <g class="balance-line-reverse">
+                                <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                        </svg>
+                    </div>
+                    <div style="background: var(--deep-navy); padding: 30px; border-radius: 16px;">
+                        <svg width="80" height="80" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                                  stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                            <g class="balance-line-reverse">
+                                <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                        </svg>
+                    </div>
+                </div>
+                <span class="variation-label">Variation B: Right First</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large Standalone Symbol -->
+    <div style="text-align: center; margin-top: 40px;">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--ocean); margin-bottom: 24px;">Large Symbol Comparison</h2>
+        <div style="display: flex; gap: 60px; justify-content: center; align-items: center;">
+            <!-- Left-first -->
+            <div style="text-align: center;">
+                <div style="background: var(--deep-navy); padding: 40px; border-radius: 20px; margin-bottom: 12px;">
+                    <svg width="120" height="120" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                              stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                        <g class="balance-line">
+                            <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                    </svg>
+                </div>
+                <span style="font-size: 13px; font-weight: 600; color: var(--ocean);">Left First</span>
+            </div>
+            <!-- Right-first -->
+            <div style="text-align: center;">
+                <div style="background: var(--deep-navy); padding: 40px; border-radius: 20px; margin-bottom: 12px;">
+                    <svg width="120" height="120" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                              stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                        <g class="balance-line-reverse">
+                            <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                    </svg>
+                </div>
+                <span style="font-size: 13px; font-weight: 600; color: var(--ocean);">Right First</span>
             </div>
         </div>
     </div>
