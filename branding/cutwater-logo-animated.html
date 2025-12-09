@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Partners - Animated Logo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Cutwater Brand Colors */
+            --frost: #DCF2F1;
+            --aqua: #7FC7D9;
+            --ocean: #365486;
+            --deep-navy: #0F1035;
+            --blue: #1E88E5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            padding: 40px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* Logo Display Grid */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 800px;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            padding: 60px 40px;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-container.light {
+            background: var(--white);
+            border: 1px solid var(--frost);
+            box-shadow: 0 4px 24px rgba(15, 16, 53, 0.08);
+        }
+
+        .logo-container.dark {
+            background: var(--deep-navy);
+        }
+
+        .logo-container.frost {
+            background: var(--frost);
+        }
+
+        .logo-container.ocean {
+            background: var(--ocean);
+        }
+
+        /* Logo with Text */
+        .logo-lockup {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .light .brand-name {
+            color: var(--deep-navy);
+        }
+
+        .dark .brand-name,
+        .ocean .brand-name {
+            color: var(--frost);
+        }
+
+        .frost .brand-name {
+            color: var(--deep-navy);
+        }
+
+        /* Label */
+        .label {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .light .label,
+        .frost .label {
+            color: var(--ocean);
+        }
+
+        .dark .label,
+        .ocean .label {
+            color: var(--aqua);
+        }
+
+        /* Animated Balance Line - smooth continuous pendulum */
+        @keyframes wave {
+            0% {
+                transform: rotate(-12deg);
+            }
+            50% {
+                transform: rotate(12deg);
+            }
+            100% {
+                transform: rotate(-12deg);
+            }
+        }
+
+        .balance-line {
+            transform-origin: 24px 24px;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .balance-line {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cutwater Partners - Split Balance Logo</h1>
+        <p class="subtitle">Animated logo with Cutwater brand colors - 3 second wave cycle</p>
+    </header>
+
+    <div class="logo-grid">
+        <!-- Light Background -->
+        <div class="logo-container light">
+            <div class="logo-lockup">
+                <svg width="64" height="64" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- C curve - Ocean -->
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                          stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Balance line - Aqua (animated) -->
+                    <g class="balance-line">
+                        <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <!-- Center dot - Blue -->
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <span class="brand-name">Cutwater</span>
+            </div>
+            <span class="label">Light Mode</span>
+        </div>
+
+        <!-- Dark Background -->
+        <div class="logo-container dark">
+            <div class="logo-lockup">
+                <svg width="64" height="64" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- C curve - Aqua -->
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                          stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Balance line - Frost (animated) -->
+                    <g class="balance-line">
+                        <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <!-- Center dot - Blue -->
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <span class="brand-name">Cutwater</span>
+            </div>
+            <span class="label">Dark Mode</span>
+        </div>
+
+        <!-- Frost Background -->
+        <div class="logo-container frost">
+            <div class="logo-lockup">
+                <svg width="64" height="64" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- C curve - Deep Navy -->
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                          stroke="#0F1035" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Balance line - Ocean (animated) -->
+                    <g class="balance-line">
+                        <path d="M24 14L24 34" stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <!-- Center dot - Blue -->
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+                <span class="brand-name">Cutwater</span>
+            </div>
+            <span class="label">Frost Background</span>
+        </div>
+
+        <!-- Ocean Background -->
+        <div class="logo-container ocean">
+            <div class="logo-lockup">
+                <svg width="64" height="64" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- C curve - Frost -->
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                          stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Balance line - Aqua (animated) -->
+                    <g class="balance-line">
+                        <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <!-- Center dot - Frost -->
+                    <circle cx="24" cy="24" r="4" fill="#DCF2F1"/>
+                </svg>
+                <span class="brand-name">Cutwater</span>
+            </div>
+            <span class="label">Ocean Background</span>
+        </div>
+    </div>
+
+    <!-- Large Standalone Symbol -->
+    <div style="text-align: center; margin-top: 20px;">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--ocean); margin-bottom: 24px;">Symbol Only - Large</h2>
+        <div style="display: flex; gap: 60px; justify-content: center; align-items: center;">
+            <!-- Light version -->
+            <div style="background: var(--white); padding: 40px; border-radius: 20px; border: 1px solid var(--frost);">
+                <svg width="120" height="120" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                          stroke="#365486" stroke-width="3" stroke-linecap="round"/>
+                    <g class="balance-line">
+                        <path d="M24 14L24 34" stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+            </div>
+            <!-- Dark version -->
+            <div style="background: var(--deep-navy); padding: 40px; border-radius: 20px;">
+                <svg width="120" height="120" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                          stroke="#7FC7D9" stroke-width="3" stroke-linecap="round"/>
+                    <g class="balance-line">
+                        <path d="M24 14L24 34" stroke="#DCF2F1" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle cx="24" cy="24" r="4" fill="#1E88E5"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Color Reference -->
+    <div style="text-align: center; margin-top: 20px;">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--ocean); margin-bottom: 16px;">Color Mapping</h2>
+        <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <div style="width: 40px; height: 40px; background: #365486; border-radius: 8px; margin: 0 auto 8px;"></div>
+                <div style="font-size: 12px; color: var(--deep-navy);">Ocean</div>
+                <div style="font-size: 11px; color: #666; font-family: monospace;">#365486</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 40px; height: 40px; background: #7FC7D9; border-radius: 8px; margin: 0 auto 8px;"></div>
+                <div style="font-size: 12px; color: var(--deep-navy);">Aqua</div>
+                <div style="font-size: 11px; color: #666; font-family: monospace;">#7FC7D9</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 40px; height: 40px; background: #1E88E5; border-radius: 8px; margin: 0 auto 8px;"></div>
+                <div style="font-size: 12px; color: var(--deep-navy);">Blue</div>
+                <div style="font-size: 11px; color: #666; font-family: monospace;">#1E88E5</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 40px; height: 40px; background: #DCF2F1; border-radius: 8px; margin: 0 auto 8px; border: 1px solid #ccc;"></div>
+                <div style="font-size: 12px; color: var(--deep-navy);">Frost</div>
+                <div style="font-size: 11px; color: #666; font-family: monospace;">#DCF2F1</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 40px; height: 40px; background: #0F1035; border-radius: 8px; margin: 0 auto 8px;"></div>
+                <div style="font-size: 12px; color: var(--deep-navy);">Deep Navy</div>
+                <div style="font-size: 11px; color: #666; font-family: monospace;">#0F1035</div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="font-size: 13px; color: #888; text-align: center; margin-top: 20px;">
+        <p>Cutwater Partners - Split Balance Logo</p>
+        <p style="margin-top: 4px;">Animation: 3 second wave cycle (left to right)</p>
+    </footer>
+</body>
+</html>
