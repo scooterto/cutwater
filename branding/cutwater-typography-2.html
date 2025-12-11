@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Typography 2 - Citadel-Inspired</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: #f8f9fa;
+            color: #1a2b5f;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: #1a2b5f;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .header .subtitle {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 20px;
+            color: #1a2b5f;
+            margin-top: 8px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1a2b5f;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #1a2b5f;
+            display: inline-block;
+        }
+
+        /* Font Showcase */
+        .font-showcase {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .font-name {
+            font-family: 'Source Serif 4', serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 16px;
+        }
+
+        .font-sample-large {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 48px;
+            font-weight: 600;
+            color: #1a2b5f;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .font-sample-italic {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 36px;
+            color: #1a2b5f;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .font-sample-body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #333;
+            max-width: 700px;
+        }
+
+        /* Type Scale */
+        .type-scale {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .scale-item {
+            display: flex;
+            align-items: baseline;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .scale-item:last-child {
+            border-bottom: none;
+        }
+
+        .scale-label {
+            width: 140px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            flex-shrink: 0;
+        }
+
+        .scale-sample {
+            flex: 1;
+        }
+
+        .scale-h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 48px;
+            font-weight: 600;
+            color: #1a2b5f;
+            line-height: 1.1;
+        }
+
+        .scale-h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: #1a2b5f;
+            line-height: 1.2;
+        }
+
+        .scale-h2-italic {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 32px;
+            color: #1a2b5f;
+            line-height: 1.2;
+        }
+
+        .scale-h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: #1a2b5f;
+        }
+
+        .scale-nav {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #1a2b5f;
+            letter-spacing: 0.5px;
+        }
+
+        .scale-body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 17px;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .scale-small {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .color-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .color-swatch {
+            height: 100px;
+        }
+
+        .color-info {
+            padding: 16px;
+        }
+
+        .color-name {
+            font-family: 'Source Serif 4', serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a2b5f;
+            margin-bottom: 4px;
+        }
+
+        .color-hex {
+            font-size: 12px;
+            color: #888;
+            font-family: monospace;
+        }
+
+        /* Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .comparison-card h4 {
+            font-family: 'Source Serif 4', serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .comparison-card .sample-heading {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 28px;
+            color: #1a2b5f;
+            margin-bottom: 16px;
+        }
+
+        .comparison-card .sample-nav {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-card .sample-nav span {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 15px;
+            color: #1a2b5f;
+        }
+
+        .comparison-card .sample-nav span:first-child {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .comparison-card .sample-body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 15px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* Button Samples */
+        .button-samples {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn-sample {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 14px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary-sample {
+            background: #1a2b5f;
+            color: white;
+        }
+
+        .btn-secondary-sample {
+            background: transparent;
+            color: #1a2b5f;
+            border: 1.5px solid #1a2b5f;
+        }
+
+        /* Logo Preview */
+        .logo-preview {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .logo-preview svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-preview .logo-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #1a2b5f;
+            letter-spacing: 0.5px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                padding: 40px 20px;
+            }
+            .font-showcase, .type-scale, .color-card, .comparison-card {
+                box-shadow: none;
+                border: 1px solid #eee;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Cutwater Typography 2</h1>
+            <p class="subtitle">Citadel-Inspired Design System</p>
+            <p>Classic serif typography for institutional trust and sophistication</p>
+        </div>
+
+        <!-- Font Family Section -->
+        <div class="section">
+            <h2 class="section-title">Primary Fonts</h2>
+
+            <div class="font-showcase">
+                <p class="font-name">Display Font - Playfair Display</p>
+                <p class="font-sample-large">Cutwater Partners</p>
+                <p class="font-sample-italic">Who We Are</p>
+                <p class="font-sample-body">
+                    Playfair Display is an elegant serif typeface with high contrast and distinctive styling.
+                    Its italic variant captures the refined, institutional aesthetic seen in premium financial brands.
+                </p>
+            </div>
+
+            <div class="font-showcase">
+                <p class="font-name">Body Font - Source Serif 4</p>
+                <p class="font-sample-body">
+                    Source Serif 4 provides exceptional readability for body text and navigation elements.
+                    Its clean, professional appearance communicates trust and stability while maintaining
+                    excellent legibility across all screen sizes. This typeface pairs beautifully with
+                    Playfair Display, creating a cohesive typographic hierarchy.
+                </p>
+            </div>
+        </div>
+
+        <!-- Type Scale -->
+        <div class="section">
+            <h2 class="section-title">Type Scale</h2>
+
+            <div class="type-scale">
+                <div class="scale-item">
+                    <span class="scale-label">H1 / Hero</span>
+                    <span class="scale-sample scale-h1">Delta-Neutral Yield</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-label">H2 / Section</span>
+                    <span class="scale-sample scale-h2">Multi-Asset Strategy</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-label">H2 Italic</span>
+                    <span class="scale-sample scale-h2-italic">Who We Are</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-label">H3 / Card</span>
+                    <span class="scale-sample scale-h3">Risk Management</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-label">Navigation</span>
+                    <span class="scale-sample scale-nav">Strategy &nbsp;&nbsp; Performance &nbsp;&nbsp; How It Works &nbsp;&nbsp; Risk</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-label">Body</span>
+                    <span class="scale-sample scale-body">Our multi-asset approach delivers 15-25% APY while maintaining strict delta neutrality.</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-label">Small / Caption</span>
+                    <span class="scale-sample scale-small">Past performance does not guarantee future results. For accredited investors only.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Palette -->
+        <div class="section">
+            <h2 class="section-title">Color Palette</h2>
+
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1a2b5f;"></div>
+                    <div class="color-info">
+                        <p class="color-name">Navy Primary</p>
+                        <p class="color-hex">#1a2b5f</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #2c4a8c;"></div>
+                    <div class="color-info">
+                        <p class="color-name">Navy Light</p>
+                        <p class="color-hex">#2c4a8c</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0f1a3d;"></div>
+                    <div class="color-info">
+                        <p class="color-name">Navy Deep</p>
+                        <p class="color-hex">#0f1a3d</p>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #f8f9fa;"></div>
+                    <div class="color-info">
+                        <p class="color-name">Background</p>
+                        <p class="color-hex">#f8f9fa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo with New Typography -->
+        <div class="section">
+            <h2 class="section-title">Logo Application</h2>
+
+            <div class="font-showcase">
+                <div class="logo-preview">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="24" cy="24" r="4" fill="#1a2b5f"/>
+                    </svg>
+                    <span class="logo-text">Cutwater</span>
+                </div>
+                <p class="font-sample-body" style="margin-top: 20px;">
+                    The Playfair Display typeface brings institutional gravitas to the Cutwater brand,
+                    while the updated navy color palette creates a more classic, trustworthy appearance
+                    aligned with established financial institutions.
+                </p>
+            </div>
+        </div>
+
+        <!-- Side-by-Side Comparison -->
+        <div class="section">
+            <h2 class="section-title">Citadel-Style Application</h2>
+
+            <div class="comparison">
+                <div class="comparison-card">
+                    <h4>Navigation Pattern</h4>
+                    <p class="sample-heading">Who We Are</p>
+                    <div class="sample-nav">
+                        <span>Our Culture</span>
+                        <span>Leadership Team</span>
+                        <span>Office Locations</span>
+                    </div>
+                    <p class="sample-body">
+                        Clean, elegant navigation with underlined active states
+                        and subtle hover transitions.
+                    </p>
+                </div>
+                <div class="comparison-card">
+                    <h4>Content Pattern</h4>
+                    <p class="sample-heading">What We Do</p>
+                    <div class="sample-nav">
+                        <span>Strategy</span>
+                        <span>Performance</span>
+                        <span>Risk</span>
+                    </div>
+                    <p class="sample-body">
+                        Italic serif headings create visual hierarchy while
+                        maintaining the sophisticated, institutional feel.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-samples">
+                <a href="#" class="btn-sample btn-primary-sample">Learn More</a>
+                <a href="#" class="btn-sample btn-secondary-sample">Client Login</a>
+            </div>
+        </div>
+
+        <!-- Font Pairing Summary -->
+        <div class="section">
+            <h2 class="section-title">Typography Summary</h2>
+
+            <div class="font-showcase">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 16px 0; font-weight: 600; color: #1a2b5f;">Element</td>
+                        <td style="padding: 16px 0; font-weight: 600; color: #1a2b5f;">Font</td>
+                        <td style="padding: 16px 0; font-weight: 600; color: #1a2b5f;">Weight</td>
+                        <td style="padding: 16px 0; font-weight: 600; color: #1a2b5f;">Size</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 16px 0; color: #666;">H1 / Hero</td>
+                        <td style="padding: 16px 0;">Playfair Display</td>
+                        <td style="padding: 16px 0;">600</td>
+                        <td style="padding: 16px 0;">48-64px</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 16px 0; color: #666;">H2 / Section (Italic)</td>
+                        <td style="padding: 16px 0;">Playfair Display Italic</td>
+                        <td style="padding: 16px 0;">400-500</td>
+                        <td style="padding: 16px 0;">32-36px</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 16px 0; color: #666;">H3 / Card Title</td>
+                        <td style="padding: 16px 0;">Playfair Display</td>
+                        <td style="padding: 16px 0;">500</td>
+                        <td style="padding: 16px 0;">24px</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 16px 0; color: #666;">Navigation</td>
+                        <td style="padding: 16px 0;">Source Serif 4</td>
+                        <td style="padding: 16px 0;">500</td>
+                        <td style="padding: 16px 0;">15-16px</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 16px 0; color: #666;">Body</td>
+                        <td style="padding: 16px 0;">Source Serif 4</td>
+                        <td style="padding: 16px 0;">400</td>
+                        <td style="padding: 16px 0;">16-17px</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 16px 0; color: #666;">Button</td>
+                        <td style="padding: 16px 0;">Source Serif 4</td>
+                        <td style="padding: 16px 0;">500</td>
+                        <td style="padding: 16px 0;">14px</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
