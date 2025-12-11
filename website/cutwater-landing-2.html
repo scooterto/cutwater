@@ -22,6 +22,7 @@
             --warning: #c9a227;
             --font-display: 'Playfair Display', Georgia, serif;
             --font-body: 'Source Serif 4', Georgia, serif;
+            --font-number: 'Playfair Display', Georgia, serif;
 
             /* Light Mode (default) */
             --bg-primary: #FFFFFF;
@@ -53,6 +54,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-y: scroll;
         }
 
         body {
@@ -92,9 +94,14 @@
 
         .nav-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             padding: 20px 0;
+            gap: 48px;
+        }
+
+        .logo-wrapper {
+            position: relative;
         }
 
         .logo {
@@ -103,6 +110,7 @@
             gap: 14px;
             text-decoration: none;
             color: var(--text-primary);
+            cursor: pointer;
         }
 
         .logo-icon {
@@ -115,6 +123,86 @@
             font-size: 1.6rem;
             font-weight: 600;
             letter-spacing: 0.5px;
+        }
+
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            margin-left: 4px;
+            margin-top: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow .arrow-1,
+        .dropdown-arrow .arrow-2 {
+            opacity: 0.4;
+            animation: cascade-arrow 1.5s ease-in-out infinite;
+        }
+
+        .dropdown-arrow .arrow-1 {
+            animation-delay: 0s;
+        }
+
+        .dropdown-arrow .arrow-2 {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes cascade-arrow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .logo-wrapper:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .logo-wrapper:hover .dropdown-arrow .arrow-1,
+        .logo-wrapper:hover .dropdown-arrow .arrow-2 {
+            animation: none;
+            opacity: 1;
+        }
+
+        /* Dropdown Menu */
+        .nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 12px 0;
+            min-width: 200px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.2s ease;
+            z-index: 1001;
+        }
+
+        .logo-wrapper:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 12px 24px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .nav-dropdown a:hover {
+            background: var(--bg-secondary);
+        }
+
+        [data-theme="dark"] .nav-dropdown {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         /* Dark mode logo colors */
@@ -148,14 +236,6 @@
 
         .nav-links {
             display: none;
-            list-style: none;
-            gap: 36px;
-        }
-
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-            }
         }
 
         .nav-links a {
@@ -190,6 +270,24 @@
             display: none;
             gap: 12px;
             align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-cta .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            margin-right: 20px;
+        }
+
+        .nav-cta .nav-link:hover {
+            color: var(--navy-light);
+        }
+
+        .nav-cta .nav-link.active {
+            color: var(--navy-light);
         }
 
         /* Theme Toggle Button */
@@ -470,7 +568,7 @@
         }
 
         .hero-stat-value {
-            font-family: var(--font-display);
+            font-family: var(--font-number);
             font-size: 2.5rem;
             font-weight: 600;
             color: var(--text-primary);
@@ -480,6 +578,12 @@
 
         .hero-stat-value.positive {
             color: var(--success);
+        }
+
+        /* Single-stroke dollar sign */
+        .dollar {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
         }
 
         .hero-stat-label {
@@ -788,7 +892,7 @@
         }
 
         .stat-card-value {
-            font-family: var(--font-display);
+            font-family: var(--font-number);
             font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 8px;
@@ -1181,23 +1285,31 @@
     <nav>
         <div class="container">
             <div class="nav-content">
-                <a href="#" class="logo">
-                    <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
-                        <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
-                        <g class="balance-line">
-                            <path class="logo-line" d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
-                        </g>
-                        <circle class="logo-dot" cx="24" cy="24" r="4" fill="#5BA4E6"/>
-                    </svg>
-                    <span class="logo-text">Cutwater</span>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#strategy">Strategy</a></li>
-                    <li><a href="#performance">Performance</a></li>
-                    <li><a href="#process">How It Works</a></li>
-                    <li><a href="#risk">Risk</a></li>
-                </ul>
+                <div class="logo-wrapper">
+                    <a href="#" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path class="logo-line" d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle class="logo-dot" cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                        </svg>
+                        <span class="logo-text">Cutwater</span>
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path class="arrow-1" d="M6 7l6 4 6-4"/>
+                            <path class="arrow-2" d="M6 15l6 4 6-4"/>
+                        </svg>
+                    </a>
+                    <div class="nav-dropdown">
+                        <a href="#strategy">Strategy</a>
+                        <a href="#performance">Performance</a>
+                        <a href="#process">How It Works</a>
+                        <a href="#risk">Risk</a>
+                    </div>
+                </div>
                 <div class="nav-cta">
+                    <a href="dashboard-preview.html" class="nav-link">Dashboard</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
                     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
                         <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="5"/>
@@ -1215,7 +1327,7 @@
                         </svg>
                     </button>
                     <a href="#" class="btn btn-secondary">Docs</a>
-                    <a href="dashboard.html" class="btn btn-primary">Launch App</a>
+                    <a href="dashboard-2.html" class="btn btn-primary">Launch App</a>
                 </div>
                 <div class="hamburger" onclick="toggleMobileMenu()">
                     <span></span>
@@ -1389,8 +1501,8 @@
                         <div class="flip-card-back">
                             <h4>Strict Criteria</h4>
                             <ul>
-                                <li>$1B+ market cap</li>
-                                <li>$50M+ daily volume</li>
+                                <li><span class="dollar">$</span>1B+ market cap</li>
+                                <li><span class="dollar">$</span>50M+ daily volume</li>
                                 <li>12-month track record</li>
                                 <li>2+ Tier-1 exchanges</li>
                             </ul>
@@ -1536,7 +1648,7 @@
                 <h2>Start earning 15-25% APY today</h2>
                 <p>Mint USDi and access multi-asset delta-neutral yields that outperform ETH/BTC-only strategies.</p>
                 <div class="cta-buttons">
-                    <a href="dashboard.html" class="btn btn-large btn-cta-primary">Launch App</a>
+                    <a href="dashboard-2.html" class="btn btn-large btn-cta-primary">Launch App</a>
                     <a href="#" class="btn btn-large btn-cta-secondary">Read Documentation</a>
                 </div>
             </div>
