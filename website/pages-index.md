@@ -30,6 +30,14 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 
 ---
 
+## Design Assets
+
+| Page | URL |
+|------|-----|
+| Logo Comparison | https://scooterto.github.io/cutwater/website/logo-comparison.html |
+
+---
+
 ## Notes
 
 - **V2** uses Citadel-style typography (Playfair Display + Source Serif)

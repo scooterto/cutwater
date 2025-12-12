@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Logo Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-primary: #1a2b5f;
+            --navy-light: #2c4a8c;
+            --blue-accent: #5BA4E6;
+            --bg-primary: #FFFFFF;
+            --text-primary: #1a2b5f;
+            --font-display: 'Playfair Display', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 60px 40px;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-card {
+            text-align: center;
+            padding: 40px;
+            border: 1px solid #e8eaed;
+            border-radius: 12px;
+            background: #fafbfc;
+        }
+
+        .logo-card h2 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--navy-primary);
+        }
+
+        .logo-card p {
+            font-size: 0.85rem;
+            color: #5a6577;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .logo-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+        }
+
+        .logo-icon.large {
+            width: 120px;
+            height: 120px;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        /* Animation for vertical balance line */
+        @keyframes wave-vertical {
+            0% { transform: rotate(-34deg); }
+            50% { transform: rotate(34deg); }
+            100% { transform: rotate(-34deg); }
+        }
+
+        /* Animation for horizontal balance line */
+        @keyframes wave-horizontal {
+            0% { transform: rotate(-34deg); }
+            50% { transform: rotate(34deg); }
+            100% { transform: rotate(-34deg); }
+        }
+
+        .balance-line-vertical {
+            transform-origin: 24px 24px;
+            animation: wave-vertical 3s ease-in-out infinite;
+        }
+
+        .balance-line-horizontal {
+            transform-origin: 24px 24px;
+            animation: wave-horizontal 3s ease-in-out infinite;
+        }
+
+        .specs {
+            text-align: left;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #5a6577;
+        }
+
+        .specs strong {
+            color: var(--navy-primary);
+        }
+
+        .size-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e8eaed;
+        }
+
+        .size-label {
+            font-size: 0.75rem;
+            color: #5a6577;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .logo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Cutwater Logo Comparison</h1>
+
+    <div class="logo-grid">
+        <!-- Logo 1: Original -->
+        <div class="logo-card">
+            <h2>Logo 1: Original</h2>
+            <p>Current logo with vertical balance line</p>
+
+            <div class="logo-display">
+                <svg class="logo-icon large" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="3" stroke-linecap="round"/>
+                    <g class="balance-line-vertical">
+                        <path class="logo-line" d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle class="logo-dot" cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                </svg>
+            </div>
+
+            <div class="specs">
+                <p><strong>C stroke:</strong> 3px</p>
+                <p><strong>Balance line:</strong> Vertical, 3px</p>
+                <p><strong>Dot:</strong> r=4</p>
+                <p><strong>Animation:</strong> -34deg to 34deg</p>
+            </div>
+
+            <div class="size-row">
+                <div>
+                    <svg class="logo-icon" style="width: 40px; height: 40px;" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="3" stroke-linecap="round"/>
+                        <g class="balance-line-vertical">
+                            <path d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                    </svg>
+                    <div class="size-label">40px</div>
+                </div>
+                <div>
+                    <svg class="logo-icon" style="width: 60px; height: 60px;" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="3" stroke-linecap="round"/>
+                        <g class="balance-line-vertical">
+                            <path d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                    </svg>
+                    <div class="size-label">60px</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo 2: Thicker C with Vertical Line -->
+        <div class="logo-card">
+            <h2>Logo 2: Thicker C + Vertical</h2>
+            <p>Thicker C stroke (4px) with vertical balance line</p>
+
+            <div class="logo-display">
+                <svg class="logo-icon large" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                    <g class="balance-line-vertical">
+                        <path class="logo-line" d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle class="logo-dot" cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                </svg>
+            </div>
+
+            <div class="specs">
+                <p><strong>C stroke:</strong> 4px (thicker)</p>
+                <p><strong>Balance line:</strong> Vertical, 3px</p>
+                <p><strong>Dot:</strong> r=4</p>
+                <p><strong>Animation:</strong> -34deg to 34deg</p>
+            </div>
+
+            <div class="size-row">
+                <div>
+                    <svg class="logo-icon" style="width: 40px; height: 40px;" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                        <g class="balance-line-vertical">
+                            <path d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                    </svg>
+                    <div class="size-label">40px</div>
+                </div>
+                <div>
+                    <svg class="logo-icon" style="width: 60px; height: 60px;" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                        <g class="balance-line-vertical">
+                            <path d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                    </svg>
+                    <div class="size-label">60px</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo 3: Thicker C with Horizontal Line -->
+        <div class="logo-card">
+            <h2>Logo 3: Thicker C + Horizontal</h2>
+            <p>Thicker C stroke (4px) with horizontal balance line</p>
+
+            <div class="logo-display">
+                <svg class="logo-icon large" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                    <g class="balance-line-horizontal">
+                        <path class="logo-line" d="M14 24L34 24" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle class="logo-dot" cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                </svg>
+            </div>
+
+            <div class="specs">
+                <p><strong>C stroke:</strong> 4px (thicker)</p>
+                <p><strong>Balance line:</strong> Horizontal, 3px</p>
+                <p><strong>Dot:</strong> r=4</p>
+                <p><strong>Animation:</strong> -34deg to 34deg</p>
+            </div>
+
+            <div class="size-row">
+                <div>
+                    <svg class="logo-icon" style="width: 40px; height: 40px;" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                        <g class="balance-line-horizontal">
+                            <path d="M14 24L34 24" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                    </svg>
+                    <div class="size-label">40px</div>
+                </div>
+                <div>
+                    <svg class="logo-icon" style="width: 60px; height: 60px;" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                        <g class="balance-line-horizontal">
+                            <path d="M14 24L34 24" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                    </svg>
+                    <div class="size-label">60px</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
