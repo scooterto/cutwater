@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater | Asset Pool Metrics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-primary: #1a2b5f;
+            --navy-light: #2c4a8c;
+            --blue-accent: #5BA4E6;
+            --success: #2D8A5F;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a2b5f;
+            --text-secondary: #5a6577;
+            --border-color: #e8eaed;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Serif 4', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 32px;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--navy-primary);
+            color: white;
+            border-radius: 8px;
+            padding: 20px 32px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .asset-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .asset-card:hover {
+            border-color: var(--navy-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 43, 95, 0.1);
+        }
+
+        .asset-symbol {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        .table-container {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .table-scroll {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 10;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+        }
+
+        th:first-child, td:first-child {
+            padding-left: 24px;
+        }
+
+        th:last-child, td:last-child {
+            padding-right: 24px;
+        }
+
+        tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .asset-index {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .category-l1 { background: rgba(91, 164, 230, 0.15); color: #2c6cb0; }
+        .category-defi { background: rgba(45, 138, 95, 0.15); color: #1d6b4a; }
+        .category-meme { background: rgba(201, 162, 39, 0.15); color: #8a7020; }
+        .category-gaming { background: rgba(156, 39, 176, 0.15); color: #7b1fa2; }
+        .category-infra { background: rgba(255, 87, 34, 0.15); color: #d84315; }
+
+        @media (max-width: 768px) {
+            body { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+            .assets-grid { grid-template-columns: repeat(3, 1fr); }
+            .stats-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Asset Pool Metrics</h1>
+        <p class="subtitle">Perpetual futures assets in the Cutwater trading pool</p>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-label">Total Assets</div>
+                <div class="stat-value">39</div>
+            </div>
+        </div>
+
+        <div class="assets-grid">
+            <div class="asset-card"><div class="asset-symbol">BTC</div></div>
+            <div class="asset-card"><div class="asset-symbol">ETH</div></div>
+            <div class="asset-card"><div class="asset-symbol">SOL</div></div>
+            <div class="asset-card"><div class="asset-symbol">BNB</div></div>
+            <div class="asset-card"><div class="asset-symbol">XRP</div></div>
+            <div class="asset-card"><div class="asset-symbol">ADA</div></div>
+            <div class="asset-card"><div class="asset-symbol">DOGE</div></div>
+            <div class="asset-card"><div class="asset-symbol">AVAX</div></div>
+            <div class="asset-card"><div class="asset-symbol">DOT</div></div>
+            <div class="asset-card"><div class="asset-symbol">LINK</div></div>
+            <div class="asset-card"><div class="asset-symbol">LTC</div></div>
+            <div class="asset-card"><div class="asset-symbol">BCH</div></div>
+            <div class="asset-card"><div class="asset-symbol">NEAR</div></div>
+            <div class="asset-card"><div class="asset-symbol">UNI</div></div>
+            <div class="asset-card"><div class="asset-symbol">SUI</div></div>
+            <div class="asset-card"><div class="asset-symbol">APT</div></div>
+            <div class="asset-card"><div class="asset-symbol">ATOM</div></div>
+            <div class="asset-card"><div class="asset-symbol">OP</div></div>
+            <div class="asset-card"><div class="asset-symbol">FIL</div></div>
+            <div class="asset-card"><div class="asset-symbol">XLM</div></div>
+            <div class="asset-card"><div class="asset-symbol">TRX</div></div>
+            <div class="asset-card"><div class="asset-symbol">AAVE</div></div>
+            <div class="asset-card"><div class="asset-symbol">ETC</div></div>
+            <div class="asset-card"><div class="asset-symbol">ALGO</div></div>
+            <div class="asset-card"><div class="asset-symbol">FTM</div></div>
+            <div class="asset-card"><div class="asset-symbol">THETA</div></div>
+            <div class="asset-card"><div class="asset-symbol">EOS</div></div>
+            <div class="asset-card"><div class="asset-symbol">EGLD</div></div>
+            <div class="asset-card"><div class="asset-symbol">SAND</div></div>
+            <div class="asset-card"><div class="asset-symbol">MANA</div></div>
+            <div class="asset-card"><div class="asset-symbol">AXS</div></div>
+            <div class="asset-card"><div class="asset-symbol">ENS</div></div>
+            <div class="asset-card"><div class="asset-symbol">GMT</div></div>
+            <div class="asset-card"><div class="asset-symbol">CHZ</div></div>
+            <div class="asset-card"><div class="asset-symbol">RUNE</div></div>
+            <div class="asset-card"><div class="asset-symbol">WLD</div></div>
+            <div class="asset-card"><div class="asset-symbol">WIF</div></div>
+            <div class="asset-card"><div class="asset-symbol">MATIC</div></div>
+            <div class="asset-card"><div class="asset-symbol">DOGS</div></div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Asset List</h2>
+                <span style="color: var(--text-secondary); font-size: 0.85rem;">39 assets</span>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Symbol</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="asset-index">1</td><td>BTC</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">2</td><td>ETH</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">3</td><td>SOL</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">4</td><td>BNB</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">5</td><td>XRP</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">6</td><td>ADA</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">7</td><td>DOGE</td><td><span class="category-badge category-meme">Meme</span></td></tr>
+                        <tr><td class="asset-index">8</td><td>AVAX</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">9</td><td>DOT</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">10</td><td>LINK</td><td><span class="category-badge category-infra">Infrastructure</span></td></tr>
+                        <tr><td class="asset-index">11</td><td>LTC</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">12</td><td>BCH</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">13</td><td>NEAR</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">14</td><td>UNI</td><td><span class="category-badge category-defi">DeFi</span></td></tr>
+                        <tr><td class="asset-index">15</td><td>SUI</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">16</td><td>APT</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">17</td><td>ATOM</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">18</td><td>OP</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">19</td><td>FIL</td><td><span class="category-badge category-infra">Infrastructure</span></td></tr>
+                        <tr><td class="asset-index">20</td><td>XLM</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">21</td><td>TRX</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">22</td><td>AAVE</td><td><span class="category-badge category-defi">DeFi</span></td></tr>
+                        <tr><td class="asset-index">23</td><td>ETC</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">24</td><td>ALGO</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">25</td><td>FTM</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">26</td><td>THETA</td><td><span class="category-badge category-infra">Infrastructure</span></td></tr>
+                        <tr><td class="asset-index">27</td><td>EOS</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">28</td><td>EGLD</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">29</td><td>SAND</td><td><span class="category-badge category-gaming">Gaming</span></td></tr>
+                        <tr><td class="asset-index">30</td><td>MANA</td><td><span class="category-badge category-gaming">Gaming</span></td></tr>
+                        <tr><td class="asset-index">31</td><td>AXS</td><td><span class="category-badge category-gaming">Gaming</span></td></tr>
+                        <tr><td class="asset-index">32</td><td>ENS</td><td><span class="category-badge category-infra">Infrastructure</span></td></tr>
+                        <tr><td class="asset-index">33</td><td>GMT</td><td><span class="category-badge category-gaming">Gaming</span></td></tr>
+                        <tr><td class="asset-index">34</td><td>CHZ</td><td><span class="category-badge category-infra">Infrastructure</span></td></tr>
+                        <tr><td class="asset-index">35</td><td>RUNE</td><td><span class="category-badge category-defi">DeFi</span></td></tr>
+                        <tr><td class="asset-index">36</td><td>WLD</td><td><span class="category-badge category-infra">Infrastructure</span></td></tr>
+                        <tr><td class="asset-index">37</td><td>WIF</td><td><span class="category-badge category-meme">Meme</span></td></tr>
+                        <tr><td class="asset-index">38</td><td>MATIC</td><td><span class="category-badge category-l1">Layer 1</span></td></tr>
+                        <tr><td class="asset-index">39</td><td>DOGS</td><td><span class="category-badge category-meme">Meme</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
