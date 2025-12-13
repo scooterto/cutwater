@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --navy-primary: #1a2b5f;
@@ -193,10 +194,123 @@
         .positive { color: var(--success); }
         .negative { color: #dc3545; }
 
+        .top-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .chart-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .chart-section h2 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .allocation-legend {
+            margin-top: 16px;
+        }
+
+        .legend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .legend-item:last-child {
+            border-bottom: none;
+        }
+
+        .legend-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-symbol {
+            font-weight: 600;
+        }
+
+        .legend-apr {
+            color: var(--success);
+            font-size: 0.9rem;
+        }
+
+        .legend-pct {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .assets-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .assets-section h2 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .assets-grid-small {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+
+        .asset-card-small {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 4px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .asset-card-small:hover {
+            border-color: var(--navy-primary);
+            transform: translateY(-1px);
+        }
+
+        .asset-symbol-small {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
         @media (max-width: 768px) {
             body { padding: 20px; }
             h1 { font-size: 1.8rem; }
-            .assets-grid { grid-template-columns: repeat(3, 1fr); }
+            .top-section { grid-template-columns: 1fr; }
+            .assets-grid-small { grid-template-columns: repeat(4, 1fr); }
             .stats-row { flex-direction: column; }
         }
     </style>
@@ -206,53 +320,102 @@
         <h1>Asset Pool Metrics</h1>
         <p class="subtitle">Perpetual futures assets in the Cutwater trading pool</p>
 
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-label">Total Assets</div>
-                <div class="stat-value">39</div>
+        <div class="top-section">
+            <!-- Pie Chart Section -->
+            <div class="chart-section">
+                <h2>Current Allocation</h2>
+                <div class="chart-container">
+                    <canvas id="allocationChart"></canvas>
+                </div>
+                <div class="allocation-legend">
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #1a2b5f;"></div>
+                            <span class="legend-symbol">EOS</span>
+                            <span class="legend-apr">48.36% APR</span>
+                        </div>
+                        <span class="legend-pct">50%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #2c4a8c;"></div>
+                            <span class="legend-symbol">MATIC</span>
+                            <span class="legend-apr">16.73% APR</span>
+                        </div>
+                        <span class="legend-pct">15%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #5BA4E6;"></div>
+                            <span class="legend-symbol">FTM</span>
+                            <span class="legend-apr">10.98% APR</span>
+                        </div>
+                        <span class="legend-pct">15%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #2D8A5F;"></div>
+                            <span class="legend-symbol">RUNE</span>
+                            <span class="legend-apr">9.84% APR</span>
+                        </div>
+                        <span class="legend-pct">10%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #7b9ec9;"></div>
+                            <span class="legend-symbol">CHZ</span>
+                            <span class="legend-apr">9.61% APR</span>
+                        </div>
+                        <span class="legend-pct">10%</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="assets-grid">
-            <div class="asset-card"><div class="asset-symbol">BTC</div></div>
-            <div class="asset-card"><div class="asset-symbol">ETH</div></div>
-            <div class="asset-card"><div class="asset-symbol">SOL</div></div>
-            <div class="asset-card"><div class="asset-symbol">BNB</div></div>
-            <div class="asset-card"><div class="asset-symbol">XRP</div></div>
-            <div class="asset-card"><div class="asset-symbol">ADA</div></div>
-            <div class="asset-card"><div class="asset-symbol">DOGE</div></div>
-            <div class="asset-card"><div class="asset-symbol">AVAX</div></div>
-            <div class="asset-card"><div class="asset-symbol">DOT</div></div>
-            <div class="asset-card"><div class="asset-symbol">LINK</div></div>
-            <div class="asset-card"><div class="asset-symbol">LTC</div></div>
-            <div class="asset-card"><div class="asset-symbol">BCH</div></div>
-            <div class="asset-card"><div class="asset-symbol">NEAR</div></div>
-            <div class="asset-card"><div class="asset-symbol">UNI</div></div>
-            <div class="asset-card"><div class="asset-symbol">SUI</div></div>
-            <div class="asset-card"><div class="asset-symbol">APT</div></div>
-            <div class="asset-card"><div class="asset-symbol">ATOM</div></div>
-            <div class="asset-card"><div class="asset-symbol">OP</div></div>
-            <div class="asset-card"><div class="asset-symbol">FIL</div></div>
-            <div class="asset-card"><div class="asset-symbol">XLM</div></div>
-            <div class="asset-card"><div class="asset-symbol">TRX</div></div>
-            <div class="asset-card"><div class="asset-symbol">AAVE</div></div>
-            <div class="asset-card"><div class="asset-symbol">ETC</div></div>
-            <div class="asset-card"><div class="asset-symbol">ALGO</div></div>
-            <div class="asset-card"><div class="asset-symbol">FTM</div></div>
-            <div class="asset-card"><div class="asset-symbol">THETA</div></div>
-            <div class="asset-card"><div class="asset-symbol">EOS</div></div>
-            <div class="asset-card"><div class="asset-symbol">EGLD</div></div>
-            <div class="asset-card"><div class="asset-symbol">SAND</div></div>
-            <div class="asset-card"><div class="asset-symbol">MANA</div></div>
-            <div class="asset-card"><div class="asset-symbol">AXS</div></div>
-            <div class="asset-card"><div class="asset-symbol">ENS</div></div>
-            <div class="asset-card"><div class="asset-symbol">GMT</div></div>
-            <div class="asset-card"><div class="asset-symbol">CHZ</div></div>
-            <div class="asset-card"><div class="asset-symbol">RUNE</div></div>
-            <div class="asset-card"><div class="asset-symbol">WLD</div></div>
-            <div class="asset-card"><div class="asset-symbol">WIF</div></div>
-            <div class="asset-card"><div class="asset-symbol">MATIC</div></div>
-            <div class="asset-card"><div class="asset-symbol">DOGS</div></div>
+            <!-- Asset List Section -->
+            <div class="assets-section">
+                <h2>Total Asset Pool <span style="color: var(--text-secondary); font-weight: 400;">(39 assets)</span></h2>
+                <div class="assets-grid-small">
+                    <div class="asset-card-small"><div class="asset-symbol-small">BTC</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">ETH</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">SOL</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">BNB</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">XRP</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">ADA</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">DOGE</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">AVAX</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">DOT</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">LINK</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">LTC</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">BCH</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">NEAR</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">UNI</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">SUI</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">APT</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">ATOM</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">OP</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">FIL</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">XLM</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">TRX</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">AAVE</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">ETC</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">ALGO</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">FTM</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">THETA</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">EOS</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">EGLD</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">SAND</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">MANA</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">AXS</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">ENS</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">GMT</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">CHZ</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">RUNE</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">WLD</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">WIF</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">MATIC</div></div>
+                    <div class="asset-card-small"><div class="asset-symbol-small">DOGS</div></div>
+                </div>
+            </div>
         </div>
 
         <div class="table-container">
@@ -324,5 +487,45 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Allocation Pie Chart
+        const ctx = document.getElementById('allocationChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['EOS (48.36% APR)', 'MATIC (16.73% APR)', 'FTM (10.98% APR)', 'RUNE (9.84% APR)', 'CHZ (9.61% APR)'],
+                datasets: [{
+                    data: [50, 15, 15, 10, 10],
+                    backgroundColor: [
+                        '#1a2b5f',
+                        '#2c4a8c',
+                        '#5BA4E6',
+                        '#2D8A5F',
+                        '#7b9ec9'
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
