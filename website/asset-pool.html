@@ -260,6 +260,23 @@
             font-size: 0.9rem;
         }
 
+        .legend-amount {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .total-assets-display {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .total-assets-display strong {
+            color: var(--navy-primary);
+            font-size: 1.1rem;
+        }
+
         .legend-pct {
             font-weight: 600;
             color: var(--text-secondary);
@@ -321,11 +338,63 @@
         <p class="subtitle">Perpetual futures assets in the Cutwater trading pool</p>
 
         <div class="top-section">
-            <!-- Pie Chart Section -->
+            <!-- Current Asset Pool -->
             <div class="chart-section">
-                <h2>Current Allocation</h2>
+                <h2>Current Asset Pool</h2>
+                <div class="total-assets-display">Total: <strong>$7,400,056</strong></div>
                 <div class="chart-container">
-                    <canvas id="allocationChart"></canvas>
+                    <canvas id="currentChart"></canvas>
+                </div>
+                <div class="allocation-legend">
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #9945FF;"></div>
+                            <span class="legend-symbol">SOL</span>
+                            <span class="legend-amount">$4,619,061</span>
+                        </div>
+                        <span class="legend-pct">62.4%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #F7931A;"></div>
+                            <span class="legend-symbol">BTC</span>
+                            <span class="legend-amount">$1,396,453</span>
+                        </div>
+                        <span class="legend-pct">18.9%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #C2A633;"></div>
+                            <span class="legend-symbol">DOGE</span>
+                            <span class="legend-amount">$778,883</span>
+                        </div>
+                        <span class="legend-pct">10.5%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #FF007A;"></div>
+                            <span class="legend-symbol">UNI</span>
+                            <span class="legend-amount">$560,397</span>
+                        </div>
+                        <span class="legend-pct">7.6%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #2775CA;"></div>
+                            <span class="legend-symbol">USDC</span>
+                            <span class="legend-amount">$44,284</span>
+                        </div>
+                        <span class="legend-pct">0.6%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulated Asset Pool -->
+            <div class="chart-section">
+                <h2>Simulated Asset Pool</h2>
+                <div class="total-assets-display">Optimized Allocation</div>
+                <div class="chart-container">
+                    <canvas id="simulatedChart"></canvas>
                 </div>
                 <div class="allocation-legend">
                     <div class="legend-item">
@@ -370,9 +439,10 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Asset List Section -->
-            <div class="assets-section">
+        <!-- Asset List Section -->
+        <div class="assets-section" style="margin-bottom: 40px;">
                 <h2>Total Asset Pool <span style="color: var(--text-secondary); font-weight: 400;">(39 assets)</span></h2>
                 <div class="assets-grid-small">
                     <div class="asset-card-small"><div class="asset-symbol-small">BTC</div></div>
@@ -489,64 +559,100 @@
     </div>
 
     <script>
-        // Custom plugin for outer labels with connector lines
-        const outerLabelsPlugin = {
-            id: 'outerLabels',
-            afterDraw(chart) {
-                const ctx = chart.ctx;
-                const meta = chart.getDatasetMeta(0);
-                const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
-                const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+        // Custom plugin factory for outer labels with connector lines
+        function createOuterLabelsPlugin(labels, percentages) {
+            return {
+                id: 'outerLabels_' + Math.random(),
+                afterDraw(chart) {
+                    const ctx = chart.ctx;
+                    const meta = chart.getDatasetMeta(0);
+                    const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+                    const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
 
-                const labels = ['EOS', 'MATIC', 'FTM', 'RUNE', 'CHZ'];
-                const percentages = ['50%', '15%', '15%', '10%', '10%'];
+                    meta.data.forEach((arc, index) => {
+                        if (index >= labels.length) return;
+                        const angle = (arc.startAngle + arc.endAngle) / 2;
+                        const outerRadius = arc.outerRadius;
 
-                meta.data.forEach((arc, index) => {
-                    const angle = (arc.startAngle + arc.endAngle) / 2;
-                    const outerRadius = arc.outerRadius;
+                        const edgeX = centerX + Math.cos(angle) * outerRadius;
+                        const edgeY = centerY + Math.sin(angle) * outerRadius;
 
-                    // Point on the arc edge
-                    const edgeX = centerX + Math.cos(angle) * outerRadius;
-                    const edgeY = centerY + Math.sin(angle) * outerRadius;
+                        const midX = centerX + Math.cos(angle) * (outerRadius + 15);
+                        const midY = centerY + Math.sin(angle) * (outerRadius + 15);
 
-                    // Point for the line bend
-                    const midX = centerX + Math.cos(angle) * (outerRadius + 20);
-                    const midY = centerY + Math.sin(angle) * (outerRadius + 20);
+                        const isLeft = angle > Math.PI / 2 && angle < 3 * Math.PI / 2;
+                        const endX = isLeft ? midX - 25 : midX + 25;
 
-                    // End point for label
-                    const labelRadius = outerRadius + 50;
-                    const labelX = centerX + Math.cos(angle) * labelRadius;
-                    const isLeft = angle > Math.PI / 2 && angle < 3 * Math.PI / 2;
-                    const endX = isLeft ? labelX - 30 : labelX + 30;
+                        ctx.save();
+                        ctx.strokeStyle = '#5a6577';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(edgeX, edgeY);
+                        ctx.lineTo(midX, midY);
+                        ctx.lineTo(endX, midY);
+                        ctx.stroke();
 
-                    // Draw connector line
-                    ctx.save();
-                    ctx.strokeStyle = '#5a6577';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(edgeX, edgeY);
-                    ctx.lineTo(midX, midY);
-                    ctx.lineTo(endX, midY);
-                    ctx.stroke();
+                        ctx.fillStyle = '#1a2b5f';
+                        ctx.font = 'bold 11px "Playfair Display", Georgia, serif';
+                        ctx.textAlign = isLeft ? 'right' : 'left';
+                        ctx.textBaseline = 'middle';
+                        const textX = isLeft ? endX - 4 : endX + 4;
+                        ctx.fillText(labels[index] + ' ' + percentages[index], textX, midY);
+                        ctx.restore();
+                    });
+                }
+            };
+        }
 
-                    // Draw label
-                    ctx.fillStyle = '#1a2b5f';
-                    ctx.font = 'bold 12px "Playfair Display", Georgia, serif';
-                    ctx.textAlign = isLeft ? 'right' : 'left';
-                    ctx.textBaseline = 'middle';
-                    const textX = isLeft ? endX - 5 : endX + 5;
-                    ctx.fillText(labels[index] + ' ' + percentages[index], textX, midY);
-                    ctx.restore();
-                });
-            }
-        };
-
-        // Allocation Pie Chart
-        const ctx = document.getElementById('allocationChart').getContext('2d');
-        new Chart(ctx, {
+        // Current Asset Pool Chart
+        const currentCtx = document.getElementById('currentChart').getContext('2d');
+        new Chart(currentCtx, {
             type: 'doughnut',
             data: {
-                labels: ['EOS (48.36% APR)', 'MATIC (16.73% APR)', 'FTM (10.98% APR)', 'RUNE (9.84% APR)', 'CHZ (9.61% APR)'],
+                labels: ['SOL $4.6M', 'BTC $1.4M', 'DOGE $779K', 'UNI $560K', 'USDC $44K'],
+                datasets: [{
+                    data: [62.4, 18.9, 10.5, 7.6, 0.6],
+                    backgroundColor: [
+                        '#9945FF',
+                        '#F7931A',
+                        '#C2A633',
+                        '#FF007A',
+                        '#2775CA'
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '50%',
+                layout: {
+                    padding: { top: 35, bottom: 35, left: 70, right: 70 }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: [createOuterLabelsPlugin(
+                ['SOL', 'BTC', 'DOGE', 'UNI', 'USDC'],
+                ['62.4%', '18.9%', '10.5%', '7.6%', '0.6%']
+            )]
+        });
+
+        // Simulated Asset Pool Chart
+        const simulatedCtx = document.getElementById('simulatedChart').getContext('2d');
+        new Chart(simulatedCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['EOS 48.36% APR', 'MATIC 16.73% APR', 'FTM 10.98% APR', 'RUNE 9.84% APR', 'CHZ 9.61% APR'],
                 datasets: [{
                     data: [50, 15, 15, 10, 10],
                     backgroundColor: [
@@ -565,17 +671,10 @@
                 maintainAspectRatio: false,
                 cutout: '50%',
                 layout: {
-                    padding: {
-                        top: 40,
-                        bottom: 40,
-                        left: 80,
-                        right: 80
-                    }
+                    padding: { top: 35, bottom: 35, left: 70, right: 70 }
                 },
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
@@ -585,7 +684,10 @@
                     }
                 }
             },
-            plugins: [outerLabelsPlugin]
+            plugins: [createOuterLabelsPlugin(
+                ['EOS', 'MATIC', 'FTM', 'RUNE', 'CHZ'],
+                ['50%', '15%', '15%', '10%', '10%']
+            )]
         });
     </script>
 </body>
