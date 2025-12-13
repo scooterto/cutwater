@@ -582,6 +582,11 @@
 
                     meta.data.forEach((arc, index) => {
                         if (index >= labels.length) return;
+
+                        // Skip very small segments (< 1%) - they're shown in the legend
+                        const segmentAngle = arc.endAngle - arc.startAngle;
+                        if (segmentAngle < 0.05) return;
+
                         const angle = (arc.startAngle + arc.endAngle) / 2;
                         const outerRadius = arc.outerRadius;
 
