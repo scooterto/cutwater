@@ -234,9 +234,39 @@
             </div>
         </div>
 
+        <!-- Assets & USDi Chart (Full Width) -->
+        <div class="chart-container" style="margin-bottom: 40px;">
+            <div class="chart-title">Total Assets & USDi in Circulation</div>
+            <div class="chart-wrapper" style="height: 350px;">
+                <canvas id="assetsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Assets & USDi Table -->
+        <div class="table-container" style="margin-bottom: 40px;">
+            <div class="table-header">
+                <h2>Assets & USDi Monthly Breakdown</h2>
+                <span id="assetsRowCount" style="color: var(--text-secondary); font-size: 0.85rem;"></span>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Total Assets</th>
+                            <th>USDi in Circulation</th>
+                            <th>Difference</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assetsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div class="table-container">
             <div class="table-header">
-                <h2>Monthly Breakdown</h2>
+                <h2>Growth Breakdown</h2>
                 <span id="rowCount" style="color: var(--text-secondary); font-size: 0.85rem;"></span>
             </div>
             <div class="table-scroll">
@@ -262,6 +292,8 @@
             labels: ["2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12"],
             cumulative_growth: [0.000993, 0.982133, 1.0933, 1.174875, 1.198111, 1.220806, 1.221803, 1.268591, 1.283895, 1.30408, 1.37371, 1.390082, 1.395706, 1.376003, 1.381903, 1.419477, 1.42584, 1.427301, 1.439477],
             incremental_growth: [0, 0.98114, 0.111167, 0.081575, 0.023236, 0.022695, 0.000997, 0.046788, 0.015304, 0.020184, 0.06963, 0.016372, 0.005624, -0.019703, 0.005899, 0.037574, 0.006362, 0.001462, 0.012175],
+            total_assets: [99.28, 99305.66, 109330.0, 117487.47, 119811.11, 124957.39, 125059.43, 309502.63, 576119.58, 942283.5, 1279476.36, 1374730.23, 1815609.06, 4489388.19, 5976908.92, 6007878.37, 6001272.02, 7370783.91, 7400766.81],
+            usdi_circulation: [100000.0, 100000.0, 100000.0, 100000.0, 100000.0, 122827.76, 122827.76, 309827.74, 569850.31, 927567.96, 1218193.28, 1342717.94, 1783600.05, 4473390.32, 5930185.76, 5947721.95, 5934869.4, 7329655.61, 7297223.15],
             summary: {
                 total_growth_pct: 43.95,
                 total_growth_dollar: 2259476.79,
@@ -412,6 +444,110 @@
             rowCountEl.textContent = `${growthData.labels.length} months`;
         }
         populateTable();
+
+        // Helper function to format currency
+        function formatCurrency(value) {
+            if (value >= 1000000) {
+                return '$' + (value / 1000000).toFixed(2) + 'M';
+            } else if (value >= 1000) {
+                return '$' + (value / 1000).toFixed(0) + 'K';
+            }
+            return '$' + value.toFixed(0);
+        }
+
+        // Chart 3: Total Assets & USDi
+        const ctx3 = document.getElementById('assetsChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: formattedLabels,
+                datasets: [
+                    {
+                        label: 'Total Assets',
+                        data: growthData.total_assets,
+                        borderColor: '#1a2b5f',
+                        backgroundColor: 'rgba(26, 43, 95, 0.1)',
+                        fill: false,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#1a2b5f',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'USDi in Circulation',
+                        data: growthData.usdi_circulation,
+                        borderColor: '#5BA4E6',
+                        backgroundColor: 'rgba(91, 164, 230, 0.1)',
+                        fill: false,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#5BA4E6',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { family: "'Source Serif 4', Georgia, serif" },
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(26, 43, 95, 0.95)',
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': $' + context.parsed.y.toLocaleString('en-US', {maximumFractionDigits: 0});
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(26, 43, 95, 0.1)' },
+                        ticks: { color: '#5a6577', font: { family: "'Source Serif 4', Georgia, serif" } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(26, 43, 95, 0.1)' },
+                        ticks: {
+                            color: '#5a6577',
+                            callback: value => formatCurrency(value),
+                            font: { family: "'Source Serif 4', Georgia, serif" }
+                        },
+                        min: 0
+                    }
+                }
+            }
+        });
+
+        // Populate assets table
+        function populateAssetsTable() {
+            const tbody = document.getElementById('assetsTableBody');
+            const rowCountEl = document.getElementById('assetsRowCount');
+            let html = '';
+
+            for (let i = growthData.labels.length - 1; i >= 0; i--) {
+                const assets = growthData.total_assets[i];
+                const usdi = growthData.usdi_circulation[i];
+                const diff = assets - usdi;
+
+                html += `<tr>
+                    <td>${formattedLabels[i]}</td>
+                    <td>$${assets.toLocaleString('en-US', {maximumFractionDigits: 0})}</td>
+                    <td>$${usdi.toLocaleString('en-US', {maximumFractionDigits: 0})}</td>
+                    <td class="${diff >= 0 ? 'positive' : 'negative'}">$${diff.toLocaleString('en-US', {maximumFractionDigits: 0})}</td>
+                </tr>`;
+            }
+
+            tbody.innerHTML = html;
+            rowCountEl.textContent = `${growthData.labels.length} months`;
+        }
+        populateAssetsTable();
     </script>
 </body>
 </html>
