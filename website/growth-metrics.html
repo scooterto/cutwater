@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater | Growth Metrics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --navy-primary: #1a2b5f;
+            --navy-light: #2c4a8c;
+            --blue-accent: #5BA4E6;
+            --success: #2D8A5F;
+            --danger: #E53935;
+            --warning: #c9a227;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a2b5f;
+            --text-secondary: #5a6577;
+            --border-color: #e8eaed;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Serif 4', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 32px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .stat-card.highlight {
+            background: var(--navy-primary);
+            color: white;
+        }
+
+        .stat-card.highlight .stat-label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .stat-value.positive { color: var(--success); }
+        .stat-value.negative { color: var(--danger); }
+        .stat-card.highlight .stat-value { color: white; }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .chart-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .chart-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .chart-wrapper {
+            height: 300px;
+        }
+
+        .table-container {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .table-scroll {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 10;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+        }
+
+        th:first-child, td:first-child {
+            text-align: left;
+            padding-left: 24px;
+        }
+
+        th:last-child, td:last-child {
+            padding-right: 24px;
+        }
+
+        tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .positive { color: var(--success); }
+        .negative { color: var(--danger); }
+
+        @media (max-width: 1024px) {
+            .charts-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .chart-wrapper { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Growth Metrics</h1>
+        <p class="subtitle">Portfolio dollar value growth from June 2024 to December 2025</p>
+
+        <div class="stats-grid">
+            <div class="stat-card highlight">
+                <div class="stat-label">Total Growth %</div>
+                <div class="stat-value" id="totalGrowthPct">--</div>
+            </div>
+            <div class="stat-card highlight">
+                <div class="stat-label">Total Growth $</div>
+                <div class="stat-value" id="totalGrowthDollar">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">2024 Growth %</div>
+                <div class="stat-value" id="growth2024">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">2025 Growth %</div>
+                <div class="stat-value" id="growth2025">--</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-container">
+                <div class="chart-title">Dollar Value Growth Over Time</div>
+                <div class="chart-wrapper">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">Incremental Growth Per Month</div>
+                <div class="chart-wrapper">
+                    <canvas id="incrementalChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Monthly Breakdown</h2>
+                <span id="rowCount" style="color: var(--text-secondary); font-size: 0.85rem;"></span>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Cumulative Growth</th>
+                            <th>Monthly Change</th>
+                            <th>Monthly Change %</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const growthData = {
+            labels: ["2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12"],
+            cumulative_growth: [0.000993, 0.982133, 1.0933, 1.174875, 1.198111, 1.220806, 1.221803, 1.268591, 1.283895, 1.30408, 1.37371, 1.390082, 1.395706, 1.376003, 1.381903, 1.419477, 1.42584, 1.427301, 1.439477],
+            incremental_growth: [0, 0.98114, 0.111167, 0.081575, 0.023236, 0.022695, 0.000997, 0.046788, 0.015304, 0.020184, 0.06963, 0.016372, 0.005624, -0.019703, 0.005899, 0.037574, 0.006362, 0.001462, 0.012175],
+            summary: {
+                total_growth_pct: 43.95,
+                total_growth_dollar: 2259476.79,
+                growth_2024_pct: 24.4,
+                growth_2025_pct: 17.82,
+                current_multiplier: 1.4395,
+                current_assets: 7400766.81
+            }
+        };
+
+        // Update stats
+        document.getElementById('totalGrowthPct').textContent = growthData.summary.total_growth_pct.toFixed(2) + '%';
+        document.getElementById('totalGrowthDollar').textContent = '$' + growthData.summary.total_growth_dollar.toLocaleString('en-US', {maximumFractionDigits: 0});
+        document.getElementById('growth2024').textContent = growthData.summary.growth_2024_pct.toFixed(2) + '%';
+        document.getElementById('growth2024').className = 'stat-value positive';
+        document.getElementById('growth2025').textContent = growthData.summary.growth_2025_pct.toFixed(2) + '%';
+        document.getElementById('growth2025').className = 'stat-value positive';
+
+        // Format month labels
+        const formattedLabels = growthData.labels.map(label => {
+            const [year, month] = label.split('-');
+            const date = new Date(year, parseInt(month) - 1);
+            return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+        });
+
+        // Chart 1: Cumulative Growth
+        const ctx1 = document.getElementById('growthChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: formattedLabels,
+                datasets: [{
+                    label: 'Cumulative Growth',
+                    data: growthData.cumulative_growth,
+                    borderColor: '#1a2b5f',
+                    backgroundColor: 'rgba(26, 43, 95, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#1a2b5f',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(26, 43, 95, 0.95)',
+                        callbacks: {
+                            label: function(context) {
+                                const val = context.parsed.y;
+                                const pct = ((val - 1) * 100).toFixed(2);
+                                return `Growth: ${val.toFixed(4)}x (${pct > 0 ? '+' : ''}${pct}%)`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(26, 43, 95, 0.1)' },
+                        ticks: { color: '#5a6577', font: { family: "'Source Serif 4', Georgia, serif" } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(26, 43, 95, 0.1)' },
+                        ticks: {
+                            color: '#5a6577',
+                            callback: value => value.toFixed(2) + 'x',
+                            font: { family: "'Source Serif 4', Georgia, serif" }
+                        },
+                        min: 0
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Incremental Growth (Bar chart)
+        const ctx2 = document.getElementById('incrementalChart').getContext('2d');
+        const barColors = growthData.incremental_growth.map(val => val >= 0 ? '#2D8A5F' : '#E53935');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: formattedLabels,
+                datasets: [{
+                    label: 'Monthly Change',
+                    data: growthData.incremental_growth,
+                    backgroundColor: barColors,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(26, 43, 95, 0.95)',
+                        callbacks: {
+                            label: function(context) {
+                                const val = context.parsed.y;
+                                const pct = (val * 100).toFixed(2);
+                                return `Change: ${val >= 0 ? '+' : ''}${val.toFixed(4)} (${pct}%)`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#5a6577', font: { family: "'Source Serif 4', Georgia, serif" } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(26, 43, 95, 0.1)' },
+                        ticks: {
+                            color: '#5a6577',
+                            callback: value => (value * 100).toFixed(0) + '%',
+                            font: { family: "'Source Serif 4', Georgia, serif" }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Populate table
+        function populateTable() {
+            const tbody = document.getElementById('dataTableBody');
+            const rowCountEl = document.getElementById('rowCount');
+            let html = '';
+
+            // Show data in reverse chronological order
+            for (let i = growthData.labels.length - 1; i >= 0; i--) {
+                const cumulative = growthData.cumulative_growth[i];
+                const incremental = growthData.incremental_growth[i];
+                const incrementalPct = incremental * 100;
+
+                // Calculate cumulative % from 1.0 baseline
+                const cumulativePct = (cumulative - 1) * 100;
+
+                html += `<tr>
+                    <td>${formattedLabels[i]}</td>
+                    <td>${cumulative.toFixed(4)}x <span style="color: var(--text-secondary); font-size: 0.75rem;">(${cumulativePct >= 0 ? '+' : ''}${cumulativePct.toFixed(2)}%)</span></td>
+                    <td class="${incremental >= 0 ? 'positive' : 'negative'}">${incremental >= 0 ? '+' : ''}${incremental.toFixed(4)}</td>
+                    <td class="${incremental >= 0 ? 'positive' : 'negative'}">${incremental >= 0 ? '+' : ''}${incrementalPct.toFixed(2)}%</td>
+                </tr>`;
+            }
+
+            tbody.innerHTML = html;
+            rowCountEl.textContent = `${growthData.labels.length} months`;
+        }
+        populateTable();
+    </script>
+</body>
+</html>
