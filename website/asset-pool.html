@@ -386,6 +386,14 @@
                         </div>
                         <span class="legend-pct">0.6%</span>
                     </div>
+                    <div class="legend-item">
+                        <div class="legend-left">
+                            <div class="legend-color" style="background: #26A17B;"></div>
+                            <span class="legend-symbol">USDT</span>
+                            <span class="legend-amount">$977</span>
+                        </div>
+                        <span class="legend-pct">0.01%</span>
+                    </div>
                 </div>
             </div>
 
@@ -559,7 +567,7 @@
     </div>
 
     <script>
-        // Custom plugin factory for outer labels with connector lines
+        // Custom plugin factory for outer labels with connector lines (with overlap prevention)
         function createOuterLabelsPlugin(labels, percentages) {
             return {
                 id: 'outerLabels_' + Math.random(),
@@ -569,16 +577,34 @@
                     const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
                     const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
 
+                    // Collect label positions first to detect overlaps
+                    const labelPositions = [];
+
                     meta.data.forEach((arc, index) => {
                         if (index >= labels.length) return;
                         const angle = (arc.startAngle + arc.endAngle) / 2;
                         const outerRadius = arc.outerRadius;
 
+                        const midX = centerX + Math.cos(angle) * (outerRadius + 15);
+                        let midY = centerY + Math.sin(angle) * (outerRadius + 15);
+
+                        // Check for overlap with previous labels and adjust
+                        for (let prev of labelPositions) {
+                            if (Math.abs(midY - prev.y) < 14 && Math.abs(midX - prev.x) < 60) {
+                                midY = prev.y + (midY > prev.y ? 16 : -16);
+                            }
+                        }
+
+                        labelPositions.push({ x: midX, y: midY, angle, index });
+                    });
+
+                    // Draw labels with adjusted positions
+                    labelPositions.forEach(({ x: midX, y: midY, angle, index }) => {
+                        const arc = meta.data[index];
+                        const outerRadius = arc.outerRadius;
+
                         const edgeX = centerX + Math.cos(angle) * outerRadius;
                         const edgeY = centerY + Math.sin(angle) * outerRadius;
-
-                        const midX = centerX + Math.cos(angle) * (outerRadius + 15);
-                        const midY = centerY + Math.sin(angle) * (outerRadius + 15);
 
                         const isLeft = angle > Math.PI / 2 && angle < 3 * Math.PI / 2;
                         const endX = isLeft ? midX - 25 : midX + 25;
@@ -609,15 +635,16 @@
         new Chart(currentCtx, {
             type: 'doughnut',
             data: {
-                labels: ['SOL $4.6M', 'BTC $1.4M', 'DOGE $779K', 'UNI $560K', 'USDC $44K'],
+                labels: ['SOL $4.6M', 'BTC $1.4M', 'DOGE $779K', 'UNI $560K', 'USDC $44K', 'USDT $977'],
                 datasets: [{
-                    data: [62.4, 18.9, 10.5, 7.6, 0.6],
+                    data: [62.4, 18.9, 10.5, 7.6, 0.6, 0.01],
                     backgroundColor: [
                         '#9945FF',
                         '#F7931A',
                         '#C2A633',
                         '#FF007A',
-                        '#2775CA'
+                        '#2775CA',
+                        '#26A17B'
                     ],
                     borderWidth: 0,
                     hoverOffset: 4
@@ -642,8 +669,8 @@
                 }
             },
             plugins: [createOuterLabelsPlugin(
-                ['SOL', 'BTC', 'DOGE', 'UNI', 'USDC'],
-                ['62.4%', '18.9%', '10.5%', '7.6%', '0.6%']
+                ['SOL', 'BTC', 'DOGE', 'UNI', 'USDC', 'USDT'],
+                ['62.4%', '18.9%', '10.5%', '7.6%', '0.6%', '0.01%']
             )]
         });
 
