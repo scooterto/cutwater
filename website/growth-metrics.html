@@ -59,7 +59,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             margin-bottom: 40px;
         }
@@ -209,10 +209,6 @@
                 <div class="stat-label">Total Growth %</div>
                 <div class="stat-value" id="totalGrowthPct">--</div>
             </div>
-            <div class="stat-card highlight">
-                <div class="stat-label">Total Growth $</div>
-                <div class="stat-value" id="totalGrowthDollar">--</div>
-            </div>
             <div class="stat-card">
                 <div class="stat-label">2024 Growth %</div>
                 <div class="stat-value" id="growth2024">--</div>
@@ -278,7 +274,6 @@
 
         // Update stats
         document.getElementById('totalGrowthPct').textContent = growthData.summary.total_growth_pct.toFixed(2) + '%';
-        document.getElementById('totalGrowthDollar').textContent = '$' + growthData.summary.total_growth_dollar.toLocaleString('en-US', {maximumFractionDigits: 0});
         document.getElementById('growth2024').textContent = growthData.summary.growth_2024_pct.toFixed(2) + '%';
         document.getElementById('growth2024').className = 'stat-value positive';
         document.getElementById('growth2025').textContent = growthData.summary.growth_2025_pct.toFixed(2) + '%';
