@@ -217,7 +217,7 @@
 
         .chart-container {
             position: relative;
-            height: 280px;
+            height: 320px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -489,6 +489,58 @@
     </div>
 
     <script>
+        // Custom plugin for outer labels with connector lines
+        const outerLabelsPlugin = {
+            id: 'outerLabels',
+            afterDraw(chart) {
+                const ctx = chart.ctx;
+                const meta = chart.getDatasetMeta(0);
+                const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+                const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+
+                const labels = ['EOS', 'MATIC', 'FTM', 'RUNE', 'CHZ'];
+                const percentages = ['50%', '15%', '15%', '10%', '10%'];
+
+                meta.data.forEach((arc, index) => {
+                    const angle = (arc.startAngle + arc.endAngle) / 2;
+                    const outerRadius = arc.outerRadius;
+
+                    // Point on the arc edge
+                    const edgeX = centerX + Math.cos(angle) * outerRadius;
+                    const edgeY = centerY + Math.sin(angle) * outerRadius;
+
+                    // Point for the line bend
+                    const midX = centerX + Math.cos(angle) * (outerRadius + 20);
+                    const midY = centerY + Math.sin(angle) * (outerRadius + 20);
+
+                    // End point for label
+                    const labelRadius = outerRadius + 50;
+                    const labelX = centerX + Math.cos(angle) * labelRadius;
+                    const isLeft = angle > Math.PI / 2 && angle < 3 * Math.PI / 2;
+                    const endX = isLeft ? labelX - 30 : labelX + 30;
+
+                    // Draw connector line
+                    ctx.save();
+                    ctx.strokeStyle = '#5a6577';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(edgeX, edgeY);
+                    ctx.lineTo(midX, midY);
+                    ctx.lineTo(endX, midY);
+                    ctx.stroke();
+
+                    // Draw label
+                    ctx.fillStyle = '#1a2b5f';
+                    ctx.font = 'bold 12px "Playfair Display", Georgia, serif';
+                    ctx.textAlign = isLeft ? 'right' : 'left';
+                    ctx.textBaseline = 'middle';
+                    const textX = isLeft ? endX - 5 : endX + 5;
+                    ctx.fillText(labels[index] + ' ' + percentages[index], textX, midY);
+                    ctx.restore();
+                });
+            }
+        };
+
         // Allocation Pie Chart
         const ctx = document.getElementById('allocationChart').getContext('2d');
         new Chart(ctx, {
@@ -511,7 +563,15 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: '60%',
+                cutout: '50%',
+                layout: {
+                    padding: {
+                        top: 40,
+                        bottom: 40,
+                        left: 80,
+                        right: 80
+                    }
+                },
                 plugins: {
                     legend: {
                         display: false
@@ -524,7 +584,8 @@
                         }
                     }
                 }
-            }
+            },
+            plugins: [outerLabelsPlugin]
         });
     </script>
 </body>
