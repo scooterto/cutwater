@@ -35,6 +35,7 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 | Page | URL |
 |------|-----|
 | Logo Comparison | https://scooterto.github.io/cutwater/website/logo-comparison.html |
+| APR Chart | https://scooterto.github.io/cutwater/website/apr-chart.html |
 
 ---
 
