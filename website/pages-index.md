@@ -34,6 +34,7 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 
 | Page | URL |
 |------|-----|
+| Brand Guidelines V3 (Signifier) | https://scooterto.github.io/cutwater/website/brand-guidelines-v3.html |
 | Brand Guidelines V2 | https://scooterto.github.io/cutwater/website/brand-guidelines.html |
 | Logo Comparison | https://scooterto.github.io/cutwater/website/logo-comparison.html |
 | Font Preview | https://scooterto.github.io/cutwater/website/font-preview.html |

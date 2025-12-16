@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Brand Guidelines V3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using Cormorant Garamond as similar free alternative to Signifier -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --navy-primary: #1a2b5f;
+            --navy-light: #2c4a8c;
+            --navy-deep: #0f1a3d;
+            --blue-accent: #5BA4E6;
+            --white: #FFFFFF;
+            --off-white: #f8f9fa;
+            --gray-light: #e8eaed;
+            --gray-text: #5a6577;
+            --success: #2D8A5F;
+            --warning: #c9a227;
+            --danger: #E53935;
+            /* V3: Signifier (using Cormorant Garamond as preview) */
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Cormorant Garamond', Georgia, serif;
+            --font-number: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--navy-primary);
+            line-height: 1.6;
+        }
+
+        /* ===== Cover Page ===== */
+        .cover {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-light) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            position: relative;
+        }
+
+        .cover-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 40px;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(-24deg); }
+            50% { transform: rotate(24deg); }
+            100% { transform: rotate(-24deg); }
+        }
+
+        .balance-line {
+            transform-origin: 24px 24px;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        .cover h1 {
+            font-family: var(--font-display);
+            font-size: 56px;
+            font-weight: 600;
+            color: var(--off-white);
+            margin-bottom: 16px;
+        }
+
+        .cover h2 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--blue-accent);
+            margin-bottom: 40px;
+        }
+
+        .cover p {
+            font-family: var(--font-body);
+            color: var(--off-white);
+            opacity: 0.8;
+            max-width: 500px;
+            font-size: 18px;
+        }
+
+        .cover-date {
+            position: absolute;
+            bottom: 40px;
+            color: var(--blue-accent);
+            font-size: 14px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: var(--blue-accent);
+            color: var(--navy-deep);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== Page Styles ===== */
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .section-number {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--blue-accent);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 42px;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin: 48px 0 20px 0;
+        }
+
+        h4 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--navy-light);
+            margin: 32px 0 16px 0;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--gray-text);
+            font-size: 17px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--gray-light);
+            margin: 60px 0;
+        }
+
+        /* ===== Logo Section ===== */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .logo-box {
+            padding: 60px 40px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-box.light {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+        }
+
+        .logo-box.dark {
+            background: var(--navy-deep);
+        }
+
+        .logo-box svg {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 24px;
+        }
+
+        .logo-box .label {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .logo-box.light .label { color: var(--navy-primary); }
+        .logo-box.dark .label { color: var(--off-white); }
+
+        .logo-box .specs {
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        .logo-box.light .specs { color: var(--gray-text); }
+        .logo-box.dark .specs { color: var(--blue-accent); }
+
+        /* Logo with Name */
+        .logo-with-name {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .logo-name-box {
+            padding: 40px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .logo-name-box.light {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+        }
+
+        .logo-name-box.dark {
+            background: var(--navy-deep);
+        }
+
+        .logo-name-box svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-name-box .brand-name {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .logo-name-box.light .brand-name { color: var(--navy-primary); }
+        .logo-name-box.dark .brand-name { color: var(--off-white); }
+
+        /* Logo Specs Table */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .specs-table th {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--navy-light);
+            background: var(--off-white);
+        }
+
+        .specs-table td {
+            font-size: 14px;
+            color: var(--navy-primary);
+        }
+
+        .specs-table code {
+            font-family: monospace;
+            background: var(--off-white);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        /* ===== Color Palette ===== */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-swatch .swatch {
+            height: 100px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .color-swatch .name {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--navy-primary);
+            margin-bottom: 4px;
+        }
+
+        .color-swatch .hex {
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--navy-light);
+        }
+
+        .color-swatch .rgb {
+            font-size: 11px;
+            color: var(--gray-text);
+            margin-top: 2px;
+        }
+
+        /* Mode Cards */
+        .mode-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .mode-card {
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .mode-card.light {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+        }
+
+        .mode-card.dark {
+            background: var(--navy-deep);
+        }
+
+        .mode-card h4 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .mode-card.dark h4 { color: var(--blue-accent); }
+
+        .mode-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid;
+            font-size: 13px;
+        }
+
+        .mode-card.light .mode-item {
+            border-color: var(--gray-light);
+            color: var(--navy-primary);
+        }
+
+        .mode-card.dark .mode-item {
+            border-color: var(--navy-light);
+            color: var(--off-white);
+        }
+
+        .mode-item:last-child { border-bottom: none; }
+
+        .mode-item .right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+            font-size: 11px;
+        }
+
+        .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* ===== Typography ===== */
+        .type-sample {
+            margin: 40px 0;
+            padding: 40px;
+            background: var(--off-white);
+            border-radius: 16px;
+        }
+
+        .type-sample h1 {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .type-sample .body-text {
+            font-family: var(--font-body);
+            font-size: 20px;
+            color: var(--gray-text);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .font-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 32px 0;
+        }
+
+        .font-card {
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--gray-light);
+        }
+
+        .font-card .font-usage {
+            font-size: 12px;
+            color: var(--blue-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .font-card .font-name {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--navy-primary);
+        }
+
+        .font-card .font-weights {
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .font-card .font-note {
+            font-size: 12px;
+            color: var(--warning);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Number Typography */
+        .number-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .number-card {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .number-card .number {
+            font-family: var(--font-number);
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 8px;
+        }
+
+        .number-card .number.success { color: var(--success); }
+        .number-card .number.accent { color: var(--blue-accent); }
+
+        .number-card .label {
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .number-card .dollar {
+            font-family: var(--font-number);
+        }
+
+        /* Character Set */
+        .charset {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .charset-title {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy-light);
+            margin-bottom: 16px;
+        }
+
+        .charset-display {
+            font-family: var(--font-display);
+            font-size: 28px;
+            line-height: 1.8;
+            color: var(--navy-primary);
+            letter-spacing: 2px;
+        }
+
+        /* ===== Code Block ===== */
+        .code-block {
+            background: var(--navy-deep);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--off-white);
+            margin: 0;
+        }
+
+        .code-block .comment { color: #6b7b94; }
+        .code-block .property { color: var(--blue-accent); }
+        .code-block .value { color: #7FC7D9; }
+
+        /* ===== UI Components ===== */
+        .ui-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 32px 0;
+        }
+
+        .ui-card {
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .ui-card.light {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+        }
+
+        .ui-card.dark {
+            background: var(--navy-deep);
+        }
+
+        .ui-card h5 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .ui-card.light h5 { color: var(--navy-primary); }
+        .ui-card.dark h5 { color: var(--off-white); }
+
+        .ui-card p {
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .ui-card.light p { color: var(--gray-text); }
+        .ui-card.dark p { color: #a8b5c9; }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .ui-card.light .btn-primary {
+            background: var(--navy-primary);
+            color: var(--white);
+        }
+
+        .ui-card.light .btn-secondary {
+            background: transparent;
+            border: 1.5px solid var(--navy-primary);
+            color: var(--navy-primary);
+        }
+
+        .ui-card.dark .btn-primary {
+            background: var(--blue-accent);
+            color: var(--navy-deep);
+        }
+
+        .ui-card.dark .btn-secondary {
+            background: transparent;
+            border: 1.5px solid var(--blue-accent);
+            color: var(--blue-accent);
+        }
+
+        /* Premium Font Note */
+        .premium-note {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 32px 0;
+        }
+
+        .premium-note h4 {
+            color: #856404;
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+
+        .premium-note p {
+            color: #856404;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .premium-note a {
+            color: #856404;
+            font-weight: 600;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 60px;
+            color: var(--gray-text);
+            font-size: 14px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .footer a {
+            color: var(--navy-light);
+            text-decoration: none;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .page { padding: 40px 24px; }
+            .logo-grid, .logo-with-name, .mode-grid, .font-grid, .ui-grid { grid-template-columns: 1fr; }
+            .color-grid { grid-template-columns: repeat(2, 1fr); }
+            .number-showcase { grid-template-columns: 1fr; }
+            .cover h1 { font-size: 36px; }
+            h2 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="cover">
+        <svg class="cover-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="4" stroke-linecap="round"/>
+            <g class="balance-line">
+                <path d="M14 24L34 24" stroke="#f8f9fa" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+        </svg>
+        <span class="version-badge">NEW TYPOGRAPHY</span>
+        <h1>Cutwater</h1>
+        <h2>Brand Guidelines V3</h2>
+        <p>Premium typography edition featuring Signifier from Klim Type Foundry. A sophisticated serif typeface for financial branding.</p>
+        <p class="cover-date">December 2025</p>
+    </div>
+
+    <!-- Logo Section -->
+    <div class="page">
+        <p class="section-number">01 / LOGO</p>
+        <h2>Logo — Split Balance</h2>
+        <p>The Cutwater "Split Balance" logo features three key elements: a C-curve representing our brand initial, an animated horizontal balance line symbolizing equilibrium, and a center dot representing stability. Together they convey the delta-neutral strategy of balancing long and short positions.</p>
+
+        <h3>Primary Logo</h3>
+        <div class="logo-grid">
+            <div class="logo-box light">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                    <g class="balance-line">
+                        <path d="M14 24L34 24" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                </svg>
+                <p class="label">Light Background</p>
+                <p class="specs">C: #1a2b5f / Line: #2c4a8c / Dot: #5BA4E6</p>
+            </div>
+            <div class="logo-box dark">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="4" stroke-linecap="round"/>
+                    <g class="balance-line">
+                        <path d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle cx="24" cy="24" r="4" fill="#7FC7D9"/>
+                </svg>
+                <p class="label">Dark Background</p>
+                <p class="specs">C: #7FC7D9 / Line: #5BA4E6 / Dot: #7FC7D9</p>
+            </div>
+        </div>
+
+        <h3>Logo with Brand Name</h3>
+        <div class="logo-with-name">
+            <div class="logo-name-box light">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                    <g class="balance-line">
+                        <path d="M14 24L34 24" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                </svg>
+                <span class="brand-name">Cutwater</span>
+            </div>
+            <div class="logo-name-box dark">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="4" stroke-linecap="round"/>
+                    <g class="balance-line">
+                        <path d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle cx="24" cy="24" r="4" fill="#7FC7D9"/>
+                </svg>
+                <span class="brand-name">Cutwater</span>
+            </div>
+        </div>
+
+        <h4>Logo Specifications</h4>
+        <table class="specs-table">
+            <tr>
+                <th>Attribute</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>C Stroke Width</td>
+                <td><code>4px</code> (thicker for visibility)</td>
+            </tr>
+            <tr>
+                <td>Balance Line</td>
+                <td>Horizontal <code>M14 24L34 24</code></td>
+            </tr>
+            <tr>
+                <td>Balance Line Width</td>
+                <td><code>3px</code></td>
+            </tr>
+            <tr>
+                <td>Center Dot Radius</td>
+                <td><code>4px</code></td>
+            </tr>
+            <tr>
+                <td>Clear Space</td>
+                <td>25% of logo height on all sides</td>
+            </tr>
+            <tr>
+                <td>Minimum Size (Digital)</td>
+                <td>24px height</td>
+            </tr>
+            <tr>
+                <td>Animation</td>
+                <td>Balance line rotates ±24° over 3 seconds</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Color Palette Section -->
+    <div class="page">
+        <p class="section-number">02 / COLOR PALETTE</p>
+        <h2>Color Palette</h2>
+        <p>The Cutwater color palette is inspired by Citadel-style financial branding. Deep navy tones convey trust and sophistication, while accent blues add modern energy.</p>
+
+        <h3>Primary Colors</h3>
+        <div class="color-grid">
+            <div class="color-swatch">
+                <div class="swatch" style="background: #1a2b5f;"></div>
+                <p class="name">Navy Primary</p>
+                <p class="hex">#1a2b5f</p>
+                <p class="rgb">rgb(26, 43, 95)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #2c4a8c;"></div>
+                <p class="name">Navy Light</p>
+                <p class="hex">#2c4a8c</p>
+                <p class="rgb">rgb(44, 74, 140)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #0f1a3d;"></div>
+                <p class="name">Navy Deep</p>
+                <p class="hex">#0f1a3d</p>
+                <p class="rgb">rgb(15, 26, 61)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #5BA4E6;"></div>
+                <p class="name">Blue Accent</p>
+                <p class="hex">#5BA4E6</p>
+                <p class="rgb">rgb(91, 164, 230)</p>
+            </div>
+        </div>
+
+        <h3>Semantic Colors</h3>
+        <div class="color-grid">
+            <div class="color-swatch">
+                <div class="swatch" style="background: #2D8A5F;"></div>
+                <p class="name">Success</p>
+                <p class="hex">#2D8A5F</p>
+                <p class="rgb">rgb(45, 138, 95)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #c9a227;"></div>
+                <p class="name">Warning</p>
+                <p class="hex">#c9a227</p>
+                <p class="rgb">rgb(201, 162, 39)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #E53935;"></div>
+                <p class="name">Danger</p>
+                <p class="hex">#E53935</p>
+                <p class="rgb">rgb(229, 57, 53)</p>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch" style="background: #5a6577;"></div>
+                <p class="name">Gray Text</p>
+                <p class="hex">#5a6577</p>
+                <p class="rgb">rgb(90, 101, 119)</p>
+            </div>
+        </div>
+
+        <h3>Light & Dark Mode</h3>
+        <div class="mode-grid">
+            <div class="mode-card light">
+                <h4>Light Mode</h4>
+                <div class="mode-item">
+                    <span>Background Primary</span>
+                    <span class="right">#FFFFFF <span class="color-dot" style="background: #FFFFFF; border: 1px solid #e8eaed;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Background Secondary</span>
+                    <span class="right">#f8f9fa <span class="color-dot" style="background: #f8f9fa;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Text Primary</span>
+                    <span class="right">#1a2b5f <span class="color-dot" style="background: #1a2b5f;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Text Secondary</span>
+                    <span class="right">#5a6577 <span class="color-dot" style="background: #5a6577;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Border</span>
+                    <span class="right">#e8eaed <span class="color-dot" style="background: #e8eaed;"></span></span>
+                </div>
+            </div>
+            <div class="mode-card dark">
+                <h4>Dark Mode</h4>
+                <div class="mode-item">
+                    <span>Background Primary</span>
+                    <span class="right">#0f1a3d <span class="color-dot" style="background: #0f1a3d; border: 1px solid #2c4a8c;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Background Secondary</span>
+                    <span class="right">#1a2b5f <span class="color-dot" style="background: #1a2b5f;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Text Primary</span>
+                    <span class="right">#f8f9fa <span class="color-dot" style="background: #f8f9fa;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Text Secondary</span>
+                    <span class="right">#a8b5c9 <span class="color-dot" style="background: #a8b5c9;"></span></span>
+                </div>
+                <div class="mode-item">
+                    <span>Border</span>
+                    <span class="right">#2c4a8c <span class="color-dot" style="background: #2c4a8c;"></span></span>
+                </div>
+            </div>
+        </div>
+
+        <h4>CSS Variables</h4>
+        <div class="code-block">
+            <pre><span class="comment">/* Color Palette */</span>
+:root {
+  <span class="property">--navy-primary</span>: <span class="value">#1a2b5f</span>;
+  <span class="property">--navy-light</span>: <span class="value">#2c4a8c</span>;
+  <span class="property">--navy-deep</span>: <span class="value">#0f1a3d</span>;
+  <span class="property">--blue-accent</span>: <span class="value">#5BA4E6</span>;
+  <span class="property">--success</span>: <span class="value">#2D8A5F</span>;
+  <span class="property">--warning</span>: <span class="value">#c9a227</span>;
+  <span class="property">--danger</span>: <span class="value">#E53935</span>;
+}
+
+<span class="comment">/* Light Mode (default) */</span>
+:root {
+  <span class="property">--bg-primary</span>: <span class="value">#FFFFFF</span>;
+  <span class="property">--bg-secondary</span>: <span class="value">#f8f9fa</span>;
+  <span class="property">--text-primary</span>: <span class="value">#1a2b5f</span>;
+  <span class="property">--text-secondary</span>: <span class="value">#5a6577</span>;
+}
+
+<span class="comment">/* Dark Mode */</span>
+[data-theme="dark"] {
+  <span class="property">--bg-primary</span>: <span class="value">#0f1a3d</span>;
+  <span class="property">--bg-secondary</span>: <span class="value">#1a2b5f</span>;
+  <span class="property">--text-primary</span>: <span class="value">#f8f9fa</span>;
+  <span class="property">--text-secondary</span>: <span class="value">#a8b5c9</span>;
+}</pre>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Typography Section -->
+    <div class="page">
+        <p class="section-number">03 / TYPOGRAPHY</p>
+        <h2>Typography</h2>
+        <p>V3 introduces Signifier from Klim Type Foundry — a high-contrast serif inspired by Times New Roman but with contemporary finesse. Perfect for financial and editorial contexts.</p>
+
+        <div class="premium-note">
+            <h4>Premium Font Notice</h4>
+            <p><strong>Signifier</strong> is a premium typeface from Klim Type Foundry (~$200-500 license). This preview uses <strong>Cormorant Garamond</strong> as a similar free alternative. To use the actual font, purchase a license at <a href="https://klim.co.nz/fonts/signifier/" target="_blank">klim.co.nz/fonts/signifier</a></p>
+        </div>
+
+        <div class="type-sample">
+            <h1>Higher yields through multi-asset arbitrage</h1>
+            <p class="body-text">Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY through delta-neutral strategies.</p>
+        </div>
+
+        <h3>Font Family</h3>
+        <div class="font-grid">
+            <div class="font-card">
+                <p class="font-usage">Headlines & Display</p>
+                <p class="font-name">Signifier</p>
+                <p class="font-weights">Weights: Light, Regular, Medium, Bold</p>
+                <p class="font-note">Preview: Cormorant Garamond</p>
+            </div>
+            <div class="font-card">
+                <p class="font-usage">Body Text & Numbers</p>
+                <p class="font-name">Signifier</p>
+                <p class="font-weights">Weights: Light, Regular, Medium</p>
+                <p class="font-note">Preview: Cormorant Garamond</p>
+            </div>
+        </div>
+
+        <h3>Character Sets</h3>
+        <div class="charset">
+            <p class="charset-title">Signifier — Uppercase</p>
+            <p class="charset-display">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+        </div>
+        <div class="charset">
+            <p class="charset-title">Signifier — Lowercase</p>
+            <p class="charset-display">abcdefghijklmnopqrstuvwxyz</p>
+        </div>
+        <div class="charset">
+            <p class="charset-title">Signifier — Numbers & Symbols</p>
+            <p class="charset-display">0123456789 $%.,+-</p>
+        </div>
+
+        <h3>Number Typography</h3>
+        <p>All numerical displays use Signifier for consistency. The high-contrast design creates elegant, readable financial figures.</p>
+        <div class="number-showcase">
+            <div class="number-card">
+                <p class="number success">+43.95%</p>
+                <p class="label">Growth Percentage</p>
+            </div>
+            <div class="number-card">
+                <p class="number"><span class="dollar">$</span>7.4M</p>
+                <p class="label">Total Assets</p>
+            </div>
+            <div class="number-card">
+                <p class="number accent">15-25%</p>
+                <p class="label">Target APY</p>
+            </div>
+        </div>
+
+        <h4>Type Scale</h4>
+        <table class="specs-table">
+            <tr>
+                <th>Element</th>
+                <th>Font</th>
+                <th>Size</th>
+                <th>Weight</th>
+                <th>Line Height</th>
+            </tr>
+            <tr>
+                <td>H1</td>
+                <td>Signifier</td>
+                <td><code>48px</code></td>
+                <td>600</td>
+                <td>1.1</td>
+            </tr>
+            <tr>
+                <td>H2</td>
+                <td>Signifier</td>
+                <td><code>36px</code></td>
+                <td>600</td>
+                <td>1.2</td>
+            </tr>
+            <tr>
+                <td>H3</td>
+                <td>Signifier</td>
+                <td><code>28px</code></td>
+                <td>600</td>
+                <td>1.25</td>
+            </tr>
+            <tr>
+                <td>Body Large</td>
+                <td>Signifier</td>
+                <td><code>18px</code></td>
+                <td>400</td>
+                <td>1.7</td>
+            </tr>
+            <tr>
+                <td>Body</td>
+                <td>Signifier</td>
+                <td><code>16px</code></td>
+                <td>400</td>
+                <td>1.6</td>
+            </tr>
+            <tr>
+                <td>Numbers/Stats</td>
+                <td>Signifier</td>
+                <td><code>varies</code></td>
+                <td>600</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Button</td>
+                <td>Signifier</td>
+                <td><code>14px</code></td>
+                <td>600</td>
+                <td>1</td>
+            </tr>
+        </table>
+
+        <h4>Font Import (Production)</h4>
+        <div class="code-block">
+            <pre><span class="comment">/* Self-hosted Signifier (after purchasing license) */</span>
+@font-face {
+  <span class="property">font-family</span>: <span class="value">'Signifier'</span>;
+  <span class="property">src</span>: <span class="value">url('/fonts/Signifier-Regular.woff2') format('woff2')</span>;
+  <span class="property">font-weight</span>: <span class="value">400</span>;
+}
+
+@font-face {
+  <span class="property">font-family</span>: <span class="value">'Signifier'</span>;
+  <span class="property">src</span>: <span class="value">url('/fonts/Signifier-Medium.woff2') format('woff2')</span>;
+  <span class="property">font-weight</span>: <span class="value">500</span>;
+}
+
+@font-face {
+  <span class="property">font-family</span>: <span class="value">'Signifier'</span>;
+  <span class="property">src</span>: <span class="value">url('/fonts/Signifier-Bold.woff2') format('woff2')</span>;
+  <span class="property">font-weight</span>: <span class="value">600</span>;
+}</pre>
+        </div>
+
+        <h4>CSS Variables</h4>
+        <div class="code-block">
+            <pre><span class="comment">/* V3 Typography — Signifier */</span>
+:root {
+  <span class="property">--font-display</span>: <span class="value">'Signifier', Georgia, serif</span>;
+  <span class="property">--font-body</span>: <span class="value">'Signifier', Georgia, serif</span>;
+  <span class="property">--font-number</span>: <span class="value">'Signifier', Georgia, serif</span>;
+}
+
+<span class="comment">/* Usage */</span>
+h1, h2, h3, .btn { <span class="property">font-family</span>: <span class="value">var(--font-display)</span>; }
+body, p { <span class="property">font-family</span>: <span class="value">var(--font-body)</span>; }
+.stat-value, .number { <span class="property">font-family</span>: <span class="value">var(--font-number)</span>; }</pre>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- UI Components Section -->
+    <div class="page">
+        <p class="section-number">04 / UI COMPONENTS</p>
+        <h2>UI Components</h2>
+        <p>Examples of how brand elements come together in user interface components across light and dark modes.</p>
+
+        <h3>Cards & Buttons</h3>
+        <div class="ui-grid">
+            <div class="ui-card light">
+                <h5>USDi Token</h5>
+                <p>Interest-bearing synthetic dollar with 15-25% APY through multi-asset delta-neutral strategy.</p>
+                <div class="btn-row">
+                    <button class="btn btn-primary">Mint USDi</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+            <div class="ui-card dark">
+                <h5>USDi Token</h5>
+                <p>Interest-bearing synthetic dollar with 15-25% APY through multi-asset delta-neutral strategy.</p>
+                <div class="btn-row">
+                    <button class="btn btn-primary">Mint USDi</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <h4>Button Styles</h4>
+        <div class="code-block">
+            <pre><span class="comment">/* Primary Button */</span>
+.btn-primary {
+  <span class="property">background</span>: <span class="value">var(--navy-primary)</span>;
+  <span class="property">color</span>: <span class="value">var(--white)</span>;
+  <span class="property">font-family</span>: <span class="value">var(--font-display)</span>;
+  <span class="property">font-weight</span>: <span class="value">600</span>;
+  <span class="property">padding</span>: <span class="value">12px 24px</span>;
+  <span class="property">border-radius</span>: <span class="value">8px</span>;
+}
+
+<span class="comment">/* Secondary Button */</span>
+.btn-secondary {
+  <span class="property">background</span>: <span class="value">transparent</span>;
+  <span class="property">border</span>: <span class="value">1.5px solid var(--navy-primary)</span>;
+  <span class="property">color</span>: <span class="value">var(--navy-primary)</span>;
+}</pre>
+        </div>
+
+        <h4>Card Styles</h4>
+        <div class="code-block">
+            <pre><span class="comment">/* Light Mode Card */</span>
+.card {
+  <span class="property">background</span>: <span class="value">var(--bg-card)</span>;
+  <span class="property">border</span>: <span class="value">1px solid var(--border-color)</span>;
+  <span class="property">border-radius</span>: <span class="value">12px</span>;
+  <span class="property">padding</span>: <span class="value">24px</span>;
+  <span class="property">box-shadow</span>: <span class="value">0 2px 8px rgba(0, 0, 0, 0.05)</span>;
+}</pre>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Cutwater Brand Guidelines V3 — December 2025</p>
+        <p style="margin-top: 8px; opacity: 0.7;">
+            <a href="https://scooterto.github.io/cutwater/website/cutwater-landing-2.html">View Live Site</a> |
+            <a href="https://klim.co.nz/fonts/signifier/" target="_blank">Get Signifier Font</a>
+        </p>
+    </div>
+
+</body>
+</html>
