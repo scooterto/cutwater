@@ -479,7 +479,8 @@
         .number-card .number {
             font-family: var(--font-number);
             font-size: 48px;
-            font-weight: 600;
+            font-weight: 500;
+            font-style: italic;
             color: var(--navy-primary);
             margin-bottom: 8px;
         }
@@ -970,12 +971,12 @@
             <p class="charset-display">abcdefghijklmnopqrstuvwxyz</p>
         </div>
         <div class="charset">
-            <p class="charset-title">Signifier — Numbers & Symbols</p>
-            <p class="charset-display">0123456789 $%.,+-</p>
+            <p class="charset-title">Signifier — Numbers & Symbols (Italic)</p>
+            <p class="charset-display" style="font-style: italic;">0123456789 $%.,+-</p>
         </div>
 
         <h3>Number Typography</h3>
-        <p>All numerical displays use Signifier for consistency. The high-contrast design creates elegant, readable financial figures.</p>
+        <p>All numerical displays use Signifier Italic for consistency. The elegant italic numerals create sophisticated, readable financial figures that distinguish Cutwater's premium brand positioning.</p>
         <div class="number-showcase">
             <div class="number-card">
                 <p class="number success">+43.95%</p>
@@ -1037,9 +1038,9 @@
             </tr>
             <tr>
                 <td>Numbers/Stats</td>
-                <td>Signifier</td>
+                <td>Signifier Italic</td>
                 <td><code>varies</code></td>
-                <td>600</td>
+                <td>500</td>
                 <td>1</td>
             </tr>
             <tr>
@@ -1085,7 +1086,10 @@
 <span class="comment">/* Usage */</span>
 h1, h2, h3, .btn { <span class="property">font-family</span>: <span class="value">var(--font-display)</span>; }
 body, p { <span class="property">font-family</span>: <span class="value">var(--font-body)</span>; }
-.stat-value, .number { <span class="property">font-family</span>: <span class="value">var(--font-number)</span>; }</pre>
+.stat-value, .number {
+  <span class="property">font-family</span>: <span class="value">var(--font-number)</span>;
+  <span class="property">font-style</span>: <span class="value">italic</span>; <span class="comment">/* Signifier Italic for numbers */</span>
+}</pre>
         </div>
     </div>
 
