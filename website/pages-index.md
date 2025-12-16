@@ -34,7 +34,9 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 
 | Page | URL |
 |------|-----|
+| Brand Guidelines V2 | https://scooterto.github.io/cutwater/website/brand-guidelines.html |
 | Logo Comparison | https://scooterto.github.io/cutwater/website/logo-comparison.html |
+| Font Preview | https://scooterto.github.io/cutwater/website/font-preview.html |
 | APR Metrics | https://scooterto.github.io/cutwater/website/apr-chart.html |
 | Growth Metrics | https://scooterto.github.io/cutwater/website/growth-metrics.html |
 | Asset Pool Metrics | https://scooterto.github.io/cutwater/website/asset-pool.html |

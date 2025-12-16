@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Typography Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-primary: #1a2b5f;
+            --navy-light: #2c4a8c;
+            --blue-accent: #5BA4E6;
+            --success: #2D8A5F;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Serif 4', Georgia, serif;
+            --font-number: 'Playfair Display', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: #f8f9fa;
+            color: var(--navy-primary);
+            padding: 60px 40px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #e8eaed;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 32px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        /* Number Styles */
+        .number-display {
+            font-family: var(--font-number);
+            font-weight: 600;
+        }
+
+        .dollar {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-number);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-value.success {
+            color: var(--success);
+        }
+
+        .stat-value.accent {
+            color: var(--blue-accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #5a6577;
+        }
+
+        /* Font Comparison */
+        .font-row {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .font-row:last-child {
+            border-bottom: none;
+        }
+
+        .font-name {
+            width: 200px;
+            font-size: 0.85rem;
+            color: #5a6577;
+        }
+
+        .font-sample {
+            flex: 1;
+            font-size: 2rem;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .source-serif {
+            font-family: 'Source Serif 4', Georgia, serif;
+        }
+
+        .arial {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .georgia {
+            font-family: Georgia, serif;
+        }
+
+        /* Dollar Sign Comparison */
+        .dollar-comparison {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .dollar-item {
+            text-align: center;
+        }
+
+        .dollar-sample {
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .dollar-label {
+            font-size: 0.8rem;
+            color: #5a6577;
+        }
+
+        /* Large Numbers */
+        .large-numbers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+        }
+
+        .large-number {
+            text-align: center;
+        }
+
+        .large-value {
+            font-family: var(--font-number);
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        .large-label {
+            font-size: 0.85rem;
+            color: #5a6577;
+            margin-top: 8px;
+        }
+
+        /* Code Block */
+        code {
+            background: #f0f2f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.85rem;
+        }
+
+        .code-block {
+            background: var(--navy-primary);
+            color: #e8eaed;
+            padding: 20px 24px;
+            border-radius: 8px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin-top: 24px;
+        }
+
+        .code-block .comment {
+            color: #6b7b94;
+        }
+
+        .code-block .property {
+            color: #7FC7D9;
+        }
+
+        .code-block .value {
+            color: #98c379;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cutwater Typography Preview</h1>
+
+    <!-- Stats Example -->
+    <div class="section">
+        <h2 class="section-title">Number Stats (as used on website)</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value success">15-25%</div>
+                <div class="stat-label">Target APY</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value"><span class="dollar">$</span>7.4M</div>
+                <div class="stat-label">Total Assets</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value accent">43.95%</div>
+                <div class="stat-label">Total Growth</div>
+            </div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">2.52</div>
+                <div class="stat-label">Sharpe Ratio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value"><span class="dollar">$</span>1.00</div>
+                <div class="stat-label">USDi Value</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">1:1</div>
+                <div class="stat-label">Minting Ratio</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Comparison -->
+    <div class="section">
+        <h2 class="section-title">Font Comparison: Numbers 0-9</h2>
+        <div class="font-row">
+            <div class="font-name">Playfair Display<br><code>--font-number</code></div>
+            <div class="font-sample playfair">0123456789</div>
+        </div>
+        <div class="font-row">
+            <div class="font-name">Source Serif 4<br><code>--font-body</code></div>
+            <div class="font-sample source-serif">0123456789</div>
+        </div>
+        <div class="font-row">
+            <div class="font-name">Arial<br><code>.dollar</code></div>
+            <div class="font-sample arial">0123456789</div>
+        </div>
+        <div class="font-row">
+            <div class="font-name">Georgia<br>(fallback)</div>
+            <div class="font-sample georgia">0123456789</div>
+        </div>
+    </div>
+
+    <!-- Dollar Sign Comparison -->
+    <div class="section">
+        <h2 class="section-title">Dollar Sign: Serif vs Sans-Serif</h2>
+        <p style="color: #5a6577; margin-bottom: 24px;">Cutwater uses Arial/Helvetica for dollar signs to avoid the double-stroke "$" common in serif fonts.</p>
+        <div class="dollar-comparison">
+            <div class="dollar-item">
+                <div class="dollar-sample playfair">$</div>
+                <div class="dollar-label">Playfair Display<br>(double stroke)</div>
+            </div>
+            <div class="dollar-item">
+                <div class="dollar-sample source-serif">$</div>
+                <div class="dollar-label">Source Serif 4<br>(double stroke)</div>
+            </div>
+            <div class="dollar-item">
+                <div class="dollar-sample arial" style="color: var(--success);">$</div>
+                <div class="dollar-label">Arial (used)<br>(single stroke)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large Numbers -->
+    <div class="section">
+        <h2 class="section-title">Large Number Display</h2>
+        <div class="large-numbers">
+            <div class="large-number">
+                <div class="large-value"><span class="dollar">$</span>4,619,061</div>
+                <div class="large-label">SOL Holdings</div>
+            </div>
+            <div class="large-number">
+                <div class="large-value" style="color: var(--success);">+22.4%</div>
+                <div class="large-label">APY Return</div>
+            </div>
+            <div class="large-number">
+                <div class="large-value">1.4395</div>
+                <div class="large-label">Growth Multiplier</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CSS Code -->
+    <div class="section">
+        <h2 class="section-title">CSS Implementation</h2>
+        <div class="code-block">
+            <span class="comment">/* Font Variables */</span><br>
+            <span class="property">--font-display:</span> <span class="value">'Playfair Display', Georgia, serif;</span><br>
+            <span class="property">--font-body:</span> <span class="value">'Source Serif 4', Georgia, serif;</span><br>
+            <span class="property">--font-number:</span> <span class="value">'Playfair Display', Georgia, serif;</span><br><br>
+            <span class="comment">/* Single-stroke dollar sign */</span><br>
+            <span class="property">.dollar</span> {<br>
+            &nbsp;&nbsp;<span class="property">font-family:</span> <span class="value">Arial, Helvetica, sans-serif;</span><br>
+            &nbsp;&nbsp;<span class="property">font-weight:</span> <span class="value">400;</span><br>
+            }
+        </div>
+    </div>
+</body>
+</html>
