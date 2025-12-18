@@ -290,6 +290,13 @@
             color: var(--navy-light);
         }
 
+        .nav-separator {
+            width: 1px;
+            height: 24px;
+            background: var(--card-border);
+            margin: 0 8px;
+        }
+
         /* Theme Toggle Button */
         .theme-toggle {
             display: flex;
@@ -742,121 +749,43 @@
             }
         }
 
-        /* Flip Card Styles */
-        .flip-card {
-            perspective: 1000px;
-            height: 280px;
-        }
-
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s ease;
-            transform-style: preserve-3d;
-        }
-
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front,
-        .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 8px;
+        /* Strategy Card Styles */
+        .strategy-card {
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 48px 40px;
+            text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .flip-card-front {
-            background: var(--card-bg);
-        }
-
-        .flip-card-front h3 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.2;
-        }
-
-        .flip-card-front .flip-hint {
-            position: absolute;
-            bottom: 24px;
-            width: 32px;
-            height: 32px;
-            border: 1.5px solid var(--card-border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            opacity: 0.5;
+            min-height: 200px;
             transition: all 0.3s ease;
         }
 
-        .flip-card:hover .flip-hint {
-            opacity: 0;
+        .strategy-card:hover {
+            border-color: var(--navy-light);
+            box-shadow: 0 8px 32px rgba(26, 43, 95, 0.08);
         }
 
-        .flip-card-back {
-            background: var(--navy-primary);
-            transform: rotateY(180deg);
+        [data-theme="dark"] .strategy-card:hover {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        [data-theme="dark"] .flip-card-back {
-            background: var(--navy-light);
-        }
-
-        .flip-card-back h4 {
+        .strategy-card h3 {
             font-family: var(--font-display);
-            font-size: 1.25rem;
+            font-size: 1.75rem;
             font-weight: 600;
-            color: var(--white);
+            color: var(--text-primary);
+            line-height: 1.3;
             margin-bottom: 16px;
         }
 
-        .flip-card-back p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .flip-card-back ul {
-            list-style: none;
-            text-align: left;
-            width: 100%;
-        }
-
-        .flip-card-back ul li {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.95rem;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .flip-card-back ul li:last-child {
-            border-bottom: none;
-        }
-
-        .flip-card-back ul li::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            flex-shrink: 0;
+        .card-dash {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            opacity: 0.5;
         }
 
         /* ===== Performance Section ===== */
@@ -969,61 +898,78 @@
         .process-steps {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 0;
+            gap: 32px;
+            position: relative;
         }
 
         @media (min-width: 768px) {
             .process-steps {
                 grid-template-columns: repeat(4, 1fr);
+                gap: 0;
             }
         }
 
         .process-step {
             position: relative;
-            padding: 32px;
+            padding: 32px 24px;
             text-align: center;
         }
 
-        .process-step::after {
+        /* Curved connecting lines */
+        .process-step::before {
             display: none;
         }
 
         @media (min-width: 768px) {
-            .process-step::after {
+            .process-step::before {
                 content: '';
                 display: block;
                 position: absolute;
-                top: 60px;
-                left: calc(50% + 40px);
-                width: calc(50% - 40px);
-                height: 1px;
-                background: linear-gradient(to right, var(--navy-light), transparent);
+                top: 28px;
+                left: calc(50% + 32px);
+                width: calc(100% - 64px);
+                height: 40px;
+                border-top: 2px solid var(--card-border);
+                border-right: 2px solid var(--card-border);
+                border-top-right-radius: 20px;
             }
 
-            .process-step:last-child::after {
+            .process-step:nth-child(even)::before {
+                border-top: none;
+                border-right: none;
+                border-bottom: 2px solid var(--card-border);
+                border-left: 2px solid var(--card-border);
+                border-bottom-left-radius: 20px;
+                top: auto;
+                bottom: calc(100% - 68px);
+            }
+
+            .process-step:last-child::before {
                 display: none;
             }
         }
 
         .step-number {
-            width: 56px;
-            height: 56px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--navy-primary);
             color: var(--white);
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 24px;
+            position: relative;
+            z-index: 1;
         }
 
         .process-step h4 {
             font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 500;
+            font-size: 1.1rem;
+            font-weight: 600;
             margin-bottom: 12px;
             color: var(--text-primary);
         }
@@ -1036,7 +982,19 @@
 
         /* ===== Risk Section ===== */
         .risk {
-            background: var(--bg-primary);
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-primary) 100%);
+        }
+
+        .risk .section-label {
+            color: rgba(248, 249, 250, 0.6);
+        }
+
+        .risk .section-title {
+            color: var(--off-white);
+        }
+
+        .risk .section-description {
+            color: rgba(248, 249, 250, 0.7);
         }
 
         .risk-grid {
@@ -1052,32 +1010,32 @@
         }
 
         .risk-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            padding: 32px;
+            padding: 28px;
         }
 
         .risk-card h4 {
             font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 16px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 12px;
-            color: var(--text-primary);
+            color: var(--off-white);
         }
 
         .risk-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+            color: rgba(248, 249, 250, 0.7);
+            font-size: 0.9rem;
             line-height: 1.7;
         }
 
         .risk-badge {
             font-family: var(--font-body);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             padding: 4px 10px;
             border-radius: 4px;
             font-weight: 600;
@@ -1086,13 +1044,13 @@
         }
 
         .risk-badge.low {
-            background: rgba(45, 138, 95, 0.1);
-            color: var(--success);
+            background: rgba(45, 138, 95, 0.3);
+            color: #5FD99A;
         }
 
         .risk-badge.medium {
-            background: rgba(201, 162, 39, 0.1);
-            color: var(--warning);
+            background: rgba(201, 162, 39, 0.3);
+            color: #E8C547;
         }
 
         /* ===== CTA Section ===== */
@@ -1249,15 +1207,6 @@
             color: var(--off-white);
         }
 
-        /* ===== Disclaimer Banner ===== */
-        .disclaimer {
-            background: var(--navy-deep);
-            padding: 14px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: rgba(248, 249, 250, 0.6);
-        }
-
         /* ===== Animations ===== */
         @keyframes fadeInUp {
             from {
@@ -1276,11 +1225,6 @@
     </style>
 </head>
 <body>
-    <!-- Disclaimer Banner -->
-    <div class="disclaimer">
-        This is for accredited investors only. Past performance does not guarantee future results.
-    </div>
-
     <!-- Navigation -->
     <nav>
         <div class="container">
@@ -1310,22 +1254,7 @@
                 <div class="nav-cta">
                     <a href="dashboard-preview.html" class="nav-link">Dashboard</a>
                     <a href="blog.html" class="nav-link">Blog</a>
-                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="5"/>
-                            <line x1="12" y1="1" x2="12" y2="3"/>
-                            <line x1="12" y1="21" x2="12" y2="23"/>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                            <line x1="1" y1="12" x2="3" y2="12"/>
-                            <line x1="21" y1="12" x2="23" y2="12"/>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                        </svg>
-                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                        </svg>
-                    </button>
+                    <span class="nav-separator"></span>
                     <a href="#" class="btn btn-secondary">Docs</a>
                     <a href="dashboard-2.html" class="btn btn-primary">Launch App</a>
                 </div>
@@ -1403,7 +1332,7 @@
                                 <p class="chart-title">USDi Value</p>
                                 <p class="chart-value"><span class="dollar">$</span>1.00</p>
                             </div>
-                            <span class="chart-change">+22.4% APY</span>
+                            <span class="chart-change">+43.49% APY</span>
                         </div>
                         <svg class="chart-svg" viewBox="0 0 400 200" preserveAspectRatio="none">
                             <!-- Grid lines -->
@@ -1454,60 +1383,21 @@
             </div>
             <div class="strategy-grid">
                 <!-- Card 1: Multi-Asset Approach -->
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <h3>Multi-Asset Approach</h3>
-                            <span class="flip-hint">+</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <h4>Diversified Yield Sources</h4>
-                            <ul>
-                                <li>BTC & ETH core holdings</li>
-                                <li>10-15 selected altcoins</li>
-                                <li>Favorable funding profiles</li>
-                                <li>Higher aggregate yields</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="strategy-card">
+                    <h3>Multi-Asset<br>Approach</h3>
+                    <span class="card-dash">—</span>
                 </div>
 
                 <!-- Card 2: Premium Funding Rates -->
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <h3>Premium Funding Rates</h3>
-                            <span class="flip-hint">+</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <h4>2-5x Higher Returns</h4>
-                            <ul>
-                                <li>ETH/BTC: 8-12% APY</li>
-                                <li>SOL, AVAX: 15-25% APY</li>
-                                <li>Select alts: 20-35% APY</li>
-                                <li>Active rate optimization</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="strategy-card">
+                    <h3>Premium<br>Funding Rates</h3>
+                    <span class="card-dash">—</span>
                 </div>
 
                 <!-- Card 3: Rigorous Asset Selection -->
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <h3>Rigorous Asset Selection</h3>
-                            <span class="flip-hint">+</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <h4>Strict Criteria</h4>
-                            <ul>
-                                <li><span class="dollar">$</span>1B+ market cap</li>
-                                <li><span class="dollar">$</span>50M+ daily volume</li>
-                                <li>12-month track record</li>
-                                <li>2+ Tier-1 exchanges</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="strategy-card">
+                    <h3>Rigorous Asset<br>Selection</h3>
+                    <span class="card-dash">—</span>
                 </div>
             </div>
         </div>
@@ -1760,7 +1650,7 @@
         }, observerOptions);
 
         // Observe elements for scroll animation
-        document.querySelectorAll('.flip-card, .stat-card, .process-step, .risk-card, .section-header').forEach(el => {
+        document.querySelectorAll('.strategy-card, .stat-card, .process-step, .risk-card, .section-header').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -1774,8 +1664,8 @@
                 opacity: 1 !important;
                 transform: translateY(0) !important;
             }
-            .flip-card:nth-child(2) { transition-delay: 0.15s !important; }
-            .flip-card:nth-child(3) { transition-delay: 0.3s !important; }
+            .strategy-card:nth-child(2) { transition-delay: 0.15s !important; }
+            .strategy-card:nth-child(3) { transition-delay: 0.3s !important; }
             .process-step:nth-child(2) { transition-delay: 0.15s !important; }
             .process-step:nth-child(3) { transition-delay: 0.3s !important; }
             .process-step:nth-child(4) { transition-delay: 0.45s !important; }
