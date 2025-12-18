@@ -530,21 +530,19 @@
             line-height: 1.8;
         }
 
-        /* Feature Cards - Flip Effect */
-        .feature-cards {
+        /* ===== Flip Cards - From Live Site ===== */
+        .strategy-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
+        }
+
+        .flip-card {
             perspective: 1000px;
-        }
-
-        .feature-card {
             height: 280px;
-            position: relative;
-            cursor: pointer;
         }
 
-        .card-inner {
+        .flip-card-inner {
             position: relative;
             width: 100%;
             height: 100%;
@@ -552,87 +550,106 @@
             transform-style: preserve-3d;
         }
 
-        .feature-card:hover .card-inner {
+        .flip-card:hover .flip-card-inner {
             transform: rotateY(180deg);
         }
 
-        .card-front,
-        .card-back {
+        .flip-card-front,
+        .flip-card-back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            border-radius: 8px;
             border: 1px solid var(--border-gray);
-            border-radius: 4px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 40px;
             text-align: center;
-            padding: 32px;
         }
 
-        .card-front {
-            background: var(--light-bg);
+        .flip-card-front {
+            background: var(--white);
         }
 
-        .card-back {
+        .flip-card-front h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            line-height: 1.2;
+        }
+
+        .flip-card-front .flip-hint {
+            position: absolute;
+            bottom: 24px;
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid var(--border-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--body-gray);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .flip-card:hover .flip-hint {
+            opacity: 0;
+        }
+
+        .flip-card-back {
             background: var(--primary-navy);
             transform: rotateY(180deg);
         }
 
-        .card-front h3 {
+        .flip-card-back h4 {
             font-family: var(--font-display);
-            font-size: 32px;
+            font-size: 1.25rem;
             font-weight: 600;
-            color: var(--primary-navy);
-            line-height: 1.25;
-            margin-bottom: 24px;
-        }
-
-        .card-front .expand-icon {
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--border-gray);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-body);
-            font-size: 20px;
-            color: var(--body-gray);
-            transition: all 0.2s ease;
-        }
-
-        .card-back h4 {
-            font-family: var(--font-display);
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--light-bg);
+            color: var(--white);
             margin-bottom: 16px;
         }
 
-        .card-back ul {
+        .flip-card-back ul {
             list-style: none;
             text-align: left;
+            width: 100%;
         }
 
-        .card-back li {
+        .flip-card-back ul li {
+            color: rgba(255, 255, 255, 0.85);
             font-family: var(--font-body);
-            font-size: 15px;
-            font-weight: 400;
-            color: var(--light-bg);
-            line-height: 1.8;
-            padding-left: 16px;
-            position: relative;
+            font-size: 0.95rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .card-back li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--highlight-blue);
+        .flip-card-back ul li:last-child {
+            border-bottom: none;
+        }
+
+        .flip-card-back ul li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* ===== Performance Section ===== */
@@ -1278,14 +1295,15 @@
                 <h2 class="section-title">Beyond ETH <span class="amp">&</span> BTC: Unlocking higher yields</h2>
                 <p class="section-description">While competitors focus on 2 assets, Cutwater captures premium funding rates across 15-20 carefully selected cryptocurrencies.</p>
             </div>
-            <div class="feature-cards">
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
+            <div class="strategy-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
                             <h3>Multi-Asset<br>Approach</h3>
-                            <div class="expand-icon">+</div>
+                            <div class="flip-hint">+</div>
                         </div>
-                        <div class="card-back">
+                        <div class="flip-card-back">
+                            <h4>Diversified Yield Sources</h4>
                             <ul>
                                 <li>BTC & ETH core holdings</li>
                                 <li>10-15 selected altcoins</li>
@@ -1295,13 +1313,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
                             <h3>Premium<br>Funding Rates</h3>
-                            <div class="expand-icon">+</div>
+                            <div class="flip-hint">+</div>
                         </div>
-                        <div class="card-back">
+                        <div class="flip-card-back">
+                            <h4>2-5x Higher Returns</h4>
                             <ul>
                                 <li>ETH/BTC: 8-12% APY</li>
                                 <li>SOL, AVAX: 15-25% APY</li>
@@ -1311,13 +1330,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
                             <h3>Rigorous Asset<br>Selection</h3>
-                            <div class="expand-icon">+</div>
+                            <div class="flip-hint">+</div>
                         </div>
-                        <div class="card-back">
+                        <div class="flip-card-back">
+                            <h4>Strict Criteria</h4>
                             <ul>
                                 <li>$1B+ market cap</li>
                                 <li>$50M+ daily volume</li>
