@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Partners | Multi-Asset Delta-Neutral Yield</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&family=Playfair+Display:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Figma Design System - Exact Values ===== */
+        :root {
+            /* Colors - Exact from Figma */
+            --dark-navy: #0f1a3d;
+            --primary-navy: #1a2b5f;
+            --secondary-blue: #2c4a8c;
+            --highlight-blue: #1e88e5;
+            --success-green: #2d8a5f;
+            --body-gray: #5a6577;
+            --border-gray: #e8eaed;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+
+            /* Fonts - Exact from Figma */
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Serif 4', Georgia, serif;
+            --font-currency: 'Noto Sans', sans-serif;
+        }
+
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--body-gray);
+            background: var(--white);
+            line-height: 1.7;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== Layout ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ===== Top Banner ===== */
+        .top-banner {
+            background: var(--dark-navy);
+            padding: 16px 0;
+            text-align: center;
+        }
+
+        .top-banner p {
+            font-family: var(--font-body);
+            font-size: 12.8px;
+            font-weight: 400;
+            color: var(--light-bg);
+            opacity: 0.6;
+            line-height: 1.7;
+        }
+
+        /* ===== Navigation ===== */
+        .nav {
+            background: var(--white);
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-wrapper {
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 25.6px;
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        /* Animated Balance Line */
+        @keyframes wave {
+            0% { transform: rotate(-24deg); }
+            50% { transform: rotate(24deg); }
+            100% { transform: rotate(-24deg); }
+        }
+
+        .balance-line {
+            transform-origin: 24px 24px;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .balance-line { animation: none; }
+        }
+
+        /* Dropdown Arrow Animation */
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            margin-left: 4px;
+            margin-top: 2px;
+            color: var(--body-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow .arrow-1,
+        .dropdown-arrow .arrow-2 {
+            opacity: 0.4;
+            animation: cascade-arrow 1.5s ease-in-out infinite;
+        }
+
+        .dropdown-arrow .arrow-1 {
+            animation-delay: 0s;
+        }
+
+        .dropdown-arrow .arrow-2 {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes cascade-arrow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .logo-wrapper:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .logo-wrapper:hover .dropdown-arrow .arrow-1,
+        .logo-wrapper:hover .dropdown-arrow .arrow-2 {
+            animation: none;
+            opacity: 1;
+        }
+
+        /* Dropdown Menu */
+        .nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 12px;
+            background: var(--white);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 12px 0;
+            min-width: 200px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.2s ease;
+            z-index: 1001;
+        }
+
+        .logo-wrapper:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 12px 24px;
+            color: var(--primary-navy);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .nav-dropdown a:hover {
+            background: var(--light-bg);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-family: var(--font-body);
+            font-size: 16.8px;
+            font-weight: 500;
+            color: var(--primary-navy);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background: var(--light-bg);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            font-family: var(--font-body);
+            font-size: 14.4px;
+            font-weight: 500;
+            padding: 14px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-navy);
+            border: 1px solid var(--primary-navy);
+        }
+
+        .btn-primary {
+            background: var(--primary-navy);
+            color: var(--white);
+            border: 1px solid var(--primary-navy);
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            background: var(--white);
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(44, 74, 140, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 64px;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: 21.6px;
+            font-weight: 500;
+            color: var(--secondary-blue);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 56px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            line-height: 1.15;
+            letter-spacing: -0.56px;
+            margin-bottom: 24px;
+        }
+
+        .hero-title .highlight {
+            color: var(--highlight-blue);
+        }
+
+        .hero-description {
+            font-family: var(--font-body);
+            font-size: 17.6px;
+            font-weight: 400;
+            color: var(--body-gray);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .btn-hero {
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            padding: 20px 36px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-hero-primary {
+            background: var(--primary-navy);
+            color: var(--white);
+            border: none;
+        }
+
+        .btn-hero-secondary {
+            background: transparent;
+            color: var(--primary-navy);
+            border: 1px solid var(--primary-navy);
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-gray);
+        }
+
+        .hero-stat-value {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            line-height: 1;
+            margin-bottom: 8px;
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        .hero-stat-value.green {
+            color: var(--success-green);
+        }
+
+        .hero-stat-label {
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 400;
+            color: var(--body-gray);
+            line-height: 1.7;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            padding-top: 48px;
+        }
+
+        /* USDi Card */
+        .usdi-card {
+            background: var(--white);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(26, 43, 95, 0.08);
+        }
+
+        .usdi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .usdi-label {
+            font-family: var(--font-body);
+            font-size: 12.8px;
+            font-weight: 400;
+            color: var(--body-gray);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .usdi-value {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .usdi-currency {
+            font-family: var(--font-currency);
+            font-size: 40px;
+            font-weight: 500;
+            color: var(--primary-navy);
+        }
+
+        .usdi-amount {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        .apy-badge {
+            background: rgba(45, 138, 95, 0.1);
+            color: var(--success-green);
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 4px;
+        }
+
+        /* Chart */
+        .chart-area {
+            height: 200px;
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-gray);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 400;
+            color: var(--body-gray);
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* ===== Why Cutwater Section ===== */
+        .why-section {
+            background: var(--light-bg);
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 64px;
+        }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 12.8px;
+            font-weight: 500;
+            color: var(--body-gray);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 44px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            line-height: 1.2;
+            margin-bottom: 16px;
+            white-space: nowrap;
+        }
+
+        .section-title .amp {
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .section-description {
+            font-family: var(--font-body);
+            font-size: 17.6px;
+            font-weight: 400;
+            color: var(--body-gray);
+            line-height: 1.8;
+        }
+
+        /* Feature Cards - Flip Effect */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            perspective: 1000px;
+        }
+
+        .feature-card {
+            height: 280px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease;
+            transform-style: preserve-3d;
+        }
+
+        .feature-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border: 1px solid var(--border-gray);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 32px;
+        }
+
+        .card-front {
+            background: var(--light-bg);
+        }
+
+        .card-back {
+            background: var(--primary-navy);
+            transform: rotateY(180deg);
+        }
+
+        .card-front h3 {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            line-height: 1.25;
+            margin-bottom: 24px;
+        }
+
+        .card-front .expand-icon {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border-gray);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            font-size: 20px;
+            color: var(--body-gray);
+            transition: all 0.2s ease;
+        }
+
+        .card-back h4 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--light-bg);
+            margin-bottom: 16px;
+        }
+
+        .card-back ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .card-back li {
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--light-bg);
+            line-height: 1.8;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .card-back li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--highlight-blue);
+        }
+
+        /* ===== Performance Section ===== */
+        .performance-section {
+            background: var(--white);
+            padding: 100px 0;
+        }
+
+        .performance-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-top: 64px;
+        }
+
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .stat-card {
+            background: var(--light-bg);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 32px 24px;
+            text-align: center;
+            min-height: 184px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-card-value {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            line-height: 1;
+            margin-bottom: 12px;
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        .stat-card-value.green {
+            color: var(--success-green);
+        }
+
+        .stat-card-value.blue {
+            color: var(--highlight-blue);
+        }
+
+        .stat-card-label {
+            font-family: var(--font-body);
+            font-size: 14.4px;
+            font-weight: 400;
+            color: var(--body-gray);
+            margin-bottom: 4px;
+        }
+
+        .stat-card-sublabel {
+            font-family: var(--font-body);
+            font-size: 12.8px;
+            font-weight: 400;
+            color: var(--body-gray);
+            opacity: 0.7;
+        }
+
+        .performance-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .performance-text h3 {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 16px;
+        }
+
+        .performance-text p {
+            font-family: var(--font-body);
+            font-size: 16.8px;
+            font-weight: 400;
+            color: var(--body-gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .performance-list {
+            list-style: none;
+        }
+
+        .performance-list li {
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 400;
+            color: var(--primary-navy);
+            padding: 12px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .performance-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--secondary-blue);
+            border-radius: 50%;
+        }
+
+        /* ===== How It Works Section ===== */
+        .process-section {
+            background: var(--light-bg);
+            padding: 100px 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(50% + 40px);
+            width: calc(100% - 80px);
+            height: 1px;
+            background: var(--border-gray);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            background: var(--primary-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--white);
+            margin: 0 auto 24px;
+        }
+
+        .process-step h4 {
+            font-family: var(--font-display);
+            font-size: 19.2px;
+            font-weight: 500;
+            color: var(--primary-navy);
+            margin-bottom: 12px;
+        }
+
+        .process-step p {
+            font-family: var(--font-body);
+            font-size: 14.4px;
+            font-weight: 400;
+            color: var(--body-gray);
+            line-height: 1.7;
+        }
+
+        /* ===== Risk Section ===== */
+        .risk-section {
+            background: var(--white);
+            padding: 100px 0;
+        }
+
+        /* ===== Risk Section - Figma Exact ===== */
+        .risk-section {
+            background: var(--white);
+            padding: 100px 0;
+        }
+
+        .risk-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 64px;
+        }
+
+        .risk-card {
+            background: var(--light-bg);
+            border-radius: 8px;
+            padding: 32px;
+            min-height: 194px;
+        }
+
+        .risk-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .risk-card h4 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--primary-navy);
+        }
+
+        .risk-badge {
+            font-family: var(--font-body);
+            font-size: 11.2px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(45, 138, 95, 0.1);
+            color: var(--success-green);
+        }
+
+        .risk-card p {
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 400;
+            color: var(--body-gray);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA Section - Figma Exact ===== */
+        .cta-section {
+            background: linear-gradient(180deg, var(--primary-navy) 0%, var(--dark-navy) 100%);
+            padding: 100px 0;
+        }
+
+        .cta-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: var(--font-display);
+            font-size: 44px;
+            font-weight: 600;
+            color: var(--light-bg);
+            line-height: 1.2;
+            margin-bottom: 24px;
+            font-feature-settings: 'lnum' 1;
+        }
+
+        .cta-content p {
+            font-family: var(--font-body);
+            font-size: 17.6px;
+            font-weight: 400;
+            color: var(--light-bg);
+            opacity: 0.8;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn-cta {
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            padding: 20px 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 159px;
+            text-align: center;
+        }
+
+        .btn-cta-white {
+            background: var(--white);
+            color: var(--primary-navy);
+            border: none;
+        }
+
+        .btn-cta-white:hover {
+            background: var(--light-bg);
+        }
+
+        .btn-cta-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-cta-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== Footer - Figma Exact ===== */
+        .footer {
+            background: var(--dark-navy);
+            padding: 64px 0 32px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-brand .logo-text {
+            font-family: var(--font-display);
+            font-size: 25.6px;
+            font-weight: 600;
+            color: var(--light-bg);
+        }
+
+        .footer-brand p {
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 400;
+            color: var(--light-bg);
+            opacity: 0.6;
+            line-height: 1.7;
+            margin-top: 20px;
+            max-width: 320px;
+        }
+
+        .footer-links h5 {
+            font-family: var(--font-body);
+            font-size: 12.8px;
+            font-weight: 600;
+            color: var(--light-bg);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links a {
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 400;
+            color: var(--light-bg);
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(44, 74, 140, 0.4);
+        }
+
+        .footer-bottom p {
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 400;
+            color: var(--light-bg);
+            opacity: 0.5;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-legal a {
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 400;
+            color: var(--light-bg);
+            opacity: 0.5;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-legal a:hover {
+            opacity: 1;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-title {
+                font-size: 44px;
+            }
+
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-content {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .risk-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .stat-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <p>This is for accredited investors only. Past performance does not guarantee future results.</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo-wrapper">
+                    <a href="#" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path class="logo-line" d="M14 24L34 24" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle class="logo-dot" cx="24" cy="24" r="4" fill="#1E88E5"/>
+                        </svg>
+                        <span class="logo-text">Cutwater</span>
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path class="arrow-1" d="M6 7l6 4 6-4"/>
+                            <path class="arrow-2" d="M6 15l6 4 6-4"/>
+                        </svg>
+                    </a>
+                    <div class="nav-dropdown">
+                        <a href="#strategy">Strategy</a>
+                        <a href="#performance">Performance</a>
+                        <a href="#process">How It Works</a>
+                        <a href="#risk">Risk</a>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="nav-links">
+                        <a href="#" class="nav-link">Dashboard</a>
+                        <a href="#" class="nav-link">Blog</a>
+                    </div>
+                    <div class="nav-actions">
+                        <button class="theme-toggle" aria-label="Toggle theme">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a2b5f" stroke-width="2">
+                                <circle cx="12" cy="12" r="5"/>
+                                <line x1="12" y1="1" x2="12" y2="3"/>
+                                <line x1="12" y1="21" x2="12" y2="23"/>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                                <line x1="1" y1="12" x2="3" y2="12"/>
+                                <line x1="21" y1="12" x2="23" y2="12"/>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                            </svg>
+                        </button>
+                        <a href="#" class="btn btn-outline">Docs</a>
+                        <a href="#" class="btn btn-primary">Launch App</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-gradient"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-tagline">Delta-Neutral Funding Rate Strategy</p>
+                    <h1 class="hero-title">Higher yields through<br><span class="highlight">multi-asset arbitrage</span></h1>
+                    <p class="hero-description">Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY while maintaining strict delta neutrality.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn-hero btn-hero-primary">Mint USDi</a>
+                        <a href="#" class="btn-hero btn-hero-secondary">Learn More</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value green">15-25%</div>
+                            <div class="hero-stat-label">Target APY</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">15+</div>
+                            <div class="hero-stat-label">Asset Universe</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">1:1</div>
+                            <div class="hero-stat-label">Minting Ratio</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="usdi-card">
+                        <div class="usdi-header">
+                            <div>
+                                <p class="usdi-label">USDi Value</p>
+                                <div class="usdi-value">
+                                    <span class="usdi-currency">$</span>
+                                    <span class="usdi-amount">1.00</span>
+                                </div>
+                            </div>
+                            <span class="apy-badge">+22.4% APY</span>
+                        </div>
+                        <div class="chart-area">
+                            <svg class="chart-svg" viewBox="0 0 437 200" preserveAspectRatio="none">
+                                <!-- Grid lines -->
+                                <line x1="0" y1="50" x2="437" y2="50" stroke="#e8eaed" stroke-width="1"/>
+                                <line x1="0" y1="100" x2="437" y2="100" stroke="#e8eaed" stroke-width="1"/>
+                                <line x1="0" y1="150" x2="437" y2="150" stroke="#e8eaed" stroke-width="1"/>
+                                <!-- Fund performance line -->
+                                <path d="M0,180 C50,175 100,160 150,145 C200,130 250,115 300,95 C350,75 400,60 437,45"
+                                      fill="none" stroke="#1a2b5f" stroke-width="2.5"/>
+                                <!-- Comparison dashed line -->
+                                <path d="M0,160 C50,140 100,170 150,130 C200,150 250,120 300,140 C350,110 400,130 437,100"
+                                      fill="none" stroke="#e8eaed" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                <!-- Fill area -->
+                                <path d="M0,180 C50,175 100,160 150,145 C200,130 250,115 300,95 C350,75 400,60 437,45 L437,200 L0,200 Z"
+                                      fill="url(#chartGradient)" opacity="0.2"/>
+                                <defs>
+                                    <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#1a2b5f"/>
+                                        <stop offset="100%" stop-color="#1a2b5f" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #1a2b5f;"></span>
+                                Cutwater USDi
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #e8eaed;"></span>
+                                Ethena sUSDe
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Cutwater Section -->
+    <section class="why-section" id="strategy">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Why Cutwater</p>
+                <h2 class="section-title">Beyond ETH <span class="amp">&</span> BTC: Unlocking higher yields</h2>
+                <p class="section-description">While competitors focus on 2 assets, Cutwater captures premium funding rates across 15-20 carefully selected cryptocurrencies.</p>
+            </div>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Multi-Asset<br>Approach</h3>
+                            <div class="expand-icon">+</div>
+                        </div>
+                        <div class="card-back">
+                            <h4>Diversified Yield Sources</h4>
+                            <ul>
+                                <li>10-15 selected altcoins</li>
+                                <li>Favorable funding profiles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Premium<br>Funding Rates</h3>
+                            <div class="expand-icon">+</div>
+                        </div>
+                        <div class="card-back">
+                            <ul>
+                                <li>ETH/BTC: 8-12% APY</li>
+                                <li>SOL, AVAX: 15-25% APY</li>
+                                <li>Select alts: 20-35% APY</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Rigorous Asset<br>Selection</h3>
+                            <div class="expand-icon">+</div>
+                        </div>
+                        <div class="card-back">
+                            <ul>
+                                <li>50M+ daily volume</li>
+                                <li>2+ Tier-1 exchanges</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section class="performance-section" id="performance">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Cutwater vs Competitors</p>
+                <h2 class="section-title">Why multi-asset outperforms</h2>
+                <p class="section-description">Our expanded asset universe delivers significantly higher yields while maintaining the same delta-neutral risk profile.</p>
+            </div>
+            <div class="performance-content">
+                <div class="stat-cards">
+                    <div class="stat-card">
+                        <div class="stat-card-value green">15-25%</div>
+                        <div class="stat-card-label">Cutwater APY</div>
+                        <div class="stat-card-sublabel">Multi-asset strategy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value blue">8-12%</div>
+                        <div class="stat-card-label">Ethena APY</div>
+                        <div class="stat-card-sublabel">ETH/BTC only</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value">70%+</div>
+                        <div class="stat-card-label">Positive Days</div>
+                        <div class="stat-card-sublabel">Funding rate history</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value">15+</div>
+                        <div class="stat-card-label">Yield Sources</div>
+                        <div class="stat-card-sublabel">Diversified assets</div>
+                    </div>
+                </div>
+                <div class="performance-text">
+                    <h3>The multi-asset advantage</h3>
+                    <p>By allocating 30-50% to carefully selected altcoins with higher funding rates, Cutwater achieves 5-10% higher annual yields compared to ETH/BTC-only strategies like Ethena.</p>
+                    <ul class="performance-list">
+                        <li>BTC/ETH: 7-12% APY average funding rate</li>
+                        <li>Major alts (SOL, AVAX): 15-25% APY funding rate</li>
+                        <li>Selected alts: 20-35% APY funding rate</li>
+                        <li>Lower correlation = more stable yields</li>
+                        <li>Active rotation optimizes returns continuously</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">How It Works</p>
+                <h2 class="section-title">Mint USDi, earn yield automatically</h2>
+                <p class="section-description">Deposit stablecoins, receive USDi, and start earning. All complexity is handled by the protocol.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Deposit Collateral</h4>
+                    <p>Provide USDC, USDT, or whitelisted crypto. Receive USDi tokens on a 1:1 basis.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Capital Allocated</h4>
+                    <p>Protocol allocates to spot holdings across BTC, ETH, and selected altcoins based on funding rates and staking rewards.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Hedges Executed</h4>
+                    <p>Corresponding short perpetual positions opened across multiple exchanges for delta neutrality.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Yield Distributed</h4>
+                    <p>Funding rate payments collected every 8 hours. Yields distributed monthly with auto-compounding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Section - Figma Exact -->
+    <section class="risk-section" id="risk">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Risk Management</p>
+                <h2 class="section-title">Multi-layered protection for your capital</h2>
+                <p class="section-description" style="white-space: nowrap;">Rigorous position limits, exchange diversification, and continuous monitoring keep your funds safe.</p>
+            </div>
+            <div class="risk-cards">
+                <div class="risk-card">
+                    <div class="risk-card-header">
+                        <h4>Market Risk</h4>
+                        <span class="risk-badge">Hedged</span>
+                    </div>
+                    <p>1:1 hedge ratio maintained at all times. +/-5% delta tolerance with automated rebalancing. Real-time monitoring across all positions and exchanges.</p>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-card-header">
+                        <h4>Exchange Risk</h4>
+                        <span class="risk-badge">Diversified</span>
+                    </div>
+                    <p>Maximum 40% on any single exchange. Distributed across Binance, OKX, Bybit, and others. Only Tier-1 venues with proof of reserves.</p>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-card-header">
+                        <h4>Funding Rate Risk</h4>
+                        <span class="risk-badge">Managed</span>
+                    </div>
+                    <p>15-20 diversified funding sources with low correlation. Reserve fund for negative periods. Dynamic rotation to positive-funding assets.</p>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-card-header">
+                        <h4>Position Limits</h4>
+                        <span class="risk-badge">Conservative</span>
+                    </div>
+                    <p>Max 15% in any single altcoin. Max 5% of daily volume per position. Min 30% in BTC/ETH as stability anchor. Quarterly asset reviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - Figma Exact -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start earning 15-25% APY today</h2>
+                <p>Mint USDi and access multi-asset delta-neutral yields that outperform ETH/BTC-only strategies.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-cta btn-cta-white">Launch App</a>
+                    <a href="#" class="btn-cta btn-cta-outline">Read Documentation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Figma Exact -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#f8f9fa" stroke-width="4" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path class="logo-line" d="M14 24L34 24" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle class="logo-dot" cx="24" cy="24" r="4" fill="#1E88E5"/>
+                        </svg>
+                        <span class="logo-text">Cutwater</span>
+                    </a>
+                    <p>Multi-asset delta-neutral yield protocol. Higher returns through diversified funding rate arbitrage.</p>
+                </div>
+                <div class="footer-links">
+                    <h5>Protocol</h5>
+                    <ul>
+                        <li><a href="#">Strategy</a></li>
+                        <li><a href="#">Asset Selection</a></li>
+                        <li><a href="#">Risk Management</a></li>
+                        <li><a href="#">USDi Token</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Audits</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h5>Community</h5>
+                    <ul>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Governance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cutwater Partners. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Risk Disclosure</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
