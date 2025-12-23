@@ -3,46 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revenue & Commission | Cutwater Analytics</title>
+    <title>Cutwater | Revenue & Commission</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --navy-primary: #1a2b5f;
             --navy-light: #2c4a8c;
-            --navy-deep: #0f1a3d;
-            --blue-accent: #1E88E5;
-            --white: #FFFFFF;
-            --off-white: #f8f9fa;
-            --gray-light: #e8eaed;
-            --gray-text: #5a6577;
+            --blue-accent: #5BA4E6;
             --success: #2D8A5F;
             --warning: #c9a227;
-            --commission-color: #1E88E5;
-            --revenue-color: #2D8A5F;
-            --font-display: 'Playfair Display', Georgia, serif;
-            --font-body: 'Source Serif 4', Georgia, serif;
-            --font-number: 'Noto Sans', sans-serif;
-
             --bg-primary: #FFFFFF;
             --bg-secondary: #f8f9fa;
             --text-primary: #1a2b5f;
             --text-secondary: #5a6577;
-            --nav-bg: rgba(255, 255, 255, 0.98);
-            --card-bg: #FFFFFF;
-            --card-border: #e8eaed;
-        }
-
-        [data-theme="dark"] {
-            --bg-primary: #0f1a3d;
-            --bg-secondary: #1a2b5f;
-            --text-primary: #f8f9fa;
-            --text-secondary: #a8b5c9;
-            --nav-bg: rgba(15, 26, 61, 0.98);
-            --card-bg: #1a2b5f;
-            --card-border: #2c4a8c;
+            --border-color: #e8eaed;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Serif 4', Georgia, serif;
         }
 
         * {
@@ -51,258 +30,172 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: var(--font-body);
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.7;
-            transition: background 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            padding: 40px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 24px;
         }
 
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 48px;
-            }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-        }
-
-        .logo-text {
-            font-family: var(--font-display);
-            font-size: 1.6rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .back-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: var(--text-primary);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            color: var(--text-primary);
-            transition: background 0.2s ease;
-        }
-
-        .theme-toggle:hover {
-            background: var(--bg-secondary);
-        }
-
-        /* Main Content */
-        main {
-            padding-top: 120px;
-            padding-bottom: 80px;
-        }
-
-        .page-header {
-            margin-bottom: 48px;
-        }
-
-        .page-header h1 {
+        h1 {
             font-family: var(--font-display);
             font-size: 2.5rem;
             font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .page-header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        /* Summary Cards */
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-bottom: 48px;
-        }
-
-        .summary-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 28px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .summary-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .summary-card .label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
             margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .summary-card .value {
-            font-family: var(--font-number);
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .summary-card .value.commission {
-            color: var(--commission-color);
-        }
-
-        .summary-card .value.revenue {
-            color: var(--revenue-color);
-        }
-
-        .summary-card .change {
-            font-size: 0.85rem;
-            margin-top: 8px;
+        .subtitle {
             color: var(--text-secondary);
-        }
-
-        /* Chart Section */
-        .chart-section {
-            margin-bottom: 48px;
-        }
-
-        .chart-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 32px;
+            font-size: 1rem;
             margin-bottom: 32px;
         }
 
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .chart-header h2 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .chart-legend {
+        .controls {
             display: flex;
             gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--navy-primary);
+            color: var(--navy-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--navy-primary);
+            color: white;
+            border-color: var(--navy-primary);
+        }
+
+        .legend {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: opacity 0.2s ease;
         }
 
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+        .legend-item:hover {
+            background: var(--bg-secondary);
         }
 
-        .legend-dot.commission {
-            background: var(--commission-color);
+        .legend-item.disabled {
+            opacity: 0.4;
         }
 
-        .legend-dot.revenue {
-            background: var(--revenue-color);
+        .legend-color {
+            width: 16px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .legend-label {
+            font-size: 0.85rem;
+            color: var(--text-primary);
         }
 
         .chart-container {
-            position: relative;
-            height: 400px;
-        }
-
-        /* Table Section */
-        .table-section {
-            margin-top: 48px;
-        }
-
-        .table-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            overflow: hidden;
+            padding: 24px;
+            height: 400px;
+            margin-bottom: 24px;
         }
 
-        .table-header {
-            padding: 24px 32px;
-            border-bottom: 1px solid var(--card-border);
+        .chart-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
         }
 
-        .table-header h2 {
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
             font-family: var(--font-display);
             font-size: 1.5rem;
             font-weight: 600;
         }
 
-        .table-wrapper {
-            overflow-x: auto;
+        .stat-value.revenue { color: var(--success); }
+        .stat-value.commission { color: var(--blue-accent); }
+
+        .table-container {
+            margin-top: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .table-scroll {
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         table {
@@ -310,489 +203,293 @@
             border-collapse: collapse;
         }
 
+        thead {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 10;
+        }
+
         th, td {
-            padding: 16px 24px;
-            text-align: left;
-            border-bottom: 1px solid var(--card-border);
+            padding: 12px 16px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.85rem;
         }
 
         th {
-            background: var(--bg-secondary);
-            font-family: var(--font-number);
-            font-size: 0.85rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
             color: var(--text-secondary);
-        }
-
-        td {
-            font-family: var(--font-number);
-            font-size: 0.95rem;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
             background: var(--bg-secondary);
         }
 
-        .month-cell {
-            font-weight: 500;
+        th:first-child, td:first-child {
+            text-align: left;
+            padding-left: 24px;
         }
 
-        .number-cell {
-            text-align: right;
+        th:last-child, td:last-child {
+            padding-right: 24px;
         }
 
-        .number-cell.commission {
-            color: var(--commission-color);
+        tr:hover {
+            background: var(--bg-secondary);
         }
 
-        .number-cell.revenue {
-            color: var(--revenue-color);
-        }
+        .revenue { color: var(--success); }
+        .commission { color: var(--blue-accent); }
 
-        .cumulative-cell {
-            font-weight: 600;
-        }
-
-        /* Footer */
-        footer {
-            padding: 32px 0;
-            border-top: 1px solid var(--card-border);
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .chart-container {
-                height: 300px;
-            }
-
-            .chart-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-
-            th, td {
-                padding: 12px 16px;
-            }
+            body { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .chart-container { height: 300px; }
+            .table-scroll { max-height: 350px; }
+            th, td { padding: 8px 10px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="nav-content">
-                <a href="../website/index.html" class="logo">
-                    <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
-                        <path class="logo-c" d="M24 8C15.16 8 8 15.16 8 24s7.16 16 16 16" stroke="var(--navy-primary)" stroke-width="3" stroke-linecap="round" fill="none"/>
-                        <line class="logo-line balance-line" x1="24" y1="14" x2="24" y2="34" stroke="var(--navy-light)" stroke-width="2.5" stroke-linecap="round"/>
-                        <circle class="logo-dot" cx="24" cy="38" r="2.5" fill="var(--navy-primary)"/>
-                    </svg>
-                    <span class="logo-text">Cutwater</span>
-                </a>
-                <div class="nav-actions">
-                    <a href="../website/index.html" class="back-link">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        Back to Home
-                    </a>
-                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="5"/>
-                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                        </svg>
-                    </button>
+    <div class="container">
+        <h1>Revenue & Commission</h1>
+        <p class="subtitle">Monthly and cumulative growth metrics for Cutwater Partners (January - November 2025)</p>
+
+        <div class="controls">
+            <div class="filter-group">
+                <button class="filter-btn active" data-view="monthly">Monthly</button>
+                <button class="filter-btn" data-view="cumulative">Cumulative</button>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item" data-series="revenue">
+                    <div class="legend-color" style="background: #2D8A5F;"></div>
+                    <span class="legend-label">Revenue</span>
+                </div>
+                <div class="legend-item" data-series="commission">
+                    <div class="legend-color" style="background: #5BA4E6;"></div>
+                    <span class="legend-label">Commission</span>
                 </div>
             </div>
         </div>
-    </nav>
 
-    <main>
-        <div class="container">
-            <div class="page-header">
-                <h1>Revenue & Commission</h1>
-                <p>Monthly and cumulative growth metrics for Cutwater Partners</p>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Revenue</div>
+                <div class="stat-value revenue">$310,455</div>
             </div>
-
-            <!-- Summary Cards -->
-            <div class="summary-grid">
-                <div class="summary-card">
-                    <div class="label">Total Revenue</div>
-                    <div class="value revenue">$310,455</div>
-                    <div class="change">Cumulative since March 2025</div>
-                </div>
-                <div class="summary-card">
-                    <div class="label">Total Commission</div>
-                    <div class="value commission">$65,612</div>
-                    <div class="change">Cumulative since January 2025</div>
-                </div>
-                <div class="summary-card">
-                    <div class="label">Commission Rate</div>
-                    <div class="value">21.1%</div>
-                    <div class="change">Commission / Revenue ratio</div>
-                </div>
-                <div class="summary-card">
-                    <div class="label">Peak Monthly Revenue</div>
-                    <div class="value revenue">$113,197</div>
-                    <div class="change">May 2025</div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Commission</div>
+                <div class="stat-value commission">$65,612</div>
             </div>
-
-            <!-- Monthly Chart -->
-            <div class="chart-section">
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h2>Monthly Revenue & Commission</h2>
-                        <div class="chart-legend">
-                            <div class="legend-item">
-                                <div class="legend-dot revenue"></div>
-                                <span>Revenue</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-dot commission"></div>
-                                <span>Commission</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="monthlyChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Cumulative Chart -->
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h2>Cumulative Growth</h2>
-                        <div class="chart-legend">
-                            <div class="legend-item">
-                                <div class="legend-dot revenue"></div>
-                                <span>Revenue</span>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-dot commission"></div>
-                                <span>Commission</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="cumulativeChart"></canvas>
-                    </div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-label">Commission Rate</div>
+                <div class="stat-value">21.1%</div>
             </div>
-
-            <!-- Data Table -->
-            <div class="table-section">
-                <div class="table-card">
-                    <div class="table-header">
-                        <h2>Monthly Breakdown</h2>
-                    </div>
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Month</th>
-                                    <th class="number-cell">Commission</th>
-                                    <th class="number-cell">Cumulative Commission</th>
-                                    <th class="number-cell">Revenue</th>
-                                    <th class="number-cell">Cumulative Revenue</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="month-cell">January 2025</td>
-                                    <td class="number-cell commission">$6,147.01</td>
-                                    <td class="number-cell commission cumulative-cell">$6,147.01</td>
-                                    <td class="number-cell revenue">-</td>
-                                    <td class="number-cell revenue cumulative-cell">-</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">February 2025</td>
-                                    <td class="number-cell commission">$0.00</td>
-                                    <td class="number-cell commission cumulative-cell">$6,147.01</td>
-                                    <td class="number-cell revenue">-</td>
-                                    <td class="number-cell revenue cumulative-cell">-</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">March 2025</td>
-                                    <td class="number-cell commission">$2,015.29</td>
-                                    <td class="number-cell commission cumulative-cell">$8,162.30</td>
-                                    <td class="number-cell revenue">$19,485.54</td>
-                                    <td class="number-cell revenue cumulative-cell">$19,485.54</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">April 2025</td>
-                                    <td class="number-cell commission">$15,241.10</td>
-                                    <td class="number-cell commission cumulative-cell">$23,403.40</td>
-                                    <td class="number-cell revenue">$25,888.29</td>
-                                    <td class="number-cell revenue cumulative-cell">$45,373.83</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">May 2025</td>
-                                    <td class="number-cell commission">$12,127.40</td>
-                                    <td class="number-cell commission cumulative-cell">$35,530.80</td>
-                                    <td class="number-cell revenue">$113,196.62</td>
-                                    <td class="number-cell revenue cumulative-cell">$158,570.45</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">June 2025</td>
-                                    <td class="number-cell commission">$3,260.29</td>
-                                    <td class="number-cell commission cumulative-cell">$38,791.09</td>
-                                    <td class="number-cell revenue">$16,290.03</td>
-                                    <td class="number-cell revenue cumulative-cell">$174,860.48</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">July 2025</td>
-                                    <td class="number-cell commission">$5,578.38</td>
-                                    <td class="number-cell commission cumulative-cell">$44,369.47</td>
-                                    <td class="number-cell revenue">$29,486.23</td>
-                                    <td class="number-cell revenue cumulative-cell">$204,346.71</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">August 2025</td>
-                                    <td class="number-cell commission">$9,886.13</td>
-                                    <td class="number-cell commission cumulative-cell">$54,255.60</td>
-                                    <td class="number-cell revenue">$49,417.33</td>
-                                    <td class="number-cell revenue cumulative-cell">$253,764.04</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">September 2025</td>
-                                    <td class="number-cell commission">$6,215.68</td>
-                                    <td class="number-cell commission cumulative-cell">$60,471.28</td>
-                                    <td class="number-cell revenue">$31,078.27</td>
-                                    <td class="number-cell revenue cumulative-cell">$284,842.31</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">October 2025</td>
-                                    <td class="number-cell commission">$5,140.57</td>
-                                    <td class="number-cell commission cumulative-cell">$65,611.85</td>
-                                    <td class="number-cell revenue">$25,612.82</td>
-                                    <td class="number-cell revenue cumulative-cell">$310,455.13</td>
-                                </tr>
-                                <tr>
-                                    <td class="month-cell">November 2025</td>
-                                    <td class="number-cell commission">$0.00</td>
-                                    <td class="number-cell commission cumulative-cell">$65,611.85</td>
-                                    <td class="number-cell revenue">$0.00</td>
-                                    <td class="number-cell revenue cumulative-cell">$310,455.13</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-label">Peak Monthly Revenue</div>
+                <div class="stat-value revenue">$113,197</div>
             </div>
         </div>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>Cutwater Partners Analytics Dashboard</p>
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Monthly Breakdown</h2>
+                <span style="color: var(--text-secondary); font-size: 0.85rem;">11 records</span>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Commission</th>
+                            <th>Cumulative Commission</th>
+                            <th>Revenue</th>
+                            <th>Cumulative Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableBody">
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Theme Toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateCharts();
-        }
+        // Data
+        const data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+            fullLabels: ['January 2025', 'February 2025', 'March 2025', 'April 2025', 'May 2025', 'June 2025', 'July 2025', 'August 2025', 'September 2025', 'October 2025', 'November 2025'],
+            commission: {
+                monthly: [6147.01, 0, 2015.29, 15241.10, 12127.40, 3260.29, 5578.38, 9886.13, 6215.68, 5140.57, 0],
+                cumulative: [6147.01, 6147.01, 8162.30, 23403.40, 35530.80, 38791.09, 44369.47, 54255.60, 60471.28, 65611.85, 65611.85]
+            },
+            revenue: {
+                monthly: [0, 0, 19485.54, 25888.29, 113196.62, 16290.03, 29486.23, 49417.33, 31078.27, 25612.82, 0],
+                cumulative: [0, 0, 19485.54, 45373.83, 158570.45, 174860.48, 204346.71, 253764.04, 284842.31, 310455.13, 310455.13]
+            }
+        };
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        }
+        // Series visibility
+        const seriesVisible = {
+            revenue: true,
+            commission: true
+        };
 
-        // Chart Data
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+        let currentView = 'monthly';
 
-        const commissionMonthly = [6147.01, 0, 2015.29, 15241.10, 12127.40, 3260.29, 5578.38, 9886.13, 6215.68, 5140.57, 0];
-        const commissionCumulative = [6147.01, 6147.01, 8162.30, 23403.40, 35530.80, 38791.09, 44369.47, 54255.60, 60471.28, 65611.85, 65611.85];
-
-        const revenueMonthly = [0, 0, 19485.54, 25888.29, 113196.62, 16290.03, 29486.23, 49417.33, 31078.27, 25612.82, 0];
-        const revenueCumulative = [0, 0, 19485.54, 45373.83, 158570.45, 174860.48, 204346.71, 253764.04, 284842.31, 310455.13, 310455.13];
-
-        // Chart Colors
-        function getChartColors() {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            return {
-                commission: '#1E88E5',
-                revenue: '#2D8A5F',
-                grid: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                text: isDark ? '#a8b5c9' : '#5a6577'
-            };
-        }
-
-        let monthlyChart, cumulativeChart;
-
-        function createCharts() {
-            const colors = getChartColors();
-
-            const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
-            monthlyChart = new Chart(monthlyCtx, {
-                type: 'bar',
-                data: {
-                    labels: months,
-                    datasets: [
-                        {
-                            label: 'Revenue',
-                            data: revenueMonthly,
-                            backgroundColor: colors.revenue,
-                            borderRadius: 4,
-                            order: 1
-                        },
-                        {
-                            label: 'Commission',
-                            data: commissionMonthly,
-                            backgroundColor: colors.commission,
-                            borderRadius: 4,
-                            order: 2
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': $' + context.raw.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                                }
-                            }
-                        }
+        // Create chart
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [
+                    {
+                        label: 'Revenue',
+                        data: data.revenue.monthly,
+                        backgroundColor: '#2D8A5F',
+                        borderRadius: 4,
+                        order: 1
                     },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                color: colors.text
-                            }
-                        },
-                        y: {
-                            grid: {
-                                color: colors.grid
-                            },
-                            ticks: {
-                                color: colors.text,
-                                callback: function(value) {
-                                    return '$' + (value / 1000).toFixed(0) + 'k';
-                                }
+                    {
+                        label: 'Commission',
+                        data: data.commission.monthly,
+                        backgroundColor: '#5BA4E6',
+                        borderRadius: 4,
+                        order: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(26, 43, 95, 0.95)',
+                        titleFont: { family: "'Source Serif 4', Georgia, serif" },
+                        bodyFont: { family: "'Source Serif 4', Georgia, serif" },
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': $' + context.parsed.y.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                             }
                         }
                     }
-                }
-            });
-
-            const cumulativeCtx = document.getElementById('cumulativeChart').getContext('2d');
-            cumulativeChart = new Chart(cumulativeCtx, {
-                type: 'line',
-                data: {
-                    labels: months,
-                    datasets: [
-                        {
-                            label: 'Revenue',
-                            data: revenueCumulative,
-                            borderColor: colors.revenue,
-                            backgroundColor: colors.revenue + '20',
-                            fill: true,
-                            tension: 0.3,
-                            pointRadius: 4,
-                            pointHoverRadius: 6
-                        },
-                        {
-                            label: 'Commission',
-                            data: commissionCumulative,
-                            borderColor: colors.commission,
-                            backgroundColor: colors.commission + '20',
-                            fill: true,
-                            tension: 0.3,
-                            pointRadius: 4,
-                            pointHoverRadius: 6
-                        }
-                    ]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': $' + context.raw.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                                }
-                            }
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            color: '#5a6577',
+                            font: { family: "'Source Serif 4', Georgia, serif" }
                         }
                     },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                color: colors.text
-                            }
-                        },
-                        y: {
-                            grid: {
-                                color: colors.grid
-                            },
-                            ticks: {
-                                color: colors.text,
-                                callback: function(value) {
-                                    return '$' + (value / 1000).toFixed(0) + 'k';
-                                }
-                            }
+                    y: {
+                        grid: { color: 'rgba(26, 43, 95, 0.1)' },
+                        ticks: {
+                            color: '#5a6577',
+                            callback: value => '$' + (value / 1000).toFixed(0) + 'k',
+                            font: { family: "'Source Serif 4', Georgia, serif" }
                         }
                     }
                 }
+            }
+        });
+
+        // View toggle (Monthly/Cumulative)
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                currentView = this.dataset.view;
+                updateChart();
             });
-        }
+        });
 
-        function updateCharts() {
-            const colors = getChartColors();
-
-            if (monthlyChart) {
-                monthlyChart.options.scales.x.ticks.color = colors.text;
-                monthlyChart.options.scales.y.ticks.color = colors.text;
-                monthlyChart.options.scales.y.grid.color = colors.grid;
-                monthlyChart.update();
+        function updateChart() {
+            if (currentView === 'monthly') {
+                chart.config.type = 'bar';
+                chart.data.datasets[0].data = data.revenue.monthly;
+                chart.data.datasets[1].data = data.commission.monthly;
+                chart.data.datasets[0].backgroundColor = '#2D8A5F';
+                chart.data.datasets[1].backgroundColor = '#5BA4E6';
+                chart.data.datasets[0].borderColor = undefined;
+                chart.data.datasets[1].borderColor = undefined;
+                chart.data.datasets[0].fill = undefined;
+                chart.data.datasets[1].fill = undefined;
+                chart.data.datasets[0].tension = undefined;
+                chart.data.datasets[1].tension = undefined;
+                chart.data.datasets[0].pointRadius = undefined;
+                chart.data.datasets[1].pointRadius = undefined;
+            } else {
+                chart.config.type = 'line';
+                chart.data.datasets[0].data = data.revenue.cumulative;
+                chart.data.datasets[1].data = data.commission.cumulative;
+                chart.data.datasets[0].borderColor = '#2D8A5F';
+                chart.data.datasets[1].borderColor = '#5BA4E6';
+                chart.data.datasets[0].backgroundColor = 'rgba(45, 138, 95, 0.1)';
+                chart.data.datasets[1].backgroundColor = 'rgba(91, 164, 230, 0.1)';
+                chart.data.datasets[0].fill = true;
+                chart.data.datasets[1].fill = true;
+                chart.data.datasets[0].tension = 0.3;
+                chart.data.datasets[1].tension = 0.3;
+                chart.data.datasets[0].pointRadius = 4;
+                chart.data.datasets[1].pointRadius = 4;
             }
 
-            if (cumulativeChart) {
-                cumulativeChart.options.scales.x.ticks.color = colors.text;
-                cumulativeChart.options.scales.y.ticks.color = colors.text;
-                cumulativeChart.options.scales.y.grid.color = colors.grid;
-                cumulativeChart.update();
-            }
+            // Reapply visibility
+            chart.data.datasets[0].hidden = !seriesVisible.revenue;
+            chart.data.datasets[1].hidden = !seriesVisible.commission;
+
+            chart.update();
         }
 
-        // Initialize charts
-        createCharts();
+        // Legend toggle
+        document.querySelectorAll('.legend-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const series = this.dataset.series;
+                seriesVisible[series] = !seriesVisible[series];
+                this.classList.toggle('disabled');
+
+                const idx = series === 'revenue' ? 0 : 1;
+                chart.data.datasets[idx].hidden = !seriesVisible[series];
+                chart.update();
+            });
+        });
+
+        // Populate data table
+        function populateTable() {
+            const tbody = document.getElementById('dataTableBody');
+            let html = '';
+
+            // Show data in reverse chronological order (newest first)
+            for (let i = data.labels.length - 1; i >= 0; i--) {
+                const commMonthly = data.commission.monthly[i];
+                const commCumulative = data.commission.cumulative[i];
+                const revMonthly = data.revenue.monthly[i];
+                const revCumulative = data.revenue.cumulative[i];
+
+                html += `<tr>
+                    <td>${data.fullLabels[i]}</td>
+                    <td class="commission">$${commMonthly.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td class="commission">$${commCumulative.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td class="revenue">${revMonthly > 0 ? '$' + revMonthly.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '-'}</td>
+                    <td class="revenue">${revCumulative > 0 ? '$' + revCumulative.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '-'}</td>
+                </tr>`;
+            }
+
+            tbody.innerHTML = html;
+        }
+        populateTable();
     </script>
 </body>
 </html>
