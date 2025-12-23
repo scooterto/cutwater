@@ -50,6 +50,7 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 | APR Metrics | https://scooterto.github.io/cutwater/website/apr-chart.html |
 | Growth Metrics | https://scooterto.github.io/cutwater/website/growth-metrics.html |
 | Asset Pool Metrics | https://scooterto.github.io/cutwater/website/asset-pool.html |
+| Revenue & Commission | https://scooterto.github.io/cutwater/Analytics/revenue-commission-metrics.html |
 
 ---
 
