@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Branding Guide v4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Noto+Sans:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light Mode Colors */
+            --color-dark-navy: #0f1a3d;
+            --color-primary-navy: #1a2b5f;
+            --color-secondary-blue: #2c4a8c;
+            --color-highlight-blue: #1e88e5;
+            --color-success-green: #2d8a5f;
+            --color-body-gray: #5a6577;
+            --color-border-gray: #e8eaed;
+            --color-light-bg: #f8f9fa;
+            --color-white: #ffffff;
+
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Source Serif 4', serif;
+            --font-currency: 'Noto Sans', sans-serif;
+
+            /* Theme Variables */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f7fa;
+            --text-primary: #1a2b5f;
+            --text-secondary: #5a6577;
+            --card-bg: #ffffff;
+            --card-border: #e8eaed;
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --color-dark-navy: #0a0e1a;
+            --color-primary-navy: #DCF2F1;
+            --color-secondary-blue: #8B9DC3;
+            --color-highlight-blue: #5BA4E6;
+            --color-body-gray: #8B9DC3;
+            --color-border-gray: #365486;
+            --color-light-bg: #1a1b3d;
+            --color-white: #0F1035;
+
+            --bg-primary: #0F1035;
+            --bg-secondary: #1a1b3d;
+            --text-primary: #DCF2F1;
+            --text-secondary: #8B9DC3;
+            --card-bg: #1a1b3d;
+            --card-border: #365486;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--color-primary-navy);
+            border-color: var(--color-primary-navy);
+        }
+
+        .theme-toggle:hover svg {
+            color: var(--color-white);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-primary);
+            transition: color 0.2s ease;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--card-border);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--card-border);
+        }
+
+        /* Logo Section */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .logo-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .logo-card h3 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .logo-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .logo-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 32px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .logo-display.dark-bg {
+            background: #0f1a3d;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .logo-specs {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: left;
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        }
+
+        .logo-specs div {
+            margin-bottom: 4px;
+        }
+
+        /* Animated Balance Line */
+        @keyframes wave {
+            0% { transform: rotate(-24deg); }
+            50% { transform: rotate(24deg); }
+            100% { transform: rotate(-24deg); }
+        }
+
+        .balance-line {
+            transform-origin: 24px 24px;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .balance-line { animation: none; }
+        }
+
+        /* Typography Section */
+        .type-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--card-border);
+            align-items: center;
+        }
+
+        .type-row:last-child {
+            border-bottom: none;
+        }
+
+        .type-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+        }
+
+        .type-specs {
+            font-size: 13px;
+            color: var(--color-secondary-blue);
+            margin-top: 4px;
+        }
+
+        .type-sample.h1 {
+            font-family: var(--font-heading);
+            font-size: 56px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.56px;
+            line-height: 1.15;
+        }
+
+        .type-sample.h1 .highlight {
+            color: var(--color-highlight-blue);
+        }
+
+        .type-sample.h2 {
+            font-family: var(--font-heading);
+            font-size: 21.6px;
+            font-weight: 500;
+            color: var(--color-secondary-blue);
+            line-height: 1.7;
+        }
+
+        .type-sample.large-number {
+            font-family: var(--font-heading);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        .type-sample.large-number .green {
+            color: var(--color-success-green);
+        }
+
+        .type-sample.currency {
+            font-size: 40px;
+            color: var(--text-primary);
+        }
+
+        .type-sample.currency .symbol {
+            font-family: var(--font-currency);
+            font-weight: 500;
+        }
+
+        .type-sample.currency .number {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        .type-sample.body {
+            font-family: var(--font-body);
+            font-size: 17.6px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .type-sample.small-body {
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .type-sample.button-text {
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .type-sample.accent {
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 600;
+            color: var(--color-success-green);
+            line-height: 1.7;
+        }
+
+        /* Color Section */
+        .color-mode-section {
+            margin-bottom: 48px;
+        }
+
+        .color-mode-title {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .color-card {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+        }
+
+        .color-swatch {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-swatch-text {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .color-info {
+            padding: 16px;
+            background: var(--card-bg);
+        }
+
+        .color-name {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .color-hex {
+            font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .color-usage {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Button Examples */
+        .button-examples {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .btn-primary {
+            background: var(--color-primary-navy);
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            padding: 20px 36px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        [data-theme="dark"] .btn-primary {
+            background: #5BA4E6;
+            color: #0f1a3d;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            padding: 19px 35px;
+            border: 1px solid var(--text-primary);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .apy-badge {
+            background: rgba(45, 138, 95, 0.1);
+            color: var(--color-success-green);
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Font Showcase */
+        .font-showcase {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .font-showcase-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .alphabet-row {
+            margin-bottom: 24px;
+        }
+
+        .alphabet-label {
+            font-size: 12px;
+            color: var(--color-secondary-blue);
+            margin-bottom: 8px;
+        }
+
+        .alphabet-playfair {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .alphabet-source {
+            font-family: var(--font-body);
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .alphabet-noto {
+            font-family: var(--font-currency);
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .numbers-row {
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        /* Dark Mode Comparison */
+        .mode-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .mode-preview {
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .mode-preview-header {
+            background: var(--bg-secondary);
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .mode-preview-content {
+            padding: 24px;
+        }
+
+        .mode-preview.light-mode .mode-preview-content {
+            background: #ffffff;
+            color: #1a2b5f;
+        }
+
+        .mode-preview.dark-mode .mode-preview-content {
+            background: #0F1035;
+            color: #DCF2F1;
+        }
+
+        .preview-text {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .preview-button {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .mode-preview.light-mode .preview-button {
+            background: #1a2b5f;
+            color: #ffffff;
+        }
+
+        .mode-preview.dark-mode .preview-button {
+            background: #5BA4E6;
+            color: #0f1a3d;
+        }
+
+        @media (max-width: 768px) {
+            .mode-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .type-row {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 class="page-title">Cutwater</h1>
+                <p class="page-subtitle">Branding Guidelines v4 - With Dark Mode Support</p>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Logo Section -->
+        <div class="section">
+            <h2 class="section-title">Logo Specifications</h2>
+
+            <div class="logo-grid">
+                <!-- Header Logo - Light Mode -->
+                <div class="logo-card">
+                    <h3>Header Logo</h3>
+                    <p>Used in navigation (light mode only)</p>
+                    <div class="logo-display">
+                        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                        </svg>
+                        <span class="logo-text" style="color: #1a2b5f;">Cutwater</span>
+                    </div>
+                    <div class="logo-specs">
+                        <div>C: #1a2b5f</div>
+                        <div>Line: #5BA4E6</div>
+                        <div>Dot: #5BA4E6</div>
+                    </div>
+                </div>
+
+                <!-- Footer Logo - Light & Dark -->
+                <div class="logo-card">
+                    <h3>Footer Logo</h3>
+                    <p>Used in footer (both modes)</p>
+                    <div class="logo-display dark-bg">
+                        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#8B9DC3" stroke-width="4" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                        </svg>
+                        <span class="logo-text" style="color: #f8f9fa;">Cutwater</span>
+                    </div>
+                    <div class="logo-specs">
+                        <div>C: #8B9DC3</div>
+                        <div>Line: #5BA4E6</div>
+                        <div>Dot: #5BA4E6</div>
+                    </div>
+                </div>
+
+                <!-- Dark Mode Logo -->
+                <div class="logo-card">
+                    <h3>Dark Mode Logo</h3>
+                    <p>Same as footer logo</p>
+                    <div class="logo-display dark-bg">
+                        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#8B9DC3" stroke-width="4" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                        </svg>
+                        <span class="logo-text" style="color: #DCF2F1;">Cutwater</span>
+                    </div>
+                    <div class="logo-specs">
+                        <div>C: #8B9DC3</div>
+                        <div>Line: #5BA4E6</div>
+                        <div>Dot: #5BA4E6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typography Section -->
+        <div class="section">
+            <h2 class="section-title">Typography</h2>
+
+            <div style="margin-bottom: 24px; padding: 16px; background: var(--bg-secondary); border-radius: 4px;">
+                <strong>Font Families:</strong><br>
+                Display Font: 'Playfair Display' (headings, large numbers)<br>
+                Body Font: 'Source Serif 4' (body text, descriptions)<br>
+                Number Font: 'Noto Sans' (currency symbols, standalone numbers)
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">H1 - Main Heading</div>
+                    <div class="type-specs">Playfair Display SemiBold, 56px</div>
+                </div>
+                <div class="type-sample h1">
+                    Higher yields through<br><span class="highlight">multi-asset arbitrage</span>
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">H2 - Subheading</div>
+                    <div class="type-specs">Playfair Display Medium, 21.6px</div>
+                </div>
+                <div class="type-sample h2">
+                    Delta-Neutral Funding Rate Strategy
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Large Numbers</div>
+                    <div class="type-specs">Playfair Display SemiBold, 40px</div>
+                </div>
+                <div class="type-sample large-number">
+                    <span class="green">15-25%</span> &nbsp; 15+ &nbsp; 1:1
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Currency Display</div>
+                    <div class="type-specs">Noto Sans Medium ($) + Playfair Display</div>
+                </div>
+                <div class="type-sample currency">
+                    <span class="symbol">$</span><span class="number">1.00</span>
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Body Text</div>
+                    <div class="type-specs">Source Serif 4 Regular, 17.6px</div>
+                </div>
+                <div class="type-sample body">
+                    Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY while maintaining strict delta neutrality.
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Small Body / Labels</div>
+                    <div class="type-specs">Source Serif 4 Regular, 13.6px</div>
+                </div>
+                <div class="type-sample small-body">
+                    Target APY &nbsp;&nbsp;|&nbsp;&nbsp; Asset Universe &nbsp;&nbsp;|&nbsp;&nbsp; Minting Ratio
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Button Text</div>
+                    <div class="type-specs">Source Serif 4 Medium, 15.2px</div>
+                </div>
+                <div class="type-sample button-text">
+                    Mint USDi &nbsp;&nbsp;|&nbsp;&nbsp; Learn More
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Accent Text</div>
+                    <div class="type-specs">Source Serif 4 SemiBold, 13.6px</div>
+                </div>
+                <div class="type-sample accent">
+                    +22.4% APY
+                </div>
+            </div>
+
+            <!-- Font Showcase -->
+            <div class="font-showcase">
+                <div class="font-showcase-title">Font Characters</div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Playfair Display - Letters</div>
+                    <div class="alphabet-playfair">
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                        abcdefghijklmnopqrstuvwxyz
+                    </div>
+                </div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Playfair Display - Numbers</div>
+                    <div class="alphabet-playfair numbers-row">
+                        0123456789 &nbsp; 15-25% &nbsp; $1.00 &nbsp; 1:1
+                    </div>
+                </div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Source Serif 4 - Letters</div>
+                    <div class="alphabet-source">
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                        abcdefghijklmnopqrstuvwxyz
+                    </div>
+                </div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Source Serif 4 - Numbers</div>
+                    <div class="alphabet-source numbers-row">
+                        0123456789 &nbsp; +22.4% &nbsp; $1,000,000
+                    </div>
+                </div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Noto Sans - Currency & Numbers</div>
+                    <div class="alphabet-noto numbers-row">
+                        $1.00 &nbsp; $1,234,567 &nbsp; 0123456789
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Palette Section -->
+        <div class="section">
+            <h2 class="section-title">Color Palette</h2>
+
+            <!-- Light Mode Colors -->
+            <div class="color-mode-section">
+                <h3 class="color-mode-title">Light Mode Colors</h3>
+
+                <div class="color-grid">
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #0f1a3d;">
+                            <span class="color-swatch-text" style="color: #f8f9fa;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Dark Navy</div>
+                            <div class="color-hex">#0f1a3d</div>
+                            <div class="color-usage">Top banner background, dark sections</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #1a2b5f;">
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Primary Navy</div>
+                            <div class="color-hex">#1a2b5f</div>
+                            <div class="color-usage">Main headings, buttons, key text</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #2c4a8c;">
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Secondary Blue</div>
+                            <div class="color-hex">#2c4a8c</div>
+                            <div class="color-usage">Subheadings, secondary elements</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #1e88e5;">
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Highlight Blue</div>
+                            <div class="color-hex">#1e88e5</div>
+                            <div class="color-usage">Accent words, links, highlights</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #2d8a5f;">
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Success Green</div>
+                            <div class="color-hex">#2d8a5f</div>
+                            <div class="color-usage">APY percentages, positive indicators</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #5a6577;">
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Body Gray</div>
+                            <div class="color-hex">#5a6577</div>
+                            <div class="color-usage">Body text, descriptions</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #e8eaed;">
+                            <span class="color-swatch-text" style="color: #1a2b5f;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Border Gray</div>
+                            <div class="color-hex">#e8eaed</div>
+                            <div class="color-usage">Borders, dividers, grid lines</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #f8f9fa; border: 1px solid #e8eaed;">
+                            <span class="color-swatch-text" style="color: #1a2b5f;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Light BG</div>
+                            <div class="color-hex">#f8f9fa</div>
+                            <div class="color-usage">Secondary backgrounds, subtle sections</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #ffffff; border: 1px solid #e8eaed;">
+                            <span class="color-swatch-text" style="color: #1a2b5f;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">White</div>
+                            <div class="color-hex">#ffffff</div>
+                            <div class="color-usage">Backgrounds, cards, button text</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dark Mode Colors -->
+            <div class="color-mode-section" style="margin-top: 48px;">
+                <h3 class="color-mode-title">Dark Mode Colors</h3>
+
+                <div class="color-grid">
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #0a0e1a;">
+                            <span class="color-swatch-text" style="color: #DCF2F1;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Dark Navy</div>
+                            <div class="color-hex">#0a0e1a</div>
+                            <div class="color-usage">Deep background sections</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #DCF2F1;">
+                            <span class="color-swatch-text" style="color: #0a0e1a;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Primary Navy (Text)</div>
+                            <div class="color-hex">#DCF2F1</div>
+                            <div class="color-usage">Primary text color in dark mode</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #8B9DC3;">
+                            <span class="color-swatch-text" style="color: #0a0e1a;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Secondary Blue</div>
+                            <div class="color-hex">#8B9DC3</div>
+                            <div class="color-usage">Secondary text, muted elements</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #5BA4E6;">
+                            <span class="color-swatch-text" style="color: #0a0e1a;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Highlight Blue</div>
+                            <div class="color-hex">#5BA4E6</div>
+                            <div class="color-usage">Accents, links, primary buttons</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #2D8A5F;">
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Success Green</div>
+                            <div class="color-hex">#2D8A5F</div>
+                            <div class="color-usage">Same as light mode</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #8B9DC3;">
+                            <span class="color-swatch-text" style="color: #0a0e1a;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Body Gray</div>
+                            <div class="color-hex">#8B9DC3</div>
+                            <div class="color-usage">Body text in dark mode</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #365486;">
+                            <span class="color-swatch-text" style="color: #DCF2F1;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Border Gray</div>
+                            <div class="color-hex">#365486</div>
+                            <div class="color-usage">Borders, dividers in dark mode</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #1a1b3d;">
+                            <span class="color-swatch-text" style="color: #DCF2F1;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">Light BG</div>
+                            <div class="color-hex">#1a1b3d</div>
+                            <div class="color-usage">Card backgrounds, elevated sections</div>
+                        </div>
+                    </div>
+
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #0F1035;">
+                            <span class="color-swatch-text" style="color: #DCF2F1;">Aa</span>
+                        </div>
+                        <div class="color-info">
+                            <div class="color-name">White (Background)</div>
+                            <div class="color-hex">#0F1035</div>
+                            <div class="color-usage">Main background in dark mode</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dark Mode Comparison Section -->
+        <div class="section">
+            <h2 class="section-title">Light Mode vs Dark Mode</h2>
+
+            <div class="mode-comparison">
+                <div class="mode-preview light-mode">
+                    <div class="mode-preview-header">Light Mode</div>
+                    <div class="mode-preview-content">
+                        <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; margin-bottom: 12px;">
+                            Higher yields through<br><span style="color: #1e88e5;">multi-asset arbitrage</span>
+                        </div>
+                        <p class="preview-text">
+                            Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins.
+                        </p>
+                        <button class="preview-button">Mint USDi</button>
+                    </div>
+                </div>
+
+                <div class="mode-preview dark-mode">
+                    <div class="mode-preview-header">Dark Mode</div>
+                    <div class="mode-preview-content">
+                        <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; margin-bottom: 12px;">
+                            Higher yields through<br><span style="color: #5BA4E6;">multi-asset arbitrage</span>
+                        </div>
+                        <p class="preview-text" style="color: #8B9DC3;">
+                            Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins.
+                        </p>
+                        <button class="preview-button">Mint USDi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Components Section -->
+        <div class="section">
+            <h2 class="section-title">Components</h2>
+
+            <div style="display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 32px;">
+                <div style="text-align: center;">
+                    <div class="type-sample large-number green">15-25%</div>
+                    <div style="font-size: 13.6px; color: var(--text-secondary); margin-top: 8px;">Target APY</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="type-sample large-number">15+</div>
+                    <div style="font-size: 13.6px; color: var(--text-secondary); margin-top: 8px;">Asset Universe</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="type-sample large-number">1:1</div>
+                    <div style="font-size: 13.6px; color: var(--text-secondary); margin-top: 8px;">Minting Ratio</div>
+                </div>
+            </div>
+
+            <div class="button-examples">
+                <button class="btn-primary">Mint USDi</button>
+                <button class="btn-secondary">Learn More</button>
+                <span class="apy-badge">+22.4% APY</span>
+            </div>
+        </div>
+
+        <!-- Usage Guidelines -->
+        <div class="section">
+            <h2 class="section-title">Usage Guidelines</h2>
+
+            <div style="display: grid; gap: 24px;">
+                <div style="padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--color-highlight-blue);">
+                    <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">Logo Colors</strong>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        • Header navigation uses Primary Navy (#1a2b5f) for the C shape in light mode only<br>
+                        • Footer and dark mode always use Secondary Blue (#8B9DC3) for the C shape<br>
+                        • The balance line and dot are always Highlight Blue (#5BA4E6) across all contexts
+                    </p>
+                </div>
+
+                <div style="padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--color-success-green);">
+                    <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">Typography Hierarchy</strong>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        • Use Playfair Display for all headings and large numbers<br>
+                        • Use Source Serif 4 for body text, labels, and buttons<br>
+                        • Use Noto Sans exclusively for currency symbols ($) to ensure single-stroke design<br>
+                        • Enable 'lnum' and 'pnum' font features for tabular numbers
+                    </p>
+                </div>
+
+                <div style="padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--color-primary-navy);">
+                    <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">Dark Mode Implementation</strong>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        • Primary text changes from #1a2b5f to #DCF2F1<br>
+                        • Background changes from #ffffff to #0F1035<br>
+                        • Cards/elevated surfaces use #1a1b3d<br>
+                        • Borders change from #e8eaed to #365486<br>
+                        • Primary buttons become #5BA4E6 with dark text (#0f1a3d)
+                    </p>
+                </div>
+
+                <div style="padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--color-secondary-blue);">
+                    <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">Color Application</strong>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        • Success Green (#2d8a5f) for APY percentages and positive metrics<br>
+                        • Highlight Blue (#1e88e5 light / #5BA4E6 dark) for accents and CTAs<br>
+                        • Body Gray (#5a6577 light / #8B9DC3 dark) for secondary text<br>
+                        • Border Gray (#e8eaed light / #365486 dark) for subtle dividers
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('cutwater-brand-theme', newTheme);
+        }
+
+        // Initialize theme from localStorage or default to light
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('cutwater-brand-theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</body>
+</html>
