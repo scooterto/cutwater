@@ -4,7 +4,15 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 
 ---
 
-## V3 Pages (Latest)
+## V4 Pages (Latest)
+
+| Page | URL |
+|------|-----|
+| Landing Page V4 | https://scooterto.github.io/cutwater/v4.html |
+
+---
+
+## V3 Pages
 
 | Page | URL |
 |------|-----|
