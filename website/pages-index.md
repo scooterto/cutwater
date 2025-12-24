@@ -9,6 +9,7 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 | Page | URL |
 |------|-----|
 | Landing Page V4 | https://scooterto.github.io/cutwater/v4.html |
+| Brand Guidelines V4 | https://scooterto.github.io/cutwater/website/brand-guidelines-v4.html |
 
 ---
 
