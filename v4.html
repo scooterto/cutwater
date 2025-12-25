@@ -30,9 +30,9 @@
         /* Dark Mode - Matches cutwater-landing.html */
         body.dark-mode {
             --dark-navy: #0a0e1a;
-            --primary-navy: #DCF2F1;
+            --primary-navy: #ffffff;
             --secondary-blue: #8B9DC3;
-            --highlight-blue: #5BA4E6;
+            --highlight-blue: #ffffff;
             --success-green: #2D8A5F;
             --body-gray: #8B9DC3;
             --border-gray: #365486;
@@ -115,20 +115,7 @@
             color: var(--primary-navy);
         }
 
-        /* Logo Colors - Light Mode */
-        .logo-c {
-            stroke: #8B9DC3 !important;
-        }
-
-        .logo-line {
-            stroke: #5BA4E6 !important;
-        }
-
-        .logo-dot {
-            fill: #5BA4E6 !important;
-        }
-
-        /* Header/Nav Logo - Light Mode Only */
+        /* Logo on Light Background (Header) */
         .nav .logo-c {
             stroke: #1a2b5f !important;
         }
@@ -141,17 +128,22 @@
             fill: #5BA4E6 !important;
         }
 
-        /* Dark Mode Logo Colors */
-        body.dark-mode .logo-c {
-            stroke: #8B9DC3 !important;
+        /* Logo on Dark Background (Footer - both modes) */
+        .footer .logo-c {
+            stroke: #ffffff !important;
         }
 
-        body.dark-mode .logo-line {
+        .footer .logo-line {
             stroke: #5BA4E6 !important;
         }
 
-        body.dark-mode .logo-dot {
+        .footer .logo-dot {
             fill: #5BA4E6 !important;
+        }
+
+        /* Dark Mode Header Logo */
+        body.dark-mode .nav .logo-c {
+            stroke: #ffffff !important;
         }
 
         /* Animated Balance Line */
@@ -296,12 +288,22 @@
             transition: opacity 0.3s ease;
         }
 
-        body.dark-mode .sun-icon {
+        /* Light mode: show moon (to switch to dark) */
+        .sun-icon {
             display: none;
         }
 
-        body.dark-mode .moon-icon {
+        .moon-icon {
             display: block !important;
+        }
+
+        /* Dark mode: show sun (to switch to light) */
+        body.dark-mode .sun-icon {
+            display: block !important;
+        }
+
+        body.dark-mode .moon-icon {
+            display: none !important;
         }
 
         .btn {
@@ -369,7 +371,8 @@
         .hero-content {
             display: grid;
             grid-template-columns: 1.1fr 1fr;
-            gap: 64px;
+            grid-template-rows: auto auto;
+            gap: 0 64px;
             align-items: start;
             position: relative;
             z-index: 1;
@@ -411,7 +414,14 @@
         .hero-buttons {
             display: flex;
             gap: 16px;
-            margin-bottom: 48px;
+            margin-bottom: 0;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            grid-row: 1;
+            grid-column: 1;
         }
 
         .btn-hero {
@@ -466,6 +476,9 @@
             gap: 48px;
             padding-top: 32px;
             border-top: 1px solid var(--border-gray);
+            grid-row: 2;
+            grid-column: 1;
+            margin-top: 48px;
         }
 
         .hero-stat-value {
@@ -492,7 +505,12 @@
 
         /* Hero Visual */
         .hero-visual {
-            padding-top: 48px;
+            padding-top: 0;
+            display: flex;
+            align-items: flex-start;
+            grid-row: 1;
+            grid-column: 2;
+            align-self: stretch;
         }
 
         /* USDi Card */
@@ -501,7 +519,12 @@
             border: 1px solid var(--border-gray);
             border-radius: 8px;
             padding: 32px;
+            padding-bottom: 24px;
             box-shadow: 0 20px 60px rgba(26, 43, 95, 0.08);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .usdi-header {
@@ -553,9 +576,12 @@
 
         /* Chart */
         .chart-area {
-            height: 200px;
+            flex: 1;
+            min-height: 280px;
             position: relative;
-            margin-bottom: 16px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: flex-end;
         }
 
         .chart-svg {
@@ -1021,7 +1047,7 @@
         }
 
         body.dark-mode .cta-content h2 {
-            color: #DCF2F1;
+            color: #ffffff;
         }
 
         .cta-content p {
@@ -1083,14 +1109,14 @@
         }
 
         body.dark-mode .btn-cta-outline {
-            color: #DCF2F1;
-            border-color: rgba(220, 242, 241, 0.4);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         body.dark-mode .btn-cta-outline:hover {
-            background: rgba(220, 242, 241, 0.1);
-            border-color: rgba(220, 242, 241, 0.6);
-            box-shadow: 0 0 24px rgba(139, 157, 195, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 24px rgba(255, 255, 255, 0.4);
         }
 
         /* ===== Footer - Figma Exact ===== */
@@ -1120,7 +1146,7 @@
         }
 
         body.dark-mode .footer-brand .logo-text {
-            color: #DCF2F1;
+            color: #ffffff;
         }
 
         .footer-brand p {
@@ -1150,7 +1176,7 @@
         }
 
         body.dark-mode .footer-links h5 {
-            color: #DCF2F1;
+            color: #ffffff;
         }
 
         .footer-links ul {
@@ -1336,7 +1362,7 @@
                                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
                                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
                             </svg>
-                            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                             </svg>
                         </button>
@@ -1361,48 +1387,49 @@
                         <a href="#" class="btn-hero btn-hero-primary">Mint USDi</a>
                         <a href="#" class="btn-hero btn-hero-secondary">Learn More</a>
                     </div>
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <div class="hero-stat-value green">$7.4M</div>
-                            <div class="hero-stat-label">Assets Under Management</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-value green">43.95%</div>
-                            <div class="hero-stat-label">Cumulative Return (22% yearly avg)</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-value">30+</div>
-                            <div class="hero-stat-label">Asset Diversification</div>
-                        </div>
-                    </div>
                 </div>
                 <div class="hero-visual">
                     <div class="usdi-card">
                         <div class="usdi-header">
                             <div>
-                                <p class="usdi-label">USDi Value</p>
-                                <div class="usdi-value">
-                                    <span class="usdi-currency">$</span>
-                                    <span class="usdi-amount">1.00</span>
-                                </div>
+                                <p class="usdi-label">Growth of $1</p>
                             </div>
-                            <span class="apy-badge">+22.4% APY</span>
+                            <div style="text-align: right;">
+                                <span class="apy-badge">+42.93%</span>
+                                <p style="font-size: 12px; color: #5a6577; margin-top: 4px;">Total Return</p>
+                            </div>
                         </div>
                         <div class="chart-area">
-                            <svg class="chart-svg" viewBox="0 0 437 200" preserveAspectRatio="none">
+                            <svg class="chart-svg" viewBox="0 0 440 280" preserveAspectRatio="xMidYMid meet">
+                                <!-- Y-axis labels (1.0 to 1.5) -->
+                                <text x="22" y="238" fill="#5a6577" font-family="Source Serif 4, serif" font-size="11" text-anchor="end">1.0</text>
+                                <text x="22" y="194" fill="#5a6577" font-family="Source Serif 4, serif" font-size="11" text-anchor="end">1.1</text>
+                                <text x="22" y="150" fill="#5a6577" font-family="Source Serif 4, serif" font-size="11" text-anchor="end">1.2</text>
+                                <text x="22" y="106" fill="#5a6577" font-family="Source Serif 4, serif" font-size="11" text-anchor="end">1.3</text>
+                                <text x="22" y="62" fill="#5a6577" font-family="Source Serif 4, serif" font-size="11" text-anchor="end">1.4</text>
+                                <text x="22" y="18" fill="#5a6577" font-family="Source Serif 4, serif" font-size="11" text-anchor="end">1.5</text>
+
                                 <!-- Grid lines -->
-                                <line x1="0" y1="50" x2="437" y2="50" stroke="#e8eaed" stroke-width="1"/>
-                                <line x1="0" y1="100" x2="437" y2="100" stroke="#e8eaed" stroke-width="1"/>
-                                <line x1="0" y1="150" x2="437" y2="150" stroke="#e8eaed" stroke-width="1"/>
-                                <!-- Fund performance line -->
-                                <path d="M0,180 C50,175 100,160 150,145 C200,130 250,115 300,95 C350,75 400,60 437,45"
+                                <line x1="30" y1="235" x2="430" y2="235" stroke="#e8eaed" stroke-width="1"/>
+                                <line x1="30" y1="191" x2="430" y2="191" stroke="#e8eaed" stroke-width="1"/>
+                                <line x1="30" y1="147" x2="430" y2="147" stroke="#e8eaed" stroke-width="1"/>
+                                <line x1="30" y1="103" x2="430" y2="103" stroke="#e8eaed" stroke-width="1"/>
+                                <line x1="30" y1="59" x2="430" y2="59" stroke="#e8eaed" stroke-width="1"/>
+                                <line x1="30" y1="15" x2="430" y2="15" stroke="#e8eaed" stroke-width="1"/>
+
+                                <!-- Cutwater growth line - smooth curve from 1.0 to ~1.44 -->
+                                <path d="M30,235 C55,232 90,220 130,198 C180,170 220,142 260,115 C300,90 340,68 380,55 C410,46 425,42 430,40"
                                       fill="none" stroke="#1a2b5f" stroke-width="2.5"/>
-                                <!-- Comparison dashed line -->
-                                <path d="M0,160 C50,140 100,170 150,130 C200,150 250,120 300,140 C350,110 400,130 437,100"
-                                      fill="none" stroke="#e8eaed" stroke-width="1.5" stroke-dasharray="4 4"/>
                                 <!-- Fill area -->
-                                <path d="M0,180 C50,175 100,160 150,145 C200,130 250,115 300,95 C350,75 400,60 437,45 L437,200 L0,200 Z"
+                                <path d="M30,235 C55,232 90,220 130,198 C180,170 220,142 260,115 C300,90 340,68 380,55 C410,46 425,42 430,40 L430,235 L30,235 Z"
                                       fill="url(#chartGradient)" opacity="0.2"/>
+
+                                <!-- X-axis labels -->
+                                <text x="30" y="258" fill="#5a6577" font-family="Source Serif 4, serif" font-size="10">Aug 24</text>
+                                <text x="160" y="258" fill="#5a6577" font-family="Source Serif 4, serif" font-size="10">Jan 25</text>
+                                <text x="280" y="258" fill="#5a6577" font-family="Source Serif 4, serif" font-size="10">Jun 25</text>
+                                <text x="395" y="258" fill="#5a6577" font-family="Source Serif 4, serif" font-size="10">Nov 25</text>
+
                                 <defs>
                                     <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                         <stop offset="0%" stop-color="#1a2b5f"/>
@@ -1411,16 +1438,20 @@
                                 </defs>
                             </svg>
                         </div>
-                        <div class="chart-legend">
-                            <div class="legend-item">
-                                <span class="legend-dot" style="background: #1a2b5f;"></span>
-                                Cutwater USDi
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-dot" style="background: #e8eaed;"></span>
-                                Ethena sUSDe
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value green">$7.4M</div>
+                        <div class="hero-stat-label">Assets Under Management</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value green">42.93%</div>
+                        <div class="hero-stat-label">Cumulative Return (22% yearly avg)</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">15+</div>
+                        <div class="hero-stat-label">Asset Diversification</div>
                     </div>
                 </div>
             </div>
