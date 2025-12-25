@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Comparison: Signifier + TT Commons Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Current Cutwater fonts for comparison -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Similar free alternatives for preview -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-primary: #1a2b5f;
+            --navy-light: #2c4a8c;
+            --gray-text: #5a6577;
+            --off-white: #f8f9fa;
+            --success: #2D8A5F;
+            --blue-accent: #5BA4E6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fff;
+            color: var(--navy-primary);
+            line-height: 1.6;
+            padding: 60px 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: var(--navy-primary);
+        }
+
+        .intro {
+            font-size: 1rem;
+            color: var(--gray-text);
+            margin-bottom: 48px;
+            max-width: 700px;
+        }
+
+        .font-section {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: var(--off-white);
+            border-radius: 16px;
+        }
+
+        .font-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .font-info h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 8px;
+        }
+
+        .font-info .foundry {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        .font-info .usage {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 12px;
+            background: var(--navy-primary);
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .font-link {
+            font-size: 0.85rem;
+            color: var(--blue-accent);
+            text-decoration: none;
+        }
+
+        .font-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Signifier - using Cormorant Garamond as similar free alternative */
+        .signifier {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        /* TT Commons Pro - using DM Sans as similar free alternative */
+        .tt-commons {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        .display-row {
+            margin-bottom: 32px;
+        }
+
+        .display-label {
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .display-letters {
+            font-size: 32px;
+            line-height: 1.5;
+            color: var(--navy-primary);
+            letter-spacing: 1px;
+        }
+
+        .display-numbers {
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--navy-primary);
+        }
+
+        .display-numbers .success { color: var(--success); }
+        .display-numbers .accent { color: var(--blue-accent); }
+
+        .sample-headline {
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--navy-primary);
+            margin-bottom: 16px;
+        }
+
+        .sample-subhead {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--gray-text);
+            line-height: 1.4;
+        }
+
+        .sample-body {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--gray-text);
+            max-width: 600px;
+        }
+
+        .sample-cta {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 14px 32px;
+            background: var(--navy-primary);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .weights-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .weight-card {
+            text-align: center;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .weight-sample {
+            font-size: 36px;
+            color: var(--navy-primary);
+            margin-bottom: 8px;
+        }
+
+        .weight-name {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .comparison-card {
+            background: var(--off-white);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .comparison-card h3 {
+            font-size: 1rem;
+            color: var(--gray-text);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 32px;
+            margin-top: 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-text);
+        }
+
+        .note-box {
+            margin-top: 48px;
+            padding: 24px;
+            background: #fff3cd;
+            border-radius: 12px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .note-box h4 {
+            font-size: 1rem;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .note-box p {
+            font-size: 0.9rem;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Font Comparison: Signifier + TT Commons Pro</h1>
+        <p class="intro">Premium typography pairing used by financial services firms. Signifier for editorial headlines, TT Commons Pro for clean body text and CTAs. Below shows similar free alternatives for preview.</p>
+
+        <!-- Signifier Section -->
+        <div class="font-section">
+            <div class="font-header">
+                <div class="font-info">
+                    <h2>Signifier</h2>
+                    <p class="foundry">Klim Type Foundry</p>
+                    <span class="usage">Headlines</span>
+                </div>
+                <a href="https://klim.co.nz/retail-fonts/signifier/" target="_blank" class="font-link">View on Klim →</a>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Uppercase</p>
+                <p class="display-letters signifier">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Lowercase</p>
+                <p class="display-letters signifier">abcdefghijklmnopqrstuvwxyz</p>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Numbers</p>
+                <p class="display-numbers signifier">0123456789</p>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Financial Numbers</p>
+                <p class="display-numbers signifier">
+                    <span class="success">+43.95%</span> &nbsp;
+                    $7,413,178 &nbsp;
+                    <span class="accent">15-25%</span>
+                </p>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Sample Headline</p>
+                <p class="sample-headline signifier">Higher yields through multi-asset arbitrage</p>
+                <p class="sample-subhead signifier">Delta-neutral strategies for consistent returns</p>
+            </div>
+
+            <p class="display-label">Weights</p>
+            <div class="weights-grid">
+                <div class="weight-card">
+                    <p class="weight-sample signifier" style="font-weight: 300;">Aa</p>
+                    <p class="weight-name">Light</p>
+                </div>
+                <div class="weight-card">
+                    <p class="weight-sample signifier" style="font-weight: 400;">Aa</p>
+                    <p class="weight-name">Regular</p>
+                </div>
+                <div class="weight-card">
+                    <p class="weight-sample signifier" style="font-weight: 500;">Aa</p>
+                    <p class="weight-name">Medium</p>
+                </div>
+                <div class="weight-card">
+                    <p class="weight-sample signifier" style="font-weight: 700;">Aa</p>
+                    <p class="weight-name">Bold</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TT Commons Pro Section -->
+        <div class="font-section">
+            <div class="font-header">
+                <div class="font-info">
+                    <h2>TT Commons Pro</h2>
+                    <p class="foundry">TypeType Foundry</p>
+                    <span class="usage">Body Text & CTAs</span>
+                </div>
+                <a href="https://typetype.org/fonts/tt-commons-pro/" target="_blank" class="font-link">View on TypeType →</a>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Uppercase</p>
+                <p class="display-letters tt-commons">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Lowercase</p>
+                <p class="display-letters tt-commons">abcdefghijklmnopqrstuvwxyz</p>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Numbers</p>
+                <p class="display-numbers tt-commons">0123456789</p>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Financial Numbers</p>
+                <p class="display-numbers tt-commons">
+                    <span class="success">+43.95%</span> &nbsp;
+                    $7,413,178 &nbsp;
+                    <span class="accent">15-25%</span>
+                </p>
+            </div>
+
+            <div class="display-row">
+                <p class="display-label">Sample Body Text</p>
+                <p class="sample-body tt-commons">Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY through delta-neutral strategies that minimize directional risk.</p>
+                <a href="#" class="sample-cta tt-commons">Mint USDi Now</a>
+            </div>
+
+            <p class="display-label" style="margin-top: 32px;">Weights</p>
+            <div class="weights-grid">
+                <div class="weight-card">
+                    <p class="weight-sample tt-commons" style="font-weight: 300;">Aa</p>
+                    <p class="weight-name">Light</p>
+                </div>
+                <div class="weight-card">
+                    <p class="weight-sample tt-commons" style="font-weight: 400;">Aa</p>
+                    <p class="weight-name">Regular</p>
+                </div>
+                <div class="weight-card">
+                    <p class="weight-sample tt-commons" style="font-weight: 500;">Aa</p>
+                    <p class="weight-name">Medium</p>
+                </div>
+                <div class="weight-card">
+                    <p class="weight-sample tt-commons" style="font-weight: 700;">Aa</p>
+                    <p class="weight-name">Bold</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side by Side Comparison -->
+        <h2 style="margin-bottom: 24px;">Side-by-Side Comparison</h2>
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <h3>Signifier + TT Commons Pro (Proposed)</h3>
+                <p class="sample-headline signifier" style="font-size: 36px; margin-bottom: 16px;">Multi-Asset Yield</p>
+                <p class="sample-body tt-commons" style="font-size: 16px;">Premium funding rate arbitrage across 39 perpetual futures contracts.</p>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <p class="stat-value signifier success">43.95%</p>
+                        <p class="stat-label tt-commons">Total Growth</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-value signifier">$7.4M</p>
+                        <p class="stat-label tt-commons">Total Assets</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comparison-card">
+                <h3>Playfair + Source Serif (Current)</h3>
+                <p style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 600; margin-bottom: 16px; color: var(--navy-primary);">Multi-Asset Yield</p>
+                <p style="font-family: 'Source Serif 4', serif; font-size: 16px; color: var(--gray-text);">Premium funding rate arbitrage across 39 perpetual futures contracts.</p>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <p class="stat-value success" style="font-family: 'Source Serif 4', serif;">43.95%</p>
+                        <p class="stat-label" style="font-family: 'Source Serif 4', serif;">Total Growth</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-value" style="font-family: 'Source Serif 4', serif;">$7.4M</p>
+                        <p class="stat-label" style="font-family: 'Source Serif 4', serif;">Total Assets</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <h4>Note: Premium Fonts</h4>
+            <p><strong>Signifier</strong> (~$200-500 license) and <strong>TT Commons Pro</strong> (~$100-300 license) are premium fonts. The preview above uses similar free alternatives: Cormorant Garamond (for Signifier) and DM Sans (for TT Commons Pro). To use the actual fonts, purchase licenses from Klim Type Foundry and TypeType.</p>
+        </div>
+    </div>
+</body>
+</html>

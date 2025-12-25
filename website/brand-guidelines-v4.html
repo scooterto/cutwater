@@ -41,9 +41,9 @@
         /* Dark Mode */
         [data-theme="dark"] {
             --color-dark-navy: #0a0e1a;
-            --color-primary-navy: #DCF2F1;
+            --color-primary-navy: #ffffff;
             --color-secondary-blue: #8B9DC3;
-            --color-highlight-blue: #5BA4E6;
+            --color-highlight-blue: #ffffff;
             --color-body-gray: #8B9DC3;
             --color-border-gray: #365486;
             --color-light-bg: #1a1b3d;
@@ -51,7 +51,7 @@
 
             --bg-primary: #0F1035;
             --bg-secondary: #1a1b3d;
-            --text-primary: #DCF2F1;
+            --text-primary: #ffffff;
             --text-secondary: #8B9DC3;
             --card-bg: #1a1b3d;
             --card-border: #365486;
@@ -550,7 +550,7 @@
 
         .mode-preview.dark-mode .mode-preview-content {
             background: #0F1035;
-            color: #DCF2F1;
+            color: #ffffff;
         }
 
         .preview-text {
@@ -621,10 +621,10 @@
             <h2 class="section-title">Logo Specifications</h2>
 
             <div class="logo-grid">
-                <!-- Header Logo - Light Mode -->
+                <!-- Logo on Light Background -->
                 <div class="logo-card">
-                    <h3>Header Logo</h3>
-                    <p>Used in navigation (light mode only)</p>
+                    <h3>Logo on Light Background</h3>
+                    <p>Used in header navigation (light mode)</p>
                     <div class="logo-display">
                         <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
@@ -642,43 +642,22 @@
                     </div>
                 </div>
 
-                <!-- Footer Logo - Light & Dark -->
+                <!-- Logo on Dark Background -->
                 <div class="logo-card">
-                    <h3>Footer Logo</h3>
-                    <p>Used in footer (both modes)</p>
+                    <h3>Logo on Dark Background</h3>
+                    <p>Used in footer (both modes) and dark mode header</p>
                     <div class="logo-display dark-bg">
                         <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#8B9DC3" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
                             <g class="balance-line">
                                 <path d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
                             </g>
                             <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
                         </svg>
-                        <span class="logo-text" style="color: #f8f9fa;">Cutwater</span>
+                        <span class="logo-text" style="color: #ffffff;">Cutwater</span>
                     </div>
                     <div class="logo-specs">
-                        <div>C: #8B9DC3</div>
-                        <div>Line: #5BA4E6</div>
-                        <div>Dot: #5BA4E6</div>
-                    </div>
-                </div>
-
-                <!-- Dark Mode Logo -->
-                <div class="logo-card">
-                    <h3>Dark Mode Logo</h3>
-                    <p>Same as footer logo</p>
-                    <div class="logo-display dark-bg">
-                        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#8B9DC3" stroke-width="4" stroke-linecap="round"/>
-                            <g class="balance-line">
-                                <path d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
-                            </g>
-                            <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
-                        </svg>
-                        <span class="logo-text" style="color: #DCF2F1;">Cutwater</span>
-                    </div>
-                    <div class="logo-specs">
-                        <div>C: #8B9DC3</div>
+                        <div>C: #ffffff</div>
                         <div>Line: #5BA4E6</div>
                         <div>Dot: #5BA4E6</div>
                     </div>
@@ -937,7 +916,7 @@
                 <div class="color-grid">
                     <div class="color-card">
                         <div class="color-swatch" style="background: #0a0e1a;">
-                            <span class="color-swatch-text" style="color: #DCF2F1;">Aa</span>
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
                         </div>
                         <div class="color-info">
                             <div class="color-name">Dark Navy</div>
@@ -947,13 +926,13 @@
                     </div>
 
                     <div class="color-card">
-                        <div class="color-swatch" style="background: #DCF2F1;">
+                        <div class="color-swatch" style="background: #ffffff;">
                             <span class="color-swatch-text" style="color: #0a0e1a;">Aa</span>
                         </div>
                         <div class="color-info">
-                            <div class="color-name">Primary Navy (Text)</div>
-                            <div class="color-hex">#DCF2F1</div>
-                            <div class="color-usage">Primary text color in dark mode</div>
+                            <div class="color-name">Primary Text (White)</div>
+                            <div class="color-hex">#ffffff</div>
+                            <div class="color-usage">Headings and primary text in dark mode</div>
                         </div>
                     </div>
 
@@ -1003,7 +982,7 @@
 
                     <div class="color-card">
                         <div class="color-swatch" style="background: #365486;">
-                            <span class="color-swatch-text" style="color: #DCF2F1;">Aa</span>
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
                         </div>
                         <div class="color-info">
                             <div class="color-name">Border Gray</div>
@@ -1014,7 +993,7 @@
 
                     <div class="color-card">
                         <div class="color-swatch" style="background: #1a1b3d;">
-                            <span class="color-swatch-text" style="color: #DCF2F1;">Aa</span>
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
                         </div>
                         <div class="color-info">
                             <div class="color-name">Light BG</div>
@@ -1025,7 +1004,7 @@
 
                     <div class="color-card">
                         <div class="color-swatch" style="background: #0F1035;">
-                            <span class="color-swatch-text" style="color: #DCF2F1;">Aa</span>
+                            <span class="color-swatch-text" style="color: #ffffff;">Aa</span>
                         </div>
                         <div class="color-info">
                             <div class="color-name">White (Background)</div>
@@ -1102,10 +1081,10 @@
 
             <div style="display: grid; gap: 24px;">
                 <div style="padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--color-highlight-blue);">
-                    <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">Logo Colors</strong>
+                    <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">Logo Versions (Only Two)</strong>
                     <p style="font-size: 14px; line-height: 1.6;">
-                        • Header navigation uses Primary Navy (#1a2b5f) for the C shape in light mode only<br>
-                        • Footer and dark mode always use Secondary Blue (#8B9DC3) for the C shape<br>
+                        • <strong>Light Background:</strong> Navy C (#1a2b5f) - Used in header (light mode only)<br>
+                        • <strong>Dark Background:</strong> White C (#ffffff) - Used in footer (both modes) and header (dark mode)<br>
                         • The balance line and dot are always Highlight Blue (#5BA4E6) across all contexts
                     </p>
                 </div>
@@ -1123,7 +1102,8 @@
                 <div style="padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid var(--color-primary-navy);">
                     <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">Dark Mode Implementation</strong>
                     <p style="font-size: 14px; line-height: 1.6;">
-                        • Primary text changes from #1a2b5f to #DCF2F1<br>
+                        • Primary text (headings) changes from #1a2b5f to #ffffff<br>
+                        • Logo "C" changes from #1a2b5f to #ffffff<br>
                         • Background changes from #ffffff to #0F1035<br>
                         • Cards/elevated surfaces use #1a1b3d<br>
                         • Borders change from #e8eaed to #365486<br>

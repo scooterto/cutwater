@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Brand Guidelines v2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-primary: #1a2b5f;
+            --navy-light: #2c4a8c;
+            --navy-deep: #0f1a3d;
+            --blue-accent: #5BA4E6;
+            --aqua: #7FC7D9;
+            --white: #FFFFFF;
+            --off-white: #f8f9fa;
+            --gray-light: #e8eaed;
+            --gray-text: #5a6577;
+            --success: #2D8A5F;
+            --warning: #c9a227;
+            --danger: #E53935;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--white);
+            color: var(--navy-primary);
+            line-height: 1.7;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy-primary);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .header-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .version-tag {
+            display: inline-block;
+            background: var(--blue-accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Section */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--blue-accent);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            max-width: 600px;
+            margin-bottom: 48px;
+        }
+
+        /* Logo Section */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .logo-card {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .logo-card.dark {
+            background: var(--navy-deep);
+        }
+
+        .logo-card svg {
+            width: 120px;
+            height: 120px;
+        }
+
+        .logo-card-label {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        /* Animated Balance Line */
+        @keyframes wave {
+            0% { transform: rotate(-24deg); }
+            50% { transform: rotate(24deg); }
+            100% { transform: rotate(-24deg); }
+        }
+
+        .balance-line {
+            transform-origin: 24px 24px;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        /* Logo Specs */
+        .logo-specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .spec-card {
+            background: var(--off-white);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .spec-label {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .spec-value {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .color-group {
+            margin-bottom: 32px;
+        }
+
+        .color-group-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy-primary);
+        }
+
+        .color-card {
+            display: flex;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .color-swatch {
+            width: 120px;
+            min-height: 100px;
+        }
+
+        .color-info {
+            flex: 1;
+            padding: 20px;
+            background: var(--white);
+        }
+
+        .color-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 8px;
+        }
+
+        .color-values {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            line-height: 1.8;
+        }
+
+        .color-values code {
+            background: var(--off-white);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.8rem;
+        }
+
+        /* Typography Section */
+        .type-specimen {
+            margin-bottom: 48px;
+        }
+
+        .type-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .type-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        .type-usage {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        .type-sample-display {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 4rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .type-sample-body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.25rem;
+            color: var(--navy-primary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .type-weights {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .type-weight {
+            text-align: center;
+        }
+
+        .type-weight-sample {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .type-weight-label {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+
+        /* Numbers Section */
+        .number-showcase {
+            background: var(--off-white);
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .number-sample {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 5rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            letter-spacing: -2px;
+        }
+
+        .number-sample .dollar {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+        }
+
+        .number-sample .plus {
+            font-size: 3rem;
+            vertical-align: super;
+            color: var(--blue-accent);
+        }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .number-card {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .number-card-value {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 8px;
+        }
+
+        .number-card-value .dollar {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+        }
+
+        .number-card-label {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+        }
+
+        /* Dollar Sign Comparison */
+        .dollar-comparison {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .dollar-card {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .dollar-card.correct {
+            border: 2px solid var(--success);
+        }
+
+        .dollar-card.incorrect {
+            border: 2px solid var(--danger);
+            opacity: 0.6;
+        }
+
+        .dollar-sample {
+            font-size: 6rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+            margin-bottom: 16px;
+        }
+
+        .dollar-card.correct .dollar-sample {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+        }
+
+        .dollar-card.incorrect .dollar-sample {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .dollar-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .dollar-status.correct {
+            color: var(--success);
+        }
+
+        .dollar-status.incorrect {
+            color: var(--danger);
+        }
+
+        /* Usage Examples */
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .usage-card {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .usage-label {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .usage-sample {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        .usage-sample .dollar {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+        }
+
+        /* Hierarchy */
+        .hierarchy-list {
+            background: var(--off-white);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .hierarchy-item {
+            display: flex;
+            align-items: baseline;
+            gap: 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .hierarchy-item:last-child {
+            border-bottom: none;
+        }
+
+        .hierarchy-meta {
+            width: 200px;
+            flex-shrink: 0;
+        }
+
+        .hierarchy-size {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        .hierarchy-specs {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+
+        .hierarchy-sample {
+            flex: 1;
+        }
+
+        .h1-sample {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        .h2-sample {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        .h3-sample {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--navy-primary);
+        }
+
+        .body-sample {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1rem;
+            color: var(--navy-primary);
+        }
+
+        .caption-sample {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 0.85rem;
+            color: var(--gray-text);
+        }
+
+        /* Dark Mode Colors */
+        .dark-mode-section {
+            background: var(--navy-deep);
+            margin: 0 -40px;
+            padding: 48px 40px;
+            border-radius: 12px;
+        }
+
+        .dark-mode-section .color-group-title {
+            color: var(--white);
+        }
+
+        .dark-mode-colors {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .dark-color-card {
+            text-align: center;
+        }
+
+        .dark-color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            border: 3px solid rgba(255,255,255,0.2);
+        }
+
+        .dark-color-name {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .dark-color-hex {
+            color: var(--aqua);
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--navy-primary);
+            color: var(--white);
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+        }
+
+        .footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Print Styles */
+        @media print {
+            .header { padding: 40px 0; }
+            .section { padding: 40px 0; }
+            .balance-line { animation: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <svg class="header-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="4" stroke-linecap="round"/>
+                <g class="balance-line">
+                    <path d="M24 14L24 34" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                </g>
+                <circle cx="24" cy="24" r="4" fill="#7FC7D9"/>
+            </svg>
+            <h1>Cutwater Brand Guidelines</h1>
+            <p>Visual Identity System</p>
+            <span class="version-tag">Version 2.0</span>
+        </div>
+    </header>
+
+    <!-- Logo Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-number">01</div>
+            <h2 class="section-title">Logo</h2>
+            <p class="section-desc">The Cutwater logo represents balance and stability in volatile markets. The "C" symbolizes protection, while the animated balance line conveys dynamic equilibrium.</p>
+
+            <div class="logo-grid">
+                <div>
+                    <div class="logo-card">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path d="M24 14L24 34" stroke="#2c4a8c" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                        </svg>
+                    </div>
+                    <p class="logo-card-label">Light Mode</p>
+                </div>
+                <div>
+                    <div class="logo-card dark">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="4" stroke-linecap="round"/>
+                            <g class="balance-line">
+                                <path d="M24 14L24 34" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <circle cx="24" cy="24" r="4" fill="#7FC7D9"/>
+                        </svg>
+                    </div>
+                    <p class="logo-card-label">Dark Mode</p>
+                </div>
+            </div>
+
+            <div class="logo-specs">
+                <div class="spec-card">
+                    <div class="spec-label">C Stroke Width</div>
+                    <div class="spec-value">4px</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Balance Line</div>
+                    <div class="spec-value">3px</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Wave Animation</div>
+                    <div class="spec-value">±24°</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Animation Duration</div>
+                    <div class="spec-value">3 seconds</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Dot Radius</div>
+                    <div class="spec-value">4px</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-label">Easing</div>
+                    <div class="spec-value">ease-in-out</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Palette Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-number">02</div>
+            <h2 class="section-title">Color Palette</h2>
+            <p class="section-desc">Our color system is inspired by Citadel's sophisticated aesthetic, featuring deep navy tones that convey trust, stability, and institutional credibility.</p>
+
+            <div class="color-group">
+                <h3 class="color-group-title">Primary Colors</h3>
+                <div class="color-grid">
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #1a2b5f;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Navy Primary</div>
+                            <div class="color-values">
+                                <code>#1a2b5f</code><br>
+                                RGB: 26, 43, 95<br>
+                                Primary brand color, headings
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #2c4a8c;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Navy Light</div>
+                            <div class="color-values">
+                                <code>#2c4a8c</code><br>
+                                RGB: 44, 74, 140<br>
+                                Hover states, accents
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #0f1a3d;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Navy Deep</div>
+                            <div class="color-values">
+                                <code>#0f1a3d</code><br>
+                                RGB: 15, 26, 61<br>
+                                Dark mode background
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #5BA4E6;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Blue Accent</div>
+                            <div class="color-values">
+                                <code>#5BA4E6</code><br>
+                                RGB: 91, 164, 230<br>
+                                Logo dot, highlights
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="color-group">
+                <h3 class="color-group-title">Neutral Colors</h3>
+                <div class="color-grid">
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #e8eaed;"></div>
+                        <div class="color-info">
+                            <div class="color-name">White</div>
+                            <div class="color-values">
+                                <code>#FFFFFF</code><br>
+                                Light mode background
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #f8f9fa;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Off White</div>
+                            <div class="color-values">
+                                <code>#f8f9fa</code><br>
+                                Card backgrounds, sections
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #e8eaed;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Gray Light</div>
+                            <div class="color-values">
+                                <code>#e8eaed</code><br>
+                                Borders, dividers
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #5a6577;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Gray Text</div>
+                            <div class="color-values">
+                                <code>#5a6577</code><br>
+                                Secondary text, captions
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="color-group">
+                <h3 class="color-group-title">Semantic Colors</h3>
+                <div class="color-grid">
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #2D8A5F;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Success</div>
+                            <div class="color-values">
+                                <code>#2D8A5F</code><br>
+                                Positive values, gains
+                            </div>
+                        </div>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #E53935;"></div>
+                        <div class="color-info">
+                            <div class="color-name">Danger</div>
+                            <div class="color-values">
+                                <code>#E53935</code><br>
+                                Negative values, losses
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dark-mode-section">
+                <h3 class="color-group-title">Dark Mode Logo Colors</h3>
+                <div class="dark-mode-colors">
+                    <div class="dark-color-card">
+                        <div class="dark-color-swatch" style="background: #7FC7D9;"></div>
+                        <div class="dark-color-name">C Stroke</div>
+                        <div class="dark-color-hex">#7FC7D9</div>
+                    </div>
+                    <div class="dark-color-card">
+                        <div class="dark-color-swatch" style="background: #5BA4E6;"></div>
+                        <div class="dark-color-name">Balance Line</div>
+                        <div class="dark-color-hex">#5BA4E6</div>
+                    </div>
+                    <div class="dark-color-card">
+                        <div class="dark-color-swatch" style="background: #7FC7D9;"></div>
+                        <div class="dark-color-name">Center Dot</div>
+                        <div class="dark-color-hex">#7FC7D9</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-number">03</div>
+            <h2 class="section-title">Typography</h2>
+            <p class="section-desc">Our typography system uses Playfair Display for headings and Source Serif 4 for body text, creating an elegant, professional aesthetic inspired by Citadel.</p>
+
+            <div class="type-specimen">
+                <div class="type-header">
+                    <span class="type-name">Playfair Display</span>
+                    <span class="type-usage">Headlines, Numbers, Display</span>
+                </div>
+                <div class="type-sample-display">
+                    Cutwater Partners
+                </div>
+                <div class="type-weights">
+                    <div class="type-weight">
+                        <div class="type-weight-sample" style="font-family: 'Playfair Display'; font-weight: 400;">Aa</div>
+                        <div class="type-weight-label">Regular 400</div>
+                    </div>
+                    <div class="type-weight">
+                        <div class="type-weight-sample" style="font-family: 'Playfair Display'; font-weight: 500;">Aa</div>
+                        <div class="type-weight-label">Medium 500</div>
+                    </div>
+                    <div class="type-weight">
+                        <div class="type-weight-sample" style="font-family: 'Playfair Display'; font-weight: 600;">Aa</div>
+                        <div class="type-weight-label">SemiBold 600</div>
+                    </div>
+                    <div class="type-weight">
+                        <div class="type-weight-sample" style="font-family: 'Playfair Display'; font-weight: 700;">Aa</div>
+                        <div class="type-weight-label">Bold 700</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="type-specimen">
+                <div class="type-header">
+                    <span class="type-name">Source Serif 4</span>
+                    <span class="type-usage">Body Text, Paragraphs, UI</span>
+                </div>
+                <div class="type-sample-body">
+                    Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY while maintaining strict delta neutrality.
+                </div>
+                <div class="type-weights">
+                    <div class="type-weight">
+                        <div class="type-weight-sample" style="font-family: 'Source Serif 4'; font-weight: 400;">Aa</div>
+                        <div class="type-weight-label">Regular 400</div>
+                    </div>
+                    <div class="type-weight">
+                        <div class="type-weight-sample" style="font-family: 'Source Serif 4'; font-weight: 500;">Aa</div>
+                        <div class="type-weight-label">Medium 500</div>
+                    </div>
+                    <div class="type-weight">
+                        <div class="type-weight-sample" style="font-family: 'Source Serif 4'; font-weight: 600;">Aa</div>
+                        <div class="type-weight-label">SemiBold 600</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="color-group-title" style="margin-top: 48px;">Type Hierarchy</h3>
+            <div class="hierarchy-list">
+                <div class="hierarchy-item">
+                    <div class="hierarchy-meta">
+                        <div class="hierarchy-size">H1 / Display</div>
+                        <div class="hierarchy-specs">Playfair Display 600<br>48px / 1.2</div>
+                    </div>
+                    <div class="hierarchy-sample">
+                        <span class="h1-sample">Page Title</span>
+                    </div>
+                </div>
+                <div class="hierarchy-item">
+                    <div class="hierarchy-meta">
+                        <div class="hierarchy-size">H2 / Section</div>
+                        <div class="hierarchy-specs">Playfair Display 600<br>36px / 1.3</div>
+                    </div>
+                    <div class="hierarchy-sample">
+                        <span class="h2-sample">Section Heading</span>
+                    </div>
+                </div>
+                <div class="hierarchy-item">
+                    <div class="hierarchy-meta">
+                        <div class="hierarchy-size">H3 / Subsection</div>
+                        <div class="hierarchy-specs">Playfair Display 600<br>24px / 1.4</div>
+                    </div>
+                    <div class="hierarchy-sample">
+                        <span class="h3-sample">Subsection Title</span>
+                    </div>
+                </div>
+                <div class="hierarchy-item">
+                    <div class="hierarchy-meta">
+                        <div class="hierarchy-size">Body</div>
+                        <div class="hierarchy-specs">Source Serif 4 400<br>16px / 1.7</div>
+                    </div>
+                    <div class="hierarchy-sample">
+                        <span class="body-sample">Body text for paragraphs and general content. Optimized for readability.</span>
+                    </div>
+                </div>
+                <div class="hierarchy-item">
+                    <div class="hierarchy-meta">
+                        <div class="hierarchy-size">Caption</div>
+                        <div class="hierarchy-specs">Source Serif 4 400<br>14px / 1.5</div>
+                    </div>
+                    <div class="hierarchy-sample">
+                        <span class="caption-sample">Captions, labels, and secondary information</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Numbers Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-number">04</div>
+            <h2 class="section-title">Numbers & Currency</h2>
+            <p class="section-desc">Financial data uses Playfair Display for elegant, readable numbers. Dollar signs use Arial for a clean single-stroke appearance.</p>
+
+            <div class="number-showcase">
+                <div class="number-sample">
+                    <span class="dollar">$</span>147.2M<span class="plus">+</span>
+                </div>
+            </div>
+
+            <div class="number-grid">
+                <div class="number-card">
+                    <div class="number-card-value"><span class="dollar">$</span>7,413,178</div>
+                    <div class="number-card-label">Portfolio Value</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-card-value">15-25%</div>
+                    <div class="number-card-label">APY Range</div>
+                </div>
+                <div class="number-card">
+                    <div class="number-card-value">2.52</div>
+                    <div class="number-card-label">Sharpe Ratio</div>
+                </div>
+            </div>
+
+            <h3 class="color-group-title" style="margin-top: 48px;">Dollar Sign Treatment</h3>
+            <div class="dollar-comparison">
+                <div class="dollar-card correct">
+                    <div class="dollar-sample">$</div>
+                    <div class="dollar-status correct">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Correct — Single Stroke (Arial)
+                    </div>
+                </div>
+                <div class="dollar-card incorrect">
+                    <div class="dollar-sample">$</div>
+                    <div class="dollar-status incorrect">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        Avoid — Double Stroke
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="color-group-title" style="margin-top: 48px;">Usage Examples</h3>
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <div class="usage-label">Large Values</div>
+                    <div class="usage-sample"><span class="dollar">$</span>2.4M</div>
+                </div>
+                <div class="usage-card">
+                    <div class="usage-label">Precise Values</div>
+                    <div class="usage-sample"><span class="dollar">$</span>97,245.32</div>
+                </div>
+                <div class="usage-card">
+                    <div class="usage-label">Percentages</div>
+                    <div class="usage-sample">+43.60%</div>
+                </div>
+                <div class="usage-card">
+                    <div class="usage-label">Ratios</div>
+                    <div class="usage-sample">2.52</div>
+                </div>
+            </div>
+
+            <div class="spec-card" style="margin-top: 32px; background: var(--navy-deep); color: var(--white);">
+                <div class="spec-label" style="color: var(--aqua);">CSS Implementation</div>
+                <pre style="font-family: 'SF Mono', Monaco, monospace; font-size: 0.85rem; line-height: 1.6; color: var(--off-white);">
+/* Number font */
+--font-number: 'Playfair Display', Georgia, serif;
+
+/* Single-stroke dollar sign */
+.dollar {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+/* Usage */
+&lt;span class="dollar"&gt;$&lt;/span&gt;7,413,178</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <svg class="footer-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#7FC7D9" stroke-width="4" stroke-linecap="round"/>
+                <g class="balance-line">
+                    <path d="M24 14L24 34" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                </g>
+                <circle cx="24" cy="24" r="4" fill="#7FC7D9"/>
+            </svg>
+            <p>&copy; 2025 Cutwater Partners. All rights reserved.</p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">Brand Guidelines v2.0</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutwater Branding Guide v3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Noto+Sans:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Primary Colors */
+            --color-dark-navy: #0F1A3D;
+            --color-primary-navy: #1A2B5F;
+            --color-secondary-blue: #2C4A8C;
+
+            /* Accent Colors */
+            --color-highlight-blue: #1E88E5;
+            --color-success-green: #2D8A5F;
+
+            /* Neutral Colors */
+            --color-body-gray: #5A6577;
+            --color-border-gray: #E8EAED;
+            --color-light-text: #F8F9FA;
+            --color-white: #FFFFFF;
+
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Source Serif 4', serif;
+            --font-currency: 'Noto Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: #F5F7FA;
+            color: var(--color-body-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--color-primary-navy);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--color-body-gray);
+            margin-bottom: 60px;
+        }
+
+        .section {
+            background: var(--color-white);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--color-border-gray);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-primary-navy);
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--color-border-gray);
+        }
+
+        /* Typography Section */
+        .type-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--color-border-gray);
+            align-items: center;
+        }
+
+        .type-row:last-child {
+            border-bottom: none;
+        }
+
+        .type-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-body-gray);
+        }
+
+        .type-specs {
+            font-size: 13px;
+            color: var(--color-secondary-blue);
+            margin-top: 4px;
+        }
+
+        .type-sample.h1 {
+            font-family: var(--font-heading);
+            font-size: 56px;
+            font-weight: 600;
+            color: var(--color-primary-navy);
+            letter-spacing: -0.56px;
+            line-height: 1.15;
+        }
+
+        .type-sample.h1 .highlight {
+            color: var(--color-highlight-blue);
+        }
+
+        .type-sample.h2 {
+            font-family: var(--font-heading);
+            font-size: 21.6px;
+            font-weight: 500;
+            color: var(--color-secondary-blue);
+            line-height: 1.7;
+        }
+
+        .type-sample.large-number {
+            font-family: var(--font-heading);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--color-primary-navy);
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        .type-sample.large-number .green {
+            color: var(--color-success-green);
+        }
+
+        .type-sample.currency {
+            font-size: 40px;
+            color: var(--color-primary-navy);
+        }
+
+        .type-sample.currency .symbol {
+            font-family: var(--font-currency);
+            font-weight: 500;
+        }
+
+        .type-sample.currency .number {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        .type-sample.body {
+            font-family: var(--font-body);
+            font-size: 17.6px;
+            font-weight: 400;
+            color: var(--color-body-gray);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .type-sample.small-body {
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 400;
+            color: var(--color-body-gray);
+            line-height: 1.7;
+        }
+
+        .type-sample.button-text {
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            color: var(--color-primary-navy);
+            line-height: 1.7;
+        }
+
+        .type-sample.accent {
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 600;
+            color: var(--color-success-green);
+            line-height: 1.7;
+        }
+
+        .type-sample.disclaimer {
+            font-family: var(--font-body);
+            font-size: 12.8px;
+            font-weight: 400;
+            color: var(--color-light-text);
+            line-height: 1.7;
+            background: var(--color-dark-navy);
+            padding: 12px 16px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Color Section */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .color-group-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--color-secondary-blue);
+            margin-bottom: 16px;
+            grid-column: 1 / -1;
+            margin-top: 24px;
+        }
+
+        .color-group-title:first-child {
+            margin-top: 0;
+        }
+
+        .color-card {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-border-gray);
+        }
+
+        .color-swatch {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-swatch-text {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .color-info {
+            padding: 16px;
+            background: var(--color-white);
+        }
+
+        .color-name {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-primary-navy);
+            margin-bottom: 4px;
+        }
+
+        .color-hex {
+            font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+            color: var(--color-body-gray);
+            margin-bottom: 8px;
+        }
+
+        .color-usage {
+            font-size: 13px;
+            color: var(--color-body-gray);
+        }
+
+        /* Button Examples */
+        .button-examples {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border-gray);
+        }
+
+        .btn-primary {
+            background: var(--color-primary-navy);
+            color: var(--color-white);
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            padding: 20px 36px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-primary-navy);
+            font-family: var(--font-body);
+            font-size: 15.2px;
+            font-weight: 500;
+            padding: 19px 35px;
+            border: 1px solid var(--color-primary-navy);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .apy-badge {
+            background: rgba(45, 138, 95, 0.1);
+            color: var(--color-success-green);
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Number Examples */
+        .number-examples {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .number-item {
+            text-align: center;
+        }
+
+        .number-value {
+            font-family: var(--font-heading);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--color-primary-navy);
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+
+        .number-value.green {
+            color: var(--color-success-green);
+        }
+
+        .number-label {
+            font-family: var(--font-body);
+            font-size: 13.6px;
+            color: var(--color-body-gray);
+            margin-top: 4px;
+        }
+
+        /* Font Showcase */
+        .font-showcase {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--color-border-gray);
+        }
+
+        .font-showcase-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-body-gray);
+            margin-bottom: 16px;
+        }
+
+        .alphabet-row {
+            margin-bottom: 24px;
+        }
+
+        .alphabet-label {
+            font-size: 12px;
+            color: var(--color-secondary-blue);
+            margin-bottom: 8px;
+        }
+
+        .alphabet-playfair {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--color-primary-navy);
+            letter-spacing: 1px;
+        }
+
+        .alphabet-source {
+            font-family: var(--font-body);
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--color-primary-navy);
+        }
+
+        .numbers-row {
+            font-feature-settings: 'lnum' 1, 'pnum' 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Cutwater</h1>
+        <p class="page-subtitle">Branding Guidelines v3</p>
+
+        <!-- Typography Section -->
+        <div class="section">
+            <h2 class="section-title">Typography</h2>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">H1 - Main Heading</div>
+                    <div class="type-specs">Playfair Display SemiBold, 56px</div>
+                </div>
+                <div class="type-sample h1">
+                    Higher yields through<br><span class="highlight">multi-asset arbitrage</span>
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">H2 - Subheading</div>
+                    <div class="type-specs">Playfair Display Medium, 21.6px</div>
+                </div>
+                <div class="type-sample h2">
+                    Delta-Neutral Funding Rate Strategy
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Large Numbers</div>
+                    <div class="type-specs">Playfair Display SemiBold, 40px</div>
+                </div>
+                <div class="type-sample large-number">
+                    <span class="green">15-25%</span> &nbsp; 15+ &nbsp; 1:1
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Currency Display</div>
+                    <div class="type-specs">Noto Sans Medium ($) + Playfair Display</div>
+                </div>
+                <div class="type-sample currency">
+                    <span class="symbol">$</span><span class="number">1.00</span>
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Body Text</div>
+                    <div class="type-specs">Source Serif 4 Regular, 17.6px</div>
+                </div>
+                <div class="type-sample body">
+                    Cutwater expands beyond ETH and BTC to capture premium funding rates from carefully selected altcoins. Our multi-asset approach delivers 15-25% APY while maintaining strict delta neutrality.
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Small Body / Labels</div>
+                    <div class="type-specs">Source Serif 4 Regular, 13.6px</div>
+                </div>
+                <div class="type-sample small-body">
+                    Target APY &nbsp;&nbsp;|&nbsp;&nbsp; Asset Universe &nbsp;&nbsp;|&nbsp;&nbsp; Minting Ratio
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Button Text</div>
+                    <div class="type-specs">Source Serif 4 Medium, 15.2px</div>
+                </div>
+                <div class="type-sample button-text">
+                    Mint USDi &nbsp;&nbsp;|&nbsp;&nbsp; Learn More
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Accent Text</div>
+                    <div class="type-specs">Source Serif 4 SemiBold, 13.6px</div>
+                </div>
+                <div class="type-sample accent">
+                    +22.4% APY
+                </div>
+            </div>
+
+            <div class="type-row">
+                <div>
+                    <div class="type-label">Disclaimer</div>
+                    <div class="type-specs">Source Serif 4 Regular, 12.8px, 60% opacity</div>
+                </div>
+                <div class="type-sample disclaimer">
+                    This is for accredited investors only. Past performance does not guarantee future results.
+                </div>
+            </div>
+
+            <!-- Font Showcase -->
+            <div class="font-showcase">
+                <div class="font-showcase-title">Font Characters</div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Playfair Display - Letters</div>
+                    <div class="alphabet-playfair">
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                        abcdefghijklmnopqrstuvwxyz
+                    </div>
+                </div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Playfair Display - Numbers</div>
+                    <div class="alphabet-playfair numbers-row">
+                        0123456789 &nbsp; 15-25% &nbsp; $1.00 &nbsp; 1:1
+                    </div>
+                </div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Source Serif 4 - Letters</div>
+                    <div class="alphabet-source">
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                        abcdefghijklmnopqrstuvwxyz
+                    </div>
+                </div>
+
+                <div class="alphabet-row">
+                    <div class="alphabet-label">Source Serif 4 - Numbers</div>
+                    <div class="alphabet-source numbers-row">
+                        0123456789 &nbsp; +22.4% &nbsp; $1,000,000
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Palette Section -->
+        <div class="section">
+            <h2 class="section-title">Color Palette</h2>
+
+            <div class="color-grid">
+                <div class="color-group-title">Primary Colors</div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0F1A3D;">
+                        <span class="color-swatch-text" style="color: #F8F9FA;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Dark Navy</div>
+                        <div class="color-hex">#0F1A3D</div>
+                        <div class="color-usage">Top banner background, dark sections</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1A2B5F;">
+                        <span class="color-swatch-text" style="color: #FFFFFF;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Primary Navy</div>
+                        <div class="color-hex">#1A2B5F</div>
+                        <div class="color-usage">Main headings, buttons, key text</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #2C4A8C;">
+                        <span class="color-swatch-text" style="color: #FFFFFF;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Secondary Blue</div>
+                        <div class="color-hex">#2C4A8C</div>
+                        <div class="color-usage">Subheadings, secondary elements</div>
+                    </div>
+                </div>
+
+                <div class="color-group-title">Accent Colors</div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1E88E5;">
+                        <span class="color-swatch-text" style="color: #FFFFFF;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Highlight Blue</div>
+                        <div class="color-hex">#1E88E5</div>
+                        <div class="color-usage">Accent words, links, highlights</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #2D8A5F;">
+                        <span class="color-swatch-text" style="color: #FFFFFF;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Success Green</div>
+                        <div class="color-hex">#2D8A5F</div>
+                        <div class="color-usage">APY percentages, positive indicators</div>
+                    </div>
+                </div>
+
+                <div class="color-group-title">Neutral Colors</div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #5A6577;">
+                        <span class="color-swatch-text" style="color: #FFFFFF;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Body Gray</div>
+                        <div class="color-hex">#5A6577</div>
+                        <div class="color-usage">Body text, descriptions</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #E8EAED;">
+                        <span class="color-swatch-text" style="color: #1A2B5F;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Border Gray</div>
+                        <div class="color-hex">#E8EAED</div>
+                        <div class="color-usage">Borders, dividers, grid lines</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #F8F9FA; border: 1px solid #E8EAED;">
+                        <span class="color-swatch-text" style="color: #1A2B5F;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">Light Text</div>
+                        <div class="color-hex">#F8F9FA</div>
+                        <div class="color-usage">Text on dark backgrounds</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #E8EAED;">
+                        <span class="color-swatch-text" style="color: #1A2B5F;">Aa</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">White</div>
+                        <div class="color-hex">#FFFFFF</div>
+                        <div class="color-usage">Backgrounds, button text</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Components Section -->
+        <div class="section">
+            <h2 class="section-title">Components</h2>
+
+            <div class="number-examples">
+                <div class="number-item">
+                    <div class="number-value green">15-25%</div>
+                    <div class="number-label">Target APY</div>
+                </div>
+                <div class="number-item">
+                    <div class="number-value">15+</div>
+                    <div class="number-label">Asset Universe</div>
+                </div>
+                <div class="number-item">
+                    <div class="number-value">1:1</div>
+                    <div class="number-label">Minting Ratio</div>
+                </div>
+            </div>
+
+            <div class="button-examples">
+                <button class="btn-primary">Mint USDi</button>
+                <button class="btn-secondary">Learn More</button>
+                <span class="apy-badge">+22.4% APY</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

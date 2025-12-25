@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions | Cutwater</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Noto+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="#" class="logo">
+            <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                <g class="balance-line">
+                    <path class="logo-line" d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                </g>
+                <circle class="logo-dot" cx="24" cy="24" r="4" fill="#5BA4E6"/>
+            </svg>
+            <span class="logo-text">Cutwater</span>
+        </a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path class="logo-c" d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38" stroke="#1a2b5f" stroke-width="4" stroke-linecap="round"/>
+                    <g class="balance-line">
+                        <path class="logo-line" d="M14 24L34 24" stroke="#5BA4E6" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <circle class="logo-dot" cx="24" cy="24" r="4" fill="#5BA4E6"/>
+                </svg>
+                <span class="logo-text">Cutwater</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        My Assets
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        Transactions
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 20V10"/>
+                            <path d="M12 20V4"/>
+                            <path d="M6 20v-6"/>
+                        </svg>
+                        Analytics
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                        Docs
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="#">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    Twitter
+                </a>
+                <a href="#">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+                    </svg>
+                    Discord
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1 class="page-title">Transactions</h1>
+
+            <!-- Cumulative Interest Section -->
+            <div class="section-title">Cumulative Interest</div>
+
+            <div class="tx-row interest-row">
+                <div class="tx-type">
+                    <svg class="tx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                    <span class="tx-label">Accrued Interest</span>
+                </div>
+                <div class="tx-amount">
+                    <div class="token-icon"><span class="dollar">$</span></div>
+                    <span class="amount-value">627.200547</span>
+                    <span class="amount-token">USDi</span>
+                </div>
+                <div class="tx-address"><span>To:</span>S85E..Nr3x</div>
+                <div class="tx-status accruing">Accruing</div>
+                <div class="tx-cumulative">
+                    <div><span class="cum-value">2286.771915</span><span class="cum-token">USDi</span></div>
+                    <div class="cum-label">Cum Interest</div>
+                </div>
+                <div class="tx-actions">
+                    <button class="action-btn" title="View details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tx-row interest-row">
+                <div class="tx-type">
+                    <svg class="tx-arrow incoming" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                    <span class="tx-label">Interest Deposit</span>
+                </div>
+                <div class="tx-amount">
+                    <div class="token-icon"><span class="dollar">$</span></div>
+                    <span class="amount-value">255.490425</span>
+                    <span class="amount-token">USDi</span>
+                </div>
+                <div class="tx-address"><span>To:</span>S85E..Nr3x</div>
+                <div class="tx-time">-</div>
+                <div class="tx-cumulative">
+                    <div><span class="cum-value">1659.655067</span><span class="cum-token">USDi</span></div>
+                    <div class="cum-label">Cum Interest</div>
+                </div>
+                <div class="tx-actions">
+                    <button class="action-btn" title="View details">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- November 26 -->
+            <div class="date-header">November 26</div>
+
+            <div class="tx-row">
+                <div class="tx-type">
+                    <svg class="tx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                    <span class="tx-label">C2C</span>
+                </div>
+                <div class="tx-amount">
+                    <div class="token-icon"><span class="dollar">$</span></div>
+                    <span class="amount-value">500</span>
+                    <span class="amount-token">USDi</span>
+                </div>
+                <div class="tx-address"><span>To:</span>S85E..Nr3x</div>
+                <div class="tx-time">08:41 AM</div>
+                <div class="tx-status order-created">Order Created</div>
+                <div class="tx-actions">
+                    <button class="action-btn" title="Share">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                        </svg>
+                    </button>
+                    <button class="action-btn" title="Expand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tx-row">
+                <div class="tx-type">
+                    <svg class="tx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                    <span class="tx-label">C2C</span>
+                </div>
+                <div class="tx-amount">
+                    <div class="token-icon"><span class="dollar">$</span></div>
+                    <span class="amount-value">490</span>
+                    <span class="amount-token">USDi</span>
+                </div>
+                <div class="tx-address"><span>To:</span>S85E..Nr3x</div>
+                <div class="tx-time">08:41 AM</div>
+                <div class="tx-status order-created">Order Created</div>
+                <div class="tx-actions">
+                    <button class="action-btn" title="Share">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                        </svg>
+                    </button>
+                    <button class="action-btn" title="Expand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tx-row">
+                <div class="tx-type">
+                    <svg class="tx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                    <span class="tx-label">C2C</span>
+                </div>
+                <div class="tx-amount">
+                    <div class="token-icon"><span class="dollar">$</span></div>
+                    <span class="amount-value">450</span>
+                    <span class="amount-token">USDi</span>
+                </div>
+                <div class="tx-address"><span>To:</span>S85E..Nr3x</div>
+                <div class="tx-time">08:40 AM</div>
+                <div class="tx-status order-created">Order Created</div>
+                <div class="tx-actions">
+                    <button class="action-btn" title="Share">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                        </svg>
+                    </button>
+                    <button class="action-btn" title="Expand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- October 17 -->
+            <div class="date-header">October 17</div>
+
+            <div class="tx-row">
+                <div class="tx-type">
+                    <svg class="tx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                    <span class="tx-label">C2C</span>
+                </div>
+                <div class="tx-amount">
+                    <div class="token-icon"><span class="dollar">$</span></div>
+                    <span class="amount-value">450</span>
+                    <span class="amount-token">USDi</span>
+                </div>
+                <div class="tx-address"><span>To:</span>S85E..Nr3x</div>
+                <div class="tx-time">09:36 AM</div>
+                <div class="tx-status cash-delivered">Cash Delivered</div>
+                <div class="tx-actions">
+                    <button class="action-btn" title="Share">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                        </svg>
+                    </button>
+                    <button class="action-btn" title="Expand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tx-row">
+                <div class="tx-type">
+                    <svg class="tx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                    <span class="tx-label">C2C</span>
+                </div>
+                <div class="tx-amount">
+                    <div class="token-icon"><span class="dollar">$</span></div>
+                    <span class="amount-value">490</span>
+                    <span class="amount-token">USDi</span>
+                </div>
+                <div class="tx-address"><span>To:</span>S85E..Nr3x</div>
+                <div class="tx-time">09:36 AM</div>
+                <div class="tx-status cash-delivered">Cash Delivered</div>
+                <div class="tx-actions">
+                    <button class="action-btn" title="Share">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                        </svg>
+                    </button>
+                    <button class="action-btn" title="Expand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- October 4 -->
+            <div class="date-header">October 4</div>
+
+            <div class="tx-row">
+                <div class="tx-type">
+                    <svg class="tx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                    <span class="tx-label">C2C</span>
+                </div>
+                <div class="tx-amount">
+                    <div class="token-icon"><span class="dollar">$</span></div>
+                    <span class="amount-value">380</span>
+                    <span class="amount-token">USDi</span>
+                </div>
+                <div class="tx-address"><span>To:</span>S85E..Nr3x</div>
+                <div class="tx-time">07:45 PM</div>
+                <div class="tx-status cash-delivered">Cash Delivered</div>
+                <div class="tx-actions">
+                    <button class="action-btn" title="Share">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                        </svg>
+                    </button>
+                    <button class="action-btn" title="Expand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
