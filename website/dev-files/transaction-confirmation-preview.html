@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transaction Confirmation - Cutwater</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&family=Playfair+Display:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Cutwater Design System */
+      :root {
+        --dark-navy: #0f1a3d;
+        --primary-navy: #1a2b5f;
+        --secondary-blue: #2c4a8c;
+        --highlight-blue: #1e88e5;
+        --success-green: #2d8a5f;
+        --body-gray: #5a6577;
+        --border-gray: #e8eaed;
+        --light-bg: #f8f9fa;
+        --white: #ffffff;
+
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "Source Serif 4", Georgia, serif;
+        --font-currency: "Noto Sans", sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--light-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      /* Modal Overlay */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 26, 61, 0.7);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      /* Modal Container */
+      .modal {
+        background: var(--white);
+        border-radius: 12px;
+        width: 100%;
+        max-width: 540px;
+        box-shadow: 0 24px 48px rgba(26, 43, 95, 0.15);
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      /* Modal Header */
+      .modal-header {
+        padding: 16px 20px 12px;
+        border-bottom: 1px solid var(--border-gray);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .modal-title {
+        font-family: var(--font-display);
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--primary-navy);
+        letter-spacing: -0.5px;
+      }
+
+      .close-button {
+        width: 28px;
+        height: 28px;
+        border: none;
+        background: var(--light-bg);
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        color: var(--body-gray);
+      }
+
+      .close-button:hover {
+        background: var(--border-gray);
+        color: var(--primary-navy);
+      }
+
+      /* Success Status */
+      .status-section {
+        padding: 12px 20px 8px;
+        text-align: center;
+        background: linear-gradient(
+          to bottom,
+          var(--light-bg) 0%,
+          var(--white) 100%
+        );
+      }
+
+      .success-icon {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 8px;
+        background: linear-gradient(135deg, #2d8a5f 0%, #3da776 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 16px rgba(45, 138, 95, 0.25);
+        animation: scaleIn 0.4s ease-out;
+      }
+
+      @keyframes scaleIn {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .checkmark {
+        stroke: white;
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+        stroke-dasharray: 50;
+        stroke-dashoffset: 50;
+        animation: draw 0.5s ease-out 0.2s forwards;
+      }
+
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .status-text {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--success-green);
+        margin-bottom: 2px;
+      }
+
+      .status-subtext {
+        font-family: var(--font-body);
+        font-size: 12.8px;
+        color: var(--body-gray);
+      }
+
+      /* Transaction Details */
+      .transaction-card {
+        margin: 0 20px 12px;
+        background: var(--light-bg);
+        border: 1px solid var(--border-gray);
+        border-radius: 8px;
+        padding: 12px;
+      }
+
+      .transaction-row {
+        display: flex;
+        align-items: center;
+        padding: 4px 0;
+        border-bottom: 1px solid var(--border-gray);
+      }
+
+      .transaction-row:first-child {
+        padding-top: 0;
+      }
+
+      .transaction-row:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .row-label {
+        font-family: var(--font-body);
+        font-size: 12.8px;
+        font-weight: 500;
+        color: var(--body-gray);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        width: 60px;
+        flex-shrink: 0;
+      }
+
+      .row-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .token-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--white);
+        border: 1px solid var(--border-gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-currency);
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--primary-navy);
+      }
+
+      .token-amount {
+        font-family: var(--font-currency);
+        font-size: 14.4px;
+        font-weight: 500;
+        color: var(--primary-navy);
+        font-feature-settings:
+          "lnum" 1,
+          "pnum" 1;
+      }
+
+      .token-amount.negative {
+        color: var(--secondary-blue);
+      }
+
+      .token-amount.positive {
+        color: var(--success-green);
+      }
+
+      .arrow-icon {
+        color: var(--body-gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Info Rows */
+      .info-section {
+        padding: 0 20px 12px;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 0;
+        border-bottom: 1px solid var(--border-gray);
+      }
+
+      .info-row:last-child {
+        border-bottom: none;
+      }
+
+      .info-label {
+        font-family: var(--font-body);
+        font-size: 12.8px;
+        color: var(--body-gray);
+      }
+
+      .info-value {
+        font-family: var(--font-body);
+        font-size: 12.8px;
+        font-weight: 500;
+        color: var(--primary-navy);
+        text-align: right;
+      }
+
+      .info-value.small {
+        font-size: 12px;
+        color: var(--body-gray);
+      }
+
+      .network-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 6px;
+        background: var(--light-bg);
+        border: 1px solid var(--border-gray);
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--primary-navy);
+      }
+
+      .network-icon {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      /* Footer Actions */
+      .modal-footer {
+        padding: 12px 20px 16px;
+        border-top: 1px solid var(--border-gray);
+      }
+
+      .explorer-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        width: 100%;
+        padding: 10px 16px;
+        background: var(--primary-navy);
+        color: var(--white);
+        border: none;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-size: 13.6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+
+      .explorer-link:hover {
+        background: var(--secondary-blue);
+        box-shadow: 0 4px 12px rgba(26, 43, 95, 0.2);
+      }
+
+      .hash-text {
+        font-family: "SF Mono", "Monaco", "Consolas", monospace;
+        color: var(--highlight-blue);
+        cursor: pointer;
+        font-size: 12.8px;
+      }
+
+      .hash-text:hover {
+        text-decoration: underline;
+      }
+
+      /* Copy Button */
+      .copy-btn {
+        background: none;
+        border: none;
+        color: var(--body-gray);
+        cursor: pointer;
+        padding: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.2s ease;
+      }
+
+      .copy-btn:hover {
+        color: var(--primary-navy);
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .modal {
+          max-width: 100%;
+          margin: 0;
+          border-radius: 0;
+          max-height: 100vh;
+        }
+
+        .modal-header,
+        .transaction-card,
+        .info-section,
+        .modal-footer {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .status-section {
+          padding: 32px 20px;
+        }
+
+        .transaction-card {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="modal-overlay">
+      <div class="modal">
+        <!-- Header -->
+        <div class="modal-header">
+          <h2 class="modal-title">Transaction Confirmed</h2>
+          <button class="close-button" aria-label="Close modal">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Success Status -->
+        <div class="status-section">
+          <div class="success-icon">
+            <svg width="26" height="26" viewBox="0 0 40 40">
+              <path class="checkmark" d="M10 20 L17 27 L30 13" />
+            </svg>
+          </div>
+          <div class="status-text">Transaction Complete</div>
+          <div class="status-subtext">
+            Your swap has been successfully processed
+          </div>
+        </div>
+
+        <!-- Transaction Details Card -->
+        <div class="transaction-card">
+          <!-- From -->
+          <div class="transaction-row">
+            <div class="row-label">From</div>
+            <div class="row-content">
+              <div class="token-icon">T</div>
+              <span class="token-amount negative">-3.4 USDT</span>
+            </div>
+          </div>
+
+          <!-- To -->
+          <div class="transaction-row">
+            <div class="row-label">To</div>
+            <div class="row-content">
+              <div class="token-icon">U</div>
+              <span class="token-amount positive">+58,883.28 USDi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transaction Info -->
+        <div class="info-section">
+          <div class="info-row">
+            <span class="info-label">Transaction Type</span>
+            <span class="info-value">Swap</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Time</span>
+            <span class="info-value">01/08/2025, 13:55:13</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Network</span>
+            <div class="network-badge">
+              <svg class="network-icon" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="8" fill="#14F195" />
+              </svg>
+              Solana
+            </div>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Network Fee</span>
+            <span class="info-value small">0.000203 USDT ($0.039)</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Exchange Rate</span>
+            <span class="info-value small">1 USDT = 17,318.61 USDi</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Transaction Hash</span>
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="hash-text">5zdmzS...Evz</span>
+              <button class="copy-btn" aria-label="Copy hash">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer">
+          <a href="#" class="explorer-link">
+            <span>View on Explorer</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              ></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

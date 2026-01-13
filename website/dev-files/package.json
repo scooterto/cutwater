@@ -1,0 +1,33 @@
+{
+  "name": "cutwater-react-components",
+  "version": "1.0.0",
+  "description": "Cutwater React components - Sign In/Sign Up page and Transaction Confirmation modal",
+  "main": "SignInPage.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
+  },
+  "keywords": [
+    "cutwater",
+    "signin",
+    "authentication",
+    "transaction",
+    "confirmation",
+    "modal",
+    "react",
+    "component"
+  ],
+  "author": "Cutwater Partners",
+  "license": "PROPRIETARY"
+}
