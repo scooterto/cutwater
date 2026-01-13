@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | Cutwater Partners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&family=Playfair+Display:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      /* ===== Cutwater Brand Design System ===== */
+      :root {
+        /* Light Mode Colors */
+        --dark-navy: #0f1a3d;
+        --primary-navy: #1a2b5f;
+        --secondary-blue: #2c4a8c;
+        --highlight-blue: #1e88e5;
+        --success-green: #2d8a5f;
+        --body-gray: #5a6577;
+        --border-gray: #e8eaed;
+        --light-bg: #f8f9fa;
+        --white: #ffffff;
+
+        /* Fonts */
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "Source Serif 4", Georgia, serif;
+        --font-currency: "Noto Sans", sans-serif;
+      }
+
+      /* Dark Mode */
+      body.dark-mode {
+        --dark-navy: #0a0e1a;
+        --primary-navy: #ffffff;
+        --secondary-blue: #8b9dc3;
+        --highlight-blue: #5ba4e6;
+        --success-green: #2d8a5f;
+        --body-gray: #8b9dc3;
+        --border-gray: #365486;
+        --light-bg: #1a1b3d;
+        --white: #0f1035;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--white);
+        color: var(--body-gray);
+        line-height: 1.7;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease;
+      }
+
+      /* Page Layout */
+      .signin-container {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* Left Side - Branding */
+      .brand-side {
+        background: var(--dark-navy);
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body.dark-mode .brand-side {
+        background: #0f1a3d;
+      }
+
+      .brand-gradient {
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(91, 164, 230, 0.15) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .brand-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 600px;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+
+      .logo-icon {
+        width: 56px;
+        height: 56px;
+      }
+
+      .logo-text {
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      /* Animated Balance Line */
+      @keyframes wave {
+        0% {
+          transform: rotate(-24deg);
+        }
+        50% {
+          transform: rotate(24deg);
+        }
+        100% {
+          transform: rotate(-24deg);
+        }
+      }
+
+      .balance-line {
+        transform-origin: 24px 24px;
+        animation: wave 3s ease-in-out infinite;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .balance-line {
+          animation: none;
+        }
+      }
+
+      .brand-headline {
+        font-family: var(--font-display);
+        font-size: 36px;
+        font-weight: 500;
+        color: #ffffff;
+        line-height: 1.5;
+        letter-spacing: -0.5px;
+        max-width: 600px;
+      }
+
+      /* Right Side - Form */
+      .form-side {
+        background: var(--white);
+        padding: 60px 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .theme-toggle {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        width: 48px;
+        height: 48px;
+        background: var(--light-bg);
+        border: 1px solid var(--border-gray);
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-navy);
+        transition: all 0.2s ease;
+      }
+
+      .theme-toggle:hover {
+        background: var(--primary-navy);
+        border-color: var(--primary-navy);
+      }
+
+      .theme-toggle:hover svg {
+        color: var(--white);
+      }
+
+      .theme-toggle svg {
+        width: 20px;
+        height: 20px;
+        transition: color 0.2s ease;
+      }
+
+      .sun-icon {
+        display: none;
+      }
+      .moon-icon {
+        display: block;
+      }
+      body.dark-mode .sun-icon {
+        display: block;
+      }
+      body.dark-mode .moon-icon {
+        display: none;
+      }
+
+      .form-container {
+        width: 100%;
+        max-width: 440px;
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .form-title {
+        font-family: var(--font-display);
+        font-size: 36px;
+        font-weight: 600;
+        color: var(--primary-navy);
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+      }
+
+      .form-subtitle {
+        font-family: var(--font-body);
+        font-size: 16.8px;
+        color: var(--body-gray);
+      }
+
+      /* Form Elements */
+      .form-group {
+        margin-bottom: 24px;
+      }
+
+      .form-label {
+        font-family: var(--font-body);
+        font-size: 14.4px;
+        font-weight: 500;
+        color: var(--primary-navy);
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .input-icon {
+        position: absolute;
+        left: 16px;
+        width: 20px;
+        height: 20px;
+        color: var(--body-gray);
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 16px 16px 16px 48px;
+        font-family: var(--font-body);
+        font-size: 15.2px;
+        color: var(--primary-navy);
+        background: var(--white);
+        border: 1px solid var(--border-gray);
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        outline: none;
+      }
+
+      .form-input:focus {
+        border-color: var(--highlight-blue);
+        box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+      }
+
+      .form-input::placeholder {
+        color: var(--body-gray);
+        opacity: 0.5;
+      }
+
+      .form-help {
+        font-family: var(--font-body);
+        font-size: 13.6px;
+        color: var(--body-gray);
+        margin-top: 8px;
+      }
+
+      /* Buttons */
+      .btn {
+        width: 100%;
+        padding: 18px 24px;
+        font-family: var(--font-body);
+        font-size: 15.2px;
+        font-weight: 500;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .btn-primary {
+        background: var(--primary-navy);
+        color: var(--white);
+        margin-bottom: 16px;
+      }
+
+      .btn-primary:hover {
+        box-shadow: 0 0 24px rgba(26, 43, 95, 0.4);
+        transform: translateY(-1px);
+      }
+
+      body.dark-mode .btn-primary {
+        background: #5ba4e6;
+        color: #0f1a3d;
+      }
+
+      body.dark-mode .btn-primary:hover {
+        box-shadow: 0 0 24px rgba(91, 164, 230, 0.6);
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        margin: 32px 0;
+        gap: 16px;
+      }
+
+      .divider-line {
+        flex: 1;
+        height: 1px;
+        background: var(--border-gray);
+      }
+
+      .divider-text {
+        font-family: var(--font-body);
+        font-size: 13.6px;
+        color: var(--body-gray);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .btn-social {
+        background: var(--white);
+        color: var(--primary-navy);
+        border: 1px solid var(--border-gray);
+        margin-bottom: 12px;
+      }
+
+      .btn-social:hover {
+        background: var(--light-bg);
+        border-color: var(--primary-navy);
+      }
+
+      .btn-social svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .form-footer {
+        text-align: center;
+        margin-top: 32px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border-gray);
+      }
+
+      .form-footer-text {
+        font-family: var(--font-body);
+        font-size: 14.4px;
+        color: var(--body-gray);
+      }
+
+      .form-footer-link {
+        color: var(--highlight-blue);
+        font-weight: 500;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+
+      .form-footer-link:hover {
+        opacity: 0.8;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .signin-container {
+          grid-template-columns: 1fr;
+        }
+
+        .brand-side {
+          display: none;
+        }
+
+        .form-side {
+          padding: 40px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      function SignInPage() {
+        const [email, setEmail] = useState("");
+        const [isDarkMode, setIsDarkMode] = useState(false);
+
+        useEffect(() => {
+          const savedTheme = localStorage.getItem("cutwater-theme") || "light";
+          if (savedTheme === "dark") {
+            setIsDarkMode(true);
+            document.body.classList.add("dark-mode");
+          }
+        }, []);
+
+        const toggleTheme = () => {
+          const newMode = !isDarkMode;
+          setIsDarkMode(newMode);
+
+          if (newMode) {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("cutwater-theme", "dark");
+          } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("cutwater-theme", "light");
+          }
+        };
+
+        const handleEmailSubmit = (e) => {
+          e.preventDefault();
+          console.log("Email submitted:", email);
+          // Handle email authentication
+        };
+
+        const handleGoogleSignIn = () => {
+          console.log("Google sign in");
+          // Handle Google OAuth
+        };
+
+        const handleAppleSignIn = () => {
+          console.log("Apple sign in");
+          // Handle Apple OAuth
+        };
+
+        return (
+          <div className="signin-container">
+            {/* Left Side - Branding */}
+            <div className="brand-side">
+              <div className="brand-gradient"></div>
+              <div className="brand-content">
+                <div className="logo-section">
+                  <svg
+                    className="logo-icon"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M34 10C28 6 18 6 12 12C6 18 6 30 12 36C18 42 28 42 34 38"
+                      stroke="#ffffff"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                    />
+                    <g className="balance-line">
+                      <path
+                        d="M14 24L34 24"
+                        stroke="#5BA4E6"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                      />
+                    </g>
+                    <circle cx="24" cy="24" r="4" fill="#5BA4E6" />
+                  </svg>
+                  <span className="logo-text">Cutwater</span>
+                </div>
+
+                <div>
+                  <h1 className="brand-headline">
+                    Earn passive income automatically with USDi stablecoin.
+                  </h1>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Form */}
+            <div className="form-side">
+              <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+              >
+                <svg
+                  className="sun-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+                <svg
+                  className="moon-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              </button>
+
+              <div className="form-container">
+                <div className="form-header">
+                  <h2 className="form-title">Welcome to Cutwater</h2>
+                  <p className="form-subtitle">
+                    Sign in to start earning multi-asset yields
+                  </p>
+                </div>
+
+                <form onSubmit={handleEmailSubmit}>
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="email">
+                      Email Address
+                    </label>
+                    <div className="input-wrapper">
+                      <svg
+                        className="input-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                      </svg>
+                      <input
+                        id="email"
+                        type="email"
+                        className="form-input"
+                        placeholder="you@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <p className="form-help">
+                      We'll send you a one-time passcode to sign in
+                    </p>
+                  </div>
+
+                  <button type="submit" className="btn btn-primary">
+                    Continue with Email
+                  </button>
+                </form>
+
+                <div className="divider">
+                  <div className="divider-line"></div>
+                  <span className="divider-text">or</span>
+                  <div className="divider-line"></div>
+                </div>
+
+                <button className="btn btn-social" onClick={handleGoogleSignIn}>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                      fill="#4285F4"
+                    />
+                    <path
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                      fill="#34A853"
+                    />
+                    <path
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                      fill="#FBBC05"
+                    />
+                    <path
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                      fill="#EA4335"
+                    />
+                  </svg>
+                  Continue with Google
+                </button>
+
+                <button className="btn btn-social" onClick={handleAppleSignIn}>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+                  </svg>
+                  Continue with Apple
+                </button>
+
+                <div className="form-footer">
+                  <p className="form-footer-text">
+                    Don't have an account?{" "}
+                    <span className="form-footer-link">Sign up</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<SignInPage />);
+    </script>
+  </body>
+</html>
