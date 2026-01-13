@@ -6,17 +6,18 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 
 ## V4 Pages (Latest)
 
-| Page                   | URL                                                                    |
-| ---------------------- | ---------------------------------------------------------------------- |
-| Landing Page V4        | https://scooterto.github.io/cutwater/landing-page-v4.html              |
-| Sign In / Sign Up Page | https://scooterto.github.io/cutwater/website/cutwater-signin-page.html |
-| Dashboard Preview V4   | https://scooterto.github.io/cutwater/website/dashboard-preview-v4.html |
-| Blog V4                | https://scooterto.github.io/cutwater/website/blog-v4.html              |
-| Brand Guidelines V4    | https://scooterto.github.io/cutwater/website/brand-guidelines-v4.html  |
-| Dashboard V4           | https://scooterto.github.io/cutwater/website/dashboard-v4.html         |
-| My Assets V4           | https://scooterto.github.io/cutwater/website/my-assets-v4.html         |
-| Transactions V4        | https://scooterto.github.io/cutwater/website/transactions-v4.html      |
-| Analytics V4           | https://scooterto.github.io/cutwater/website/analytics-v4.html         |
+| Page                     | URL                                                                                          |
+| ------------------------ | -------------------------------------------------------------------------------------------- |
+| Landing Page V4          | https://scooterto.github.io/cutwater/landing-page-v4.html                                    |
+| Sign In / Sign Up Page   | https://scooterto.github.io/cutwater/website/cutwater-signin-page.html                       |
+| Transaction Confirmation | https://scooterto.github.io/cutwater/website/dev-files/transaction-confirmation-preview.html |
+| Dashboard Preview V4     | https://scooterto.github.io/cutwater/website/dashboard-preview-v4.html                       |
+| Blog V4                  | https://scooterto.github.io/cutwater/website/blog-v4.html                                    |
+| Brand Guidelines V4      | https://scooterto.github.io/cutwater/website/brand-guidelines-v4.html                        |
+| Dashboard V4             | https://scooterto.github.io/cutwater/website/dashboard-v4.html                               |
+| My Assets V4             | https://scooterto.github.io/cutwater/website/my-assets-v4.html                               |
+| Transactions V4          | https://scooterto.github.io/cutwater/website/transactions-v4.html                            |
+| Analytics V4             | https://scooterto.github.io/cutwater/website/analytics-v4.html                               |
 
 ---
 
