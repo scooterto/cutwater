@@ -18,6 +18,7 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 | My Assets V4             | https://scooterto.github.io/cutwater/website/my-assets-v4.html                               |
 | Transactions V4          | https://scooterto.github.io/cutwater/website/transactions-v4.html                            |
 | Analytics V4             | https://scooterto.github.io/cutwater/website/analytics-v4.html                               |
+| Account Page             | https://scooterto.github.io/cutwater/website/cutwater-account-page.html                      |
 
 ---
 
