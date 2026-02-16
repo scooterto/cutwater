@@ -16,6 +16,7 @@ Base URL: `https://scooterto.github.io/cutwater/website/`
 | Brand Guidelines V4      | https://scooterto.github.io/cutwater/website/brand-guidelines-v4.html                        |
 | Dashboard V4             | https://scooterto.github.io/cutwater/website/dashboard-v4.html                               |
 | My Assets V4             | https://scooterto.github.io/cutwater/website/my-assets-v4.html                               |
+| My Assets V5             | https://scooterto.github.io/cutwater/website/my-assets-v5.html                               |
 | Transactions V4          | https://scooterto.github.io/cutwater/website/transactions-v4.html                            |
 | Analytics V4             | https://scooterto.github.io/cutwater/website/analytics-v4.html                               |
 | Account Page             | https://scooterto.github.io/cutwater/website/cutwater-account-page.html                      |
